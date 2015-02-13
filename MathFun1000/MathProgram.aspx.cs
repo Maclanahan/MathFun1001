@@ -14,8 +14,6 @@ namespace MathFun1000
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //setUpSteps();
-
             if(!IsPostBack)
             {
                 stepCount.Value = "0";
@@ -24,20 +22,6 @@ namespace MathFun1000
             innerMain.InnerHtml = generateCode();
 
         }
-
-        //private void setUpSteps()
-        //{
-        //    steps = new Tutorial[9];
-
-        //    for(int i = 0; i < steps.Length; i++)
-        //    {
-        //        steps[i] = new Tutorial();
-
-        //        steps[i].example = i.ToString();
-        //        steps[i].rule = i.ToString();
-        //        steps[i].step = i.ToString();
-        //    }
-        //}
 
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {

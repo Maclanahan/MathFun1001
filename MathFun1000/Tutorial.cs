@@ -23,7 +23,7 @@ namespace MathFun1000 {
                 "Solution"};
             this.example = new String[] {"(2x^2y -3xy) + (6x^2y-9xy)", 
                 "(2x^2y+6x^2y) + (-3xy-9xy)", 
-                "(8x2y) + (-12xy)", 
+                "(8x^2y) + (-12xy)", 
                 "8x^2y-12xy", 
                 "8x^2y-12xy"};
             this.rule = new String[] {"Rule Here", 

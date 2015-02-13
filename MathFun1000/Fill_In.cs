@@ -8,9 +8,12 @@ namespace MathFun1000 {
         public String[] step;
         public String[] example;
         public String[] rule;
-        public int difficulty = 2;
+        public int difficulty = 1;
+        public int number_of_steps = 5;
 
         public Fill_In() {
+            difficulty = 2;
+            number_of_steps = 5;
             this.step = new String[] {"Identify the different variables.", 
                                       "Separate the variables into like groups.",
                                       "Combine the like terms.",
@@ -21,16 +24,20 @@ namespace MathFun1000 {
                                         "(8__) + (-12__)", 
                                         "8__ - 12__", 
                                         "8__ - 12__"};
-            this.rule = new String[] {"Insert Rule Here!",
-                                      "Insert Rule Here!",
-                                      "Insert Rule Here!",
-                                      "Insert Rule Here!",
-                                      "Insert Rule Here!"};
+            this.rule = new String[] {"Rule Here!",
+                                      "Rule Here!",
+                                      "Rule Here!",
+                                      "Rule Here!",
+                                      "Rule Here!"};
         }
-        public Fill_In(String[] step, String[] example, String[] rule) {
+
+        public Fill_In(String[] step, String[] example, String[] rule, int difficulty, int number_of_steps)
+        {
             this.step = step;
             this.example = example;
             this.rule = rule;
+            this.difficulty = difficulty;
+            this.number_of_steps = number_of_steps;
         }
     }
 }
