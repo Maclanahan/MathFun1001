@@ -11,6 +11,7 @@ namespace MathFun1000 {
         public String[] rule;
         public int difficulty = 1;
         public int number_of_steps = 5;
+        public int current_step = 0;
 
         //Basic Constructor
         public Tutorial() {
@@ -21,11 +22,11 @@ namespace MathFun1000 {
                 "Combine the like terms.", 
                 "Recombine the terms after removing the parenthese to make an equation in its seimplets form. Since the variables are differnt, this is the simplest form.", 
                 "Solution"};
-            this.example = new String[] {"(2x^2y -3xy) + (6x^2y-9xy)", 
-                "(2x^2y+6x^2y) + (-3xy-9xy)", 
-                "(8x^2y) + (-12xy)", 
-                "8x^2y-12xy", 
-                "8x^2y-12xy"};
+            this.example = new String[] {"(2x<sup>2</sup>y -3xy) + (6x<sup>2</sup>y-9xy)", 
+                "(2x<sup>2</sup>y+6x<sup>2</sup>y) + (-3xy-9xy)", 
+                "(8x<sup>2</sup>y) + (-12xy)", 
+                "8x<sup>2</sup>y-12xy", 
+                "8x<sup>2</sup>y-12xy"};
             this.rule = new String[] {"Rule Here", 
                 "Rule Here", 
                 "Rule Here", 
@@ -41,6 +42,9 @@ namespace MathFun1000 {
             this.number_of_steps = number_of_steps;
         }
 
-        
+        public void incrementStep()
+        {
+            current_step++;
+        }
     }
 }
