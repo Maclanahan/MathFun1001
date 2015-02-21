@@ -12,10 +12,6 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    
-    
-    <asp:Button ID="Button1" runat="server" Text="Problem 1" OnClick="Button1_Click" />
-    <asp:Button ID="Button2" runat="server" Text="Problem 2" OnClick="Button2_Click" />
-    
+    <asp:Button ID="Button1" runat="server" Text="Chapter 1" OnClick="Button1_Click" /> 
     
 </asp:Content>

@@ -31,13 +31,13 @@ namespace MathFun1000 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl innerMain;
         
         /// <summary>
-        /// StepForwardButton control.
+        /// buttons control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button StepForwardButton;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl buttons;
         
         /// <summary>
         /// stepCount control.
@@ -47,5 +47,14 @@ namespace MathFun1000 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField stepCount;
+        
+        /// <summary>
+        /// problemNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField problemNumber;
     }
 }

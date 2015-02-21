@@ -7,23 +7,21 @@ using System.Web.UI.WebControls;
 
 namespace MathFun1000
 {
-    public partial class Chapters : System.Web.UI.Page
+    public partial class Problems : System.Web.UI.Page
     {
-        private Tutorial tut1;
-        private Tutorial tut2;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Problems.aspx?chapter=" + "1");
+            Response.Redirect("MathProgram.aspx?problem=" + "1");
         }
 
-        
-
-
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MathProgram.aspx?problem=" + "2");
+        }
     }
 }

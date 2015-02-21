@@ -1,11 +1,11 @@
 ﻿body 
 {
-
+   
 }
 
 .box
 {
-    display: inline-block;
+    display:inline-block;
     width: 250px;
     min-height: 50px;
     font-size: 15px;
@@ -17,23 +17,42 @@
 
 .MainContainer
 {
-    display: inline-block;
-    /*margin: 10px 10px 10px 10px;
-    border: 2px solid white;*/
+    margin: 10px 10px 10px 10px;
+    border: 2px solid white;
+    display:inline-block;
 }
 
 .StepContainer
 {
-    display: inline-block;
+    display:inline-block;
     margin: 10px 10px 10px 10px;
     border: 2px solid white;
+    
 }
-#innerMain
+.button
 {
-    display:inline-block;
+    min-width: 100px;    
 }
 
-#StepForwardButton
+.innerMain
 {
-    display:inline-block;
+    
+    
+}
+
+.buttons
+{
+    
+}
+
+.StepForwardButton
+{
+    float:right;
+   
+}
+
+.StepBackwardButton
+{
+  
+   
 }
