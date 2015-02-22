@@ -11,10 +11,13 @@ namespace MathFun1000 {
         public int difficulty = 1;
         public int number_of_steps = 5;
         public string answer_to_current_step;
+        public int current_step = 0;
 
+
+        //Basic Contructor
         public Fill_In() {
-            difficulty = 2;
-            number_of_steps = 5;
+            this.difficulty = 2;
+            this.number_of_steps = 5;
             this.step = new String[] {"Identify the different variables.", 
                                       "Separate the variables into like groups.",
                                       "Combine the like terms.",
@@ -84,6 +87,17 @@ namespace MathFun1000 {
         public override string getRuleAt(int index)
         {
             return rule[index];
+        }
+
+        public void incrementStep()
+        {
+            this.current_step++;
+        }
+
+        public void decrementStep()
+        {
+            this.current_step--;
+
         }
     }
 }
