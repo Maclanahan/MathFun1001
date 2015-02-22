@@ -32,5 +32,5 @@
 
     <asp:HiddenField ID="stepCount" runat="server" value="0"/>
     <asp:HiddenField ID="problemNumber" runat="server" value="0"/>
-    <asp:HiddenField ID="problemType" runat="server" value="Tutorial" />
+    <asp:HiddenField ID="problemType" runat="server" value="FillIn" />
 </asp:Content>

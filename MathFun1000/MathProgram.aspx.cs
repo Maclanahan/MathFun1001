@@ -98,11 +98,6 @@ namespace MathFun1000
                 innerMain.Controls.Add(bt3);
             }
 
-            if(problemType.Value.Equals("FillIn"))
-            {
-                
-
-            }
         }
 
         protected void StepForwardButton_Click(object sender, EventArgs e)
@@ -211,6 +206,7 @@ namespace MathFun1000
         protected void FillInTheBlank_Click(object sender, EventArgs e)
         {
             steps = new Fill_In();
+            problemType.Value = "FillIn";
 
             generateCode();
 
@@ -220,6 +216,7 @@ namespace MathFun1000
         protected void Tutorial_Click(object sender, EventArgs e)
         {
             steps = new Tutorial();
+            problemType.Value = "Tutorial";
 
             generateCode();
 

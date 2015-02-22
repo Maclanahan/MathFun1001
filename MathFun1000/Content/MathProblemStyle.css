@@ -14,6 +14,10 @@
     border: 2px solid black;
     vertical-align: bottom;
 }
+p
+{
+    display:inline-block;
+}
 
 .MainContainer
 {
@@ -31,7 +35,10 @@
 }
 .button
 {
-    min-width: 100px;    
+    width:25px;
+    height: 40px;
+    font-size:5px;
+    padding: 0px 0px 0px 0px;    
 }
 
 .innerMain
@@ -55,4 +62,15 @@
 {
   
    
+}
+
+.answerBox
+{
+    width:25px;
+    height: 15px;
+    vertical-align:bottom;
+    font-size:12px;
+    outline:solid;
+    outline-color:black;
+    outline-width:1px;
 }

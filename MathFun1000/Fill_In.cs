@@ -23,11 +23,11 @@ namespace MathFun1000 {
                                       "Combine the like terms.",
                                       "Recombine the terms after removing the parentheses to make an equation in its simplest form. Since the variables are different, this is the simplest form.",
                                       "Solution"};
-            this.example = new String[]{"(2x<sup>2</sup>y -3xy) + (6x<sup>2</sup>y-9xy)", 
-                                        "(2x<sup>2</sup>y+::6::x<sup>2</sup>y) + (-3xy-9xy)",
-                                        "(8x<sup>2</sup>y) + (::-12::xy)", 
-                                        "8x<sup>2</sup>y ::-:: 12xy", 
-                                        "8x<sup>2</sup>y-12xy"};
+            this.example = new String[]{"<p style=\"color:blue\">(2x<sup>2</sup>y</p> <p style=\"color:red\">-3xy)</p> <p>+</p> <p style=\"color:blue\">(6x<sup>2</sup>y</p><p>-</p><p style=\"color:red\">9xy)</p>", 
+                                        "<p style=\"color:blue\">(2x<sup>2</sup>y+::6::x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(-3xy-9xy)</p>",
+                                        "<p style=\"color:blue\">(8x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(::-12::xy)</p>", 
+                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>::-::</p> <p style=\"color:red\">12xy</p>", 
+                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>"};
             this.rule = new String[] {"Rule Here",
                                       "Rule Here",
                                       "Rule Here",
@@ -54,15 +54,15 @@ namespace MathFun1000 {
                     {
                         code += "<div class=\"StepContainer\">";
 
-                        code += "<div class=\"box\">" + getStepAt(i) + "</div>";
+                        code += "<div class=\"box\"><p>" + getStepAt(i) + "</p></div>";
 
                         if( (i) == numOfSteps)
-                            code += "<div class=\"box\">" + parseForInput(getExampleAt(i)) +"</div>";
+                            code += "<div class=\"box\"><p>" + parseForInput(getExampleAt(i)) + "</p></div>";
 
                         else
-                            code += "<div class=\"box\">" + parseToRemoveColons(getExampleAt(i)) + "</div>";
+                            code += "<div class=\"box\"><p>" + parseToRemoveColons(getExampleAt(i)) + "</p></div>";
 
-                        code += "<div class=\"box\">" + getRuleAt(i) + "</div>";
+                        code += "<div class=\"box\"><p>" + getRuleAt(i) + "</p></div>";
 
                         code += "<div class=\"buttons\">";
                         code += "</div>";
