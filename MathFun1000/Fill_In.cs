@@ -55,7 +55,13 @@ namespace MathFun1000 {
                         code += "<div class=\"StepContainer\">";
 
                         code += "<div class=\"box\">" + getStepAt(i) + "</div>";
-                        code += "<div class=\"box\">" + getExampleAt(i) + "</div>";
+
+                        if( (i) == numOfSteps)
+                            code += "<div class=\"box\">" + parseForInput(getExampleAt(i)) +"</div>";
+
+                        else
+                            code += "<div class=\"box\">" + parseToRemoveColons(getExampleAt(i)) + "</div>";
+
                         code += "<div class=\"box\">" + getRuleAt(i) + "</div>";
 
                         code += "<div class=\"buttons\">";
@@ -67,6 +73,65 @@ namespace MathFun1000 {
 
             return code;
 
+        }
+
+        private string parseToRemoveColons(string parse)
+        {
+            if (parse.IndexOf("::") >= 0)
+            {
+                int first = parse.IndexOf("::");
+
+                int last = parse.LastIndexOf("::");
+
+                parse = parse.Remove(last, 2);
+                parse = parse.Remove(first, 2);
+            }
+
+            return parse;
+        }
+
+        private string parseForInput(string parse)
+        {
+            string code = "";
+
+            if (parse.IndexOf("::") >= 0)
+            {
+                int first = parse.IndexOf("::");
+
+                int last = parse.LastIndexOf("::");
+                Console.Out.WriteLine((first + 2) - (last - 2));
+                String answer = parse.Substring(first + 2, (last - 1) - (first + 1));
+                
+                string firstHalf = parse.Substring(0, first);
+
+                string secondHalf = parse.Substring(last + 2);
+
+                code += firstHalf + " ";
+
+                code += "<input class=\"answerBox\" id=\"AnswerBox\" type=\"text\" value=\"\" autoComplete=\"off\"/>";
+                //code += "<asp:TextBox class=\"answerBox\" ID=\"TextBox1\" runat=\"server\" value=\"HelloWorld\"></asp:TextBox>";
+                code += " " + secondHalf;
+
+                code += "<br/><input class=\"button\" id=\"CheckButton\" type=\"button\" value=\"&#x2713\" onClick=\"checkAnswer()\"/>";
+                code += "<label for=\"CheckButton\" id=\"CheckLabel\" style=\"display:inline-block\" ></label>";
+                
+                code += "<script> function checkAnswer(){" +
+                            "var label = document.getElementById('CheckLabel');" +
+                            "var answer = document.getElementById('AnswerBox').value;" +
+                            "if(answer == \"" + answer + "\")" +
+                                "label.innerHTML = \"Correct!\";" +
+                            "if(answer != \"" + answer + "\")" +
+                                "label.innerHTML = \"incorrect\";" +
+                            //"document.getElementById(\"CheckLabel\").innerHTML = \"Hello\";" +
+                        "} </script>";
+
+                
+
+                return code;
+            }
+
+            return parse;
+            
         }
 
         public override int getNumberOfSteps()

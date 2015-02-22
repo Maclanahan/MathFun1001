@@ -10,7 +10,7 @@ namespace MathFun1000
     public partial class MathProgram : System.Web.UI.Page
     {
         public Problem problem = new Problem();
-        public IProblemType steps = new Tutorial();
+        public IProblemType steps = new Fill_In();
         private int currentProblemNumber;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace MathFun1000
                 problemType.Value = "FillIn";
             }
             
-            innerMain.InnerHtml = generateCode();
+            generateCode();
 
             setUpButtons();
         }
@@ -97,13 +97,19 @@ namespace MathFun1000
 
                 innerMain.Controls.Add(bt3);
             }
+
+            if(problemType.Value.Equals("FillIn"))
+            {
+                
+
+            }
         }
 
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
             incrementStepCount(1);
 
-            innerMain.InnerHtml = generateCode();
+            generateCode();
        
             setUpButtons();
             
@@ -113,7 +119,7 @@ namespace MathFun1000
         {
             incrementStepCount(-1);
 
-            innerMain.InnerHtml = generateCode();
+            generateCode();
 
             setUpButtons();
 
@@ -128,10 +134,13 @@ namespace MathFun1000
 
         }
 
-        private string generateCode()
+        private void generateCode()
         {
-            return steps.generateCode( Convert.ToInt32(stepCount.Value) );
+            string parse = steps.generateCode( Convert.ToInt32(stepCount.Value) );
 
+            parseForInput(parse);
+
+            //innerMain.InnerHtml = parse;
             /*string code = "";
             if (Convert.ToInt32(stepCount.Value) > -1)
                 for (int i = 0; i <= Convert.ToInt32(stepCount.Value); i++)
@@ -154,6 +163,41 @@ namespace MathFun1000
             return code;*/
         }
 
+        private void parseForInput(string parse)
+        {
+            
+            innerMain.InnerHtml = parse;
+            
+
+            /*
+            int first = parse.IndexOf("::");
+            //Console.Out.WriteLine(first);
+
+            int last = parse.LastIndexOf("::");
+            //Console.Out.WriteLine(last);
+
+            String answer = parse.Substring(first + 2, (first + 2) - (last - 2));
+
+            //removes the ::
+            //parse = parse.Remove(first, 2);
+            //parse = parse.Remove(last - 2, 2);
+
+            //Console.Out.WriteLine(parse);
+            //Console.Out.WriteLine(answer);
+
+            string firstHalf = parse.Substring(0, first);
+            
+
+            string secondHalf = parse.Substring(last - 2);
+
+            innerMain.InnerHtml = firstHalf;
+            innerMain.Controls.Add(new TextBox());
+            innerMain.InnerHtml = secondHalf;
+
+            //parse.Console.Out.WriteLine(firstHalf);
+            //parse.Console.Out.WriteLine(secondHalf);*/
+        }
+
         private void incrementStepCount(int _inc)
         {
             if (Convert.ToInt32(stepCount.Value) + _inc >= 0)
@@ -168,7 +212,7 @@ namespace MathFun1000
         {
             steps = new Fill_In();
 
-            innerMain.InnerHtml = generateCode();
+            generateCode();
 
             setUpButtons();
         }
@@ -177,7 +221,7 @@ namespace MathFun1000
         {
             steps = new Tutorial();
 
-            innerMain.InnerHtml = generateCode();
+            generateCode();
 
             setUpButtons();
         }

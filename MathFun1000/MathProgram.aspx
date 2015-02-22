@@ -24,11 +24,10 @@
         <div class="innerMain" id="innerMain" runat="server">
             
             <div class="buttons" id="buttons" runat="server" >
-            
-            </div>   
+                
+            </div>
+               
         </div>
-         
-        
     </div>
 
     <asp:HiddenField ID="stepCount" runat="server" value="0"/>
