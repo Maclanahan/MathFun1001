@@ -5,7 +5,6 @@ using System.Web;
 
 namespace MathFun1000 {
     public class Tutorial {
-
         public String[] step;
         public String[] example;
         public String[] rule;
@@ -14,7 +13,8 @@ namespace MathFun1000 {
         public int current_step = 0;
 
         //Basic Constructor
-        public Tutorial() {
+        public Tutorial() 
+        {
             this.number_of_steps = 5;
             this.difficulty = 1;
             this.step = new String[] {"Identify the different variables.", 
@@ -34,7 +34,8 @@ namespace MathFun1000 {
                 "Rule Here"};
         }
 
-        public Tutorial(String[] step, String[] example, String[] rule, int difficulty, int number_of_steps){
+        public Tutorial(String[] step, String[] example, String[] rule, int difficulty, int number_of_steps)
+        {
             this.step = step;
             this.example = example;
             this.rule = rule;
@@ -44,7 +45,12 @@ namespace MathFun1000 {
 
         public void incrementStep()
         {
-            current_step++;
+            this.current_step++;
+        }
+
+        public void decrementStep()
+        {
+            this.current_step--;
         }
     }
 }

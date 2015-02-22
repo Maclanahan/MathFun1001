@@ -15,8 +15,6 @@ namespace MathFun1000
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
             setUpProblem();
 
             if(!IsPostBack)
