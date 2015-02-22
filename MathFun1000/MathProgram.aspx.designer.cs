@@ -13,6 +13,33 @@ namespace MathFun1000 {
     public partial class MathProgram {
         
         /// <summary>
+        /// Tutorial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Tutorial;
+        
+        /// <summary>
+        /// FillInTheBlank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FillInTheBlank;
+        
+        /// <summary>
+        /// AnswerOnly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AnswerOnly;
+        
+        /// <summary>
         /// MainController control.
         /// </summary>
         /// <remarks>
@@ -56,5 +83,14 @@ namespace MathFun1000 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField problemNumber;
+        
+        /// <summary>
+        /// problemType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField problemType;
     }
 }

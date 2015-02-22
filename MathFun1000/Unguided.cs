@@ -14,5 +14,7 @@ namespace MathFun1000 {
         public Unguided(String[] problem) {
             this.problem = problem;
         }
+
+        
     }
 }

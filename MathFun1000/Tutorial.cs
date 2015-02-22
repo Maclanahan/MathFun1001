@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace MathFun1000 {
-    public class Tutorial {
+    public class Tutorial : IProblemType{
 
         public String[] step;
         public String[] example;
@@ -42,9 +42,54 @@ namespace MathFun1000 {
             this.number_of_steps = number_of_steps;
         }
 
+        public override string generateCode(int numOfSteps)
+        {
+            string code = "";
+            if (numOfSteps > -1)
+                for (int i = 0; i <= numOfSteps; i++)
+                {
+                    if (i < number_of_steps)
+                    {
+                        code += "<div class=\"StepContainer\">";
+
+                        code += "<div class=\"box\">" + getStepAt(i) + "</div>";
+                        code += "<div class=\"box\">" + getExampleAt(i) + "</div>";
+                        code += "<div class=\"box\">" + getRuleAt(i) + "</div>";
+
+                        code += "<div class=\"buttons\">";
+                        code += "</div>";
+
+                        code += "</div>";
+                    }
+                }
+
+            return code;
+            
+        }
+
         public void incrementStep()
         {
             current_step++;
+        }
+
+        public override int getNumberOfSteps()
+        {
+            return number_of_steps;
+        }
+
+        public override string getExampleAt(int index)
+        {
+            return example[index];
+        }
+
+        public override string getStepAt(int index)
+        {
+            return step[index];
+        }
+
+        public override string getRuleAt(int index)
+        {
+            return rule[index];
         }
     }
 }

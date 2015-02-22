@@ -13,6 +13,12 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <link href="Content/MathProblemStyle.css" rel="stylesheet" />
+    <div _designerregion="0">
+        <asp:Button ID="Tutorial" runat="server" Text="Tutorial" OnClick="Tutorial_Click"/>
+        <asp:Button ID="FillInTheBlank" runat="server" Text="Fill In The Blank" OnClick="FillInTheBlank_Click"/>
+        <asp:Button ID="AnswerOnly" runat="server" Text="Answer Only"/>
+    </div>
+
 
     <div class="MainContainer" id="MainController" runat="server">
         <div class="innerMain" id="innerMain" runat="server">
@@ -25,10 +31,7 @@
         
     </div>
 
-    
-           
-    
-
     <asp:HiddenField ID="stepCount" runat="server" value="0"/>
     <asp:HiddenField ID="problemNumber" runat="server" value="0"/>
+    <asp:HiddenField ID="problemType" runat="server" value="Tutorial" />
 </asp:Content>

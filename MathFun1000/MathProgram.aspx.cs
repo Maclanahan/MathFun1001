@@ -9,20 +9,18 @@ namespace MathFun1000
 {
     public partial class MathProgram : System.Web.UI.Page
     {
-        public Chapter chapter;
-        public Tutorial steps = new Tutorial();
+        public Problem problem = new Problem();
+        public IProblemType steps = new Tutorial();
         private int currentProblemNumber;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
             setUpProblem();
 
             if(!IsPostBack)
             {
                 stepCount.Value = "0";
-                
+                problemType.Value = "FillIn";
             }
             
             innerMain.InnerHtml = generateCode();
@@ -37,8 +35,7 @@ namespace MathFun1000
             {
                 if (Request.QueryString["problem"] == "1")
                 {
-                    steps = new Tutorial();
-                    
+                    checkTypeOfProblem();
                 }
 
                 if (Request.QueryString["problem"] == "2")
@@ -48,16 +45,25 @@ namespace MathFun1000
                     String[] rule = new String[] { "step1", "step2", "step3" };
 
                     steps = new Tutorial(step, example, rule, 1, 3);
-
-                    //currentProblemNumber = 2;
                 }
 
                 else
                 {
-                    steps = new Tutorial();
-                    //currentProblemNumber = 1;
+                    checkTypeOfProblem();
                 }
             }
+        }
+
+        private void checkTypeOfProblem()
+        {
+            if (problemType.Value.Equals("Tutorial"))
+                steps = new Tutorial();
+
+            else if (problemType.Value.Equals("FillIn"))
+                steps = new Fill_In();
+
+            else
+                steps = new Tutorial();
         }
 
         private void setUpButtons()
@@ -72,7 +78,7 @@ namespace MathFun1000
                 innerMain.Controls.Add(bt2);
             }
 
-            if (Convert.ToInt32(stepCount.Value) < steps.number_of_steps - 1)
+            if (Convert.ToInt32(stepCount.Value) < steps.getNumberOfSteps() - 1)
             {
                 Button bt1 = new Button();
                 bt1.CssClass = bt1.ID = "StepForwardButton";               
@@ -82,7 +88,7 @@ namespace MathFun1000
                 innerMain.Controls.Add(bt1);
             }
 
-            if(Convert.ToInt32(stepCount.Value) == steps.number_of_steps - 1)
+            if(Convert.ToInt32(stepCount.Value) == steps.getNumberOfSteps() - 1)
             {
                 Button bt3 = new Button();
                 bt3.CssClass = bt3.ID = "StepForwardButton";
@@ -124,17 +130,19 @@ namespace MathFun1000
 
         private string generateCode()
         {
-            string code = "";
+            return steps.generateCode( Convert.ToInt32(stepCount.Value) );
+
+            /*string code = "";
             if (Convert.ToInt32(stepCount.Value) > -1)
                 for (int i = 0; i <= Convert.ToInt32(stepCount.Value); i++)
                 {
-                    if (i < steps.number_of_steps)
+                    if (i < steps.getNumberOfSteps())
                     {
                         code += "<div class=\"StepContainer\">";
 
-                        code += "<div class=\"box\">" + steps.step[i] + "</div>";
-                        code += "<div class=\"box\">" + steps.example[i] + "</div>";
-                        code += "<div class=\"box\">" + steps.rule[i] + "</div>";
+                        code += "<div class=\"box\">" + steps.getStepAt(i) + "</div>";
+                        code += "<div class=\"box\">" + steps.getExampleAt(i) + "</div>";
+                        code += "<div class=\"box\">" + steps.getRuleAt(i) + "</div>";
 
                         code += "<div class=\"buttons\">";
                         code += "</div>";
@@ -143,7 +151,7 @@ namespace MathFun1000
                     }
                 }
 
-            return code;
+            return code;*/
         }
 
         private void incrementStepCount(int _inc)
@@ -154,6 +162,24 @@ namespace MathFun1000
                 count += _inc;
                 stepCount.Value = count.ToString();
             }
+        }
+
+        protected void FillInTheBlank_Click(object sender, EventArgs e)
+        {
+            steps = new Fill_In();
+
+            innerMain.InnerHtml = generateCode();
+
+            setUpButtons();
+        }
+
+        protected void Tutorial_Click(object sender, EventArgs e)
+        {
+            steps = new Tutorial();
+
+            innerMain.InnerHtml = generateCode();
+
+            setUpButtons();
         }
     }
 }
