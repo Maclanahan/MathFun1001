@@ -10,7 +10,7 @@ namespace MathFun1000
     public partial class MathProgram : System.Web.UI.Page
     {
         public Problem problem = new Problem();
-        public IProblemType steps = new Fill_In();
+        public IProblemType steps = new Unguided();
         private int currentProblemNumber;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +20,7 @@ namespace MathFun1000
             if(!IsPostBack)
             {
                 stepCount.Value = "0";
-                problemType.Value = "FillIn";
+                problemType.Value = "Tutorial";
             }
             
             generateCode();
@@ -63,7 +63,7 @@ namespace MathFun1000
                 steps = new Fill_In();
 
             else
-                steps = new Tutorial();
+                steps = new Unguided();
         }
 
         private void setUpButtons()
@@ -217,6 +217,18 @@ namespace MathFun1000
         {
             steps = new Tutorial();
             problemType.Value = "Tutorial";
+
+            generateCode();
+
+            setUpButtons();
+        }
+
+        protected void AnswerOnly_Click(object sender, EventArgs e)
+        {
+            steps = new Unguided();
+            problemType.Value = "Unguided";
+
+            stepCount.Value = "0";
 
             generateCode();
 

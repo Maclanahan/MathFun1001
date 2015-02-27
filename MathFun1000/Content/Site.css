@@ -39,6 +39,17 @@ p
     outline-width:1px;
 }
 
+.unguidedBox
+{
+    width:175px;
+    height: 15px;
+    vertical-align:bottom;
+    font-size:12px;
+    outline:solid;
+    outline-color:black;
+    outline-width:1px;
+}
+
     a:link, a:visited,
     a:active, a:hover {
         color: #333;
