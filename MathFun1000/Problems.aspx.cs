@@ -23,5 +23,9 @@ namespace MathFun1000
         {
             Response.Redirect("MathProgram.aspx?problem=" + "2");
         }
+
+        protected void Button3_Click(object sender, EventArgs e) {
+            Response.Redirect("MathProgram.aspx?problem=" + "3");
+        }
     }
 }
