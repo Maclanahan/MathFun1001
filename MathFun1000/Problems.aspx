@@ -18,6 +18,6 @@
     <br/>
     <asp:Button ID="Button2" runat="server" Text="Problem 2" OnClick="Button2_Click" />
     <br/>
-    <asp:Button ID="Button3" runat="server" OnClick="Problem 3" Text="Button3_Click" />
-    
+    <asp:Button ID="Button3" runat="server" Text="Problem 3" OnClick="Button3_Click" />
+
 </asp:Content>
