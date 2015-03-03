@@ -10,15 +10,17 @@ namespace MathFun1000 {
     {
         protected void Page_Load(object sender, EventArgs e) 
         {
-
+            drawGraph();
         }
+
         protected void drawGraph() 
         {
-            int[] x = { 1, 2, 3, 4, 5 };
-            int[] y = { 1, 2, 3, 4, 5 };
-            LineGraph = new System.Web.UI.DataVisualization.Charting.Chart();
-            
-        }
+            int[] X = { -5, -3, 0, 3, 5 };
+            int[] Y = { 5, 3, 0, 3, 5 };
 
+            LineGraph.Legends.Add("Where does this show?");
+            LineGraph.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
+            LineGraph.Series[0].Points.DataBindXY(X, "X", Y, "Y");
+        }
     }
 }

@@ -15,16 +15,15 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:Chart ID="LineGraph" runat="server" Width="500" Height="600">
-    <series>
-        <asp:Series Name="Series1" ChartType="Line" ChartArea="MainChartArea">
-    </asp:Series>
-    </series>
-    <ChartAreas>
-        <asp:ChartArea Name="ChartArea1" Area3DStyle-Enable3D="true">
-            
-        </asp:ChartArea>
-    </chartareas>
-</asp:Chart>
+    <asp:Chart ID="LineGraph" runat="server" Width="600" Height="600">
+        <Series>
+            <asp:Series ChartType="Line" Name="Series1">
+            </asp:Series>
+        </Series>
+        <ChartAreas>
+            <asp:ChartArea Name="ChartArea1">
+            </asp:ChartArea>
+        </ChartAreas>
+    </asp:Chart>
 
 </asp:Content>
