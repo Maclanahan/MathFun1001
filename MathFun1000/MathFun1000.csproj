@@ -326,6 +326,7 @@
     <Compile Include="Graph.aspx.designer.cs">
       <DependentUpon>Graph.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Graphs.cs" />
     <Compile Include="IProblemType.cs" />
     <Compile Include="MathProgram.aspx.cs">
       <DependentUpon>MathProgram.aspx</DependentUpon>

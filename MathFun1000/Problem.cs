@@ -9,6 +9,7 @@ namespace MathFun1000{
         public Unguided unguided;
         public Fill_In fill_in;
         public Tutorial tutorial;
+        public Graph graph;
         
     }
 }

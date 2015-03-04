@@ -15,7 +15,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:Chart ID="LineGraph" runat="server" Width="600" Height="600">
+    <asp:Chart ID="LineGraph" runat="server" Width="400" Height="400">
         <Series>
             <asp:Series ChartType="Line" Name="Series1">
             </asp:Series>
