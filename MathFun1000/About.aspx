@@ -10,18 +10,14 @@
             Product Owner:
             <b id="docs-internal-guid-854503c4-37b4-00d8-d706-555cdd17d002" style="font-weight:normal;"><span class="auto-style1" style="font-family: Arial; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Kyra Folie</span></b></p>
 
+        <p>
             Development Team:
             <meta charset="utf-8" />
             <b id="docs-internal-guid-854503c4-37b4-00d8-d706-555cdd17d002" style="font-weight:normal;"><span class="auto-style1" style="font-family: Arial; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Daniel Heffley, Eric Laib, Bin Mei, Daniel Moore</span></b></p>
 
-
-        <p>        
-            Description: Math Fun 1000 is a math program that helps students and teachers with math base problems.</p>
-        
         <p>   
-            Contact: If you wish to contact the Math Fun 1000 Team with improvments / bugs / or conserns.</p> 
-        
-        <a href="mailto:mathfun1000bugreport@gmail.com">Send an E-Mail </a>
+            Contact: If you wish to contact the Math Fun 1000 Team with improvments / bugs / or conserns. 
+            <br><a href="mailto:mathfun1000bugreport@gmail.com">Send an E-Mail </a><br></p> 
              
          
     </article>

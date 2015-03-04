@@ -208,6 +208,10 @@ namespace MathFun1000
             steps = new Fill_In();
             problemType.Value = "FillIn";
 
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#819FF7");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+
             generateCode();
 
             setUpButtons();
@@ -218,6 +222,10 @@ namespace MathFun1000
             steps = new Tutorial();
             problemType.Value = "Tutorial";
 
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#819FF7");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+
             generateCode();
 
             setUpButtons();
@@ -227,6 +235,10 @@ namespace MathFun1000
         {
             steps = new Unguided();
             problemType.Value = "Unguided";
+
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#819FF7");
 
             stepCount.Value = "0";
 
