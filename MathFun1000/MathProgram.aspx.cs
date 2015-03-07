@@ -138,62 +138,11 @@ namespace MathFun1000
 
             parseForInput(parse);
 
-            //innerMain.InnerHtml = parse;
-            /*string code = "";
-            if (Convert.ToInt32(stepCount.Value) > -1)
-                for (int i = 0; i <= Convert.ToInt32(stepCount.Value); i++)
-                {
-                    if (i < steps.getNumberOfSteps())
-                    {
-                        code += "<div class=\"StepContainer\">";
-
-                        code += "<div class=\"box\">" + steps.getStepAt(i) + "</div>";
-                        code += "<div class=\"box\">" + steps.getExampleAt(i) + "</div>";
-                        code += "<div class=\"box\">" + steps.getRuleAt(i) + "</div>";
-
-                        code += "<div class=\"buttons\">";
-                        code += "</div>";
-
-                        code += "</div>";
-                    }
-                }
-
-            return code;*/
         }
 
         private void parseForInput(string parse)
         {
-            
             innerMain.InnerHtml = parse;
-            
-
-            /*
-            int first = parse.IndexOf("::");
-            //Console.Out.WriteLine(first);
-
-            int last = parse.LastIndexOf("::");
-            //Console.Out.WriteLine(last);
-
-            String answer = parse.Substring(first + 2, (first + 2) - (last - 2));
-
-            //removes the ::
-            //parse = parse.Remove(first, 2);
-            //parse = parse.Remove(last - 2, 2);
-
-            //Console.Out.WriteLine(parse);
-            //Console.Out.WriteLine(answer);
-
-            string firstHalf = parse.Substring(0, first);
-            
-
-            string secondHalf = parse.Substring(last - 2);
-
-            innerMain.InnerHtml = firstHalf;
-            innerMain.Controls.Add(new TextBox());
-            innerMain.InnerHtml = secondHalf;
-
-            //parse.Console.Out.WriteLine(firstHalf);
-            //parse.Console.Out.WriteLine(secondHalf);*/
         }
 
         private void incrementStepCount(int _inc)

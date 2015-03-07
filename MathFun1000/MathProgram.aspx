@@ -12,7 +12,7 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="Content/MathProblemStyle.css" rel="stylesheet" />
+    
     <div _designerregion="0">
         <asp:Button ID="Tutorial" runat="server" Text="Tutorial" BackColor="#58ACFA" OnClick="Tutorial_Click"/>
         <asp:Button ID="FillInTheBlank" runat="server" Text="Fill In The Blank" BackColor="#58ACFA" OnClick="FillInTheBlank_Click"/>
