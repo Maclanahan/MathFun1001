@@ -30,16 +30,6 @@
     <br />
     <br />
 
-    <div class="MainContainer" id="MainController" runat="server">
-        <div class="innerMain" id="innerMain" runat="server">
-            
-            <div class="buttons" id="buttons" runat="server" >
-                
-            </div>
-               
-        </div>
-    </div>
-
     <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
 
 </asp:Content>
