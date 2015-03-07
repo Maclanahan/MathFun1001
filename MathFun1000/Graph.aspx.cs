@@ -20,13 +20,18 @@ namespace MathFun1000 {
 
         protected void drawGraph(int[] newGraphX, int[] newGraphY) 
         {
-            int[] X = { -2, -1, 0, 1, 2 };
-            int[] Y = { 4, 1, 0, 1, 4 };
-
             LineGraph.Legends.Add("Where does this show?");
             LineGraph.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
             LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");
             //LineGraph.ChartAreas[0].RecalculateAxesScale();
+        }
+        
+        protected void GoToNextProblem_Click(object sender, EventArgs e)
+        {
+            String problemNum = Request.QueryString["problem"];
+            int num = Convert.ToInt32(problemNum) + 1;
+            Console.Out.WriteLine(num);
+            Response.Redirect("MathProgram.aspx?problem=" + num.ToString());
         }
     }
 }

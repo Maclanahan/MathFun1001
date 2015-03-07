@@ -14,6 +14,7 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="Content/MathProblemStyle.css" rel="stylesheet" />
 
     <asp:Chart ID="LineGraph" runat="server" Width="400" Height="400">
         <Series>
@@ -25,5 +26,20 @@
             </asp:ChartArea>
         </ChartAreas>
     </asp:Chart>
+
+    <br />
+    <br />
+
+    <div class="MainContainer" id="MainController" runat="server">
+        <div class="innerMain" id="innerMain" runat="server">
+            
+            <div class="buttons" id="buttons" runat="server" >
+                
+            </div>
+               
+        </div>
+    </div>
+
+    <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
 
 </asp:Content>

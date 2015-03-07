@@ -25,7 +25,7 @@ namespace MathFun1000
         }
 
         protected void Button3_Click(object sender, EventArgs e) {
-            Response.Redirect("Graph.aspx");
+            Response.Redirect("MathProgram.aspx?problem=" + "3");
         }
     }
 }

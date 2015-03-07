@@ -46,7 +46,20 @@ namespace MathFun1000
 
                     steps = new Tutorial(step, example, rule, 1, 3);
                 }
+                if (Request.QueryString["problem"] == "3") 
+                {
+                    Response.Redirect("Graph.aspx");
+                    /*Graphs newGraph = new Graphs();
+                    
+                    
 
+                    Button btn = new Button();
+                    btn.CssClass = btn.ID = "StepForwardButton";
+                    btn.Text = "Next Problem";
+                    btn.Click += new EventHandler(GoToNextProblem_Click);
+
+                    innerMain.Controls.Add(btn);*/
+                }
                 else
                 {
                     checkTypeOfProblem();
