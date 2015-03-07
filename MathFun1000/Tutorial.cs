@@ -1,22 +1,32 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Tutorial.cs
+*
+* Brief Description: Tutorial is a problem type that is meant
+* to hold your hand threw the problem there is not fill in
+* or answering questions, just learning the problem.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MathFun1000 {
-    public class Tutorial : IProblemType{
-
+namespace MathFun1000 
+{
+    public class Tutorial : IProblemType
+    {
         public String[] step;
         public String[] example;
         public String[] rule;
         public int difficulty = 1;
-        public int number_of_steps = 5;
-        public int current_step = 0;
+        public int numberOfSteps = 5;
+        public int currentStep = 0;
 
-        //Basic Constructor
+        //Default constructor, this is only meant for testing purpuses and is not going to be seen in the final project.
         public Tutorial() 
         {
-            this.number_of_steps = 5;
+            this.numberOfSteps = 5;
             this.difficulty = 1;
             this.step = new String[] {"Identify the different variables.", 
                 "Separate the variables into like groups.", 
@@ -35,28 +45,30 @@ namespace MathFun1000 {
                 "Rule Here"};
         }
 
-        public Tutorial(String[] step, String[] example, String[] rule, int difficulty, int number_of_steps)
+        //Main constructor
+        public Tutorial(String[] step, String[] example, String[] rule, int difficulty, int numberOfSteps)
         {
             this.step = step;
             this.example = example;
             this.rule = rule;
             this.difficulty = difficulty;
-            this.number_of_steps = number_of_steps;
+            this.numberOfSteps = numberOfSteps;
         }
 
-        public override string generateCode(int numOfSteps)
+        //Generate code to send to the Mathprogram to then be generated on the website.
+        public override string GenerateCode(int numOfSteps)
         {
             string code = "";
             if (numOfSteps > -1)
                 for (int i = 0; i <= numOfSteps; i++)
                 {
-                    if (i < number_of_steps)
+                    if (i < numberOfSteps)
                     {
                         code += "<div class=\"StepContainer\">";
 
-                        code += "<div class=\"box\"><p>" + getStepAt(i) + "</p></div>";
-                        code += "<div class=\"box\"><p>" + getExampleAt(i) + "</p></div>";
-                        code += "<div class=\"box\"><p>" + getRuleAt(i) + "</p></div>";
+                        code += "<div class=\"box\"><p>" + GetStepAt(i) + "</p></div>";
+                        code += "<div class=\"box\"><p>" + GetExampleAt(i) + "</p></div>";
+                        code += "<div class=\"box\"><p>" + GetRuleAt(i) + "</p></div>";
 
                         code += "<div class=\"buttons\">";
                         code += "</div>";
@@ -69,34 +81,36 @@ namespace MathFun1000 {
             
         }
 
+        //Start - Get and Sets
         public void incrementStep()
         {
-            this.current_step++;
+            this.currentStep++;
         }
 
         public void decrementStep()
         {
-            this.current_step--;
+            this.currentStep--;
         }
 
-        public override int getNumberOfSteps()
+        public override int GetNumberOfSteps()
         {
-            return number_of_steps;
+            return numberOfSteps;
         }
 
-        public override string getExampleAt(int index)
+        public override string GetExampleAt(int index)
         {
             return example[index];
         }
 
-        public override string getStepAt(int index)
+        public override string GetStepAt(int index)
         {
             return step[index];
         }
 
-        public override string getRuleAt(int index)
+        public override string GetRuleAt(int index)
         {
             return rule[index];
         }
+        //End
     }
 }

@@ -1,4 +1,13 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: MathProgram.aspx.cs
+*
+* Brief Description: MathProgram is the main webpage for our site
+* it controls the overall flow of the program as well as interactions
+* with other classes.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +22,10 @@ namespace MathFun1000
         public IProblemType steps = new Unguided();
         private int currentProblemNumber;
 
+        //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
-            setUpProblem();
+            SetUpProblem();
 
             if(!IsPostBack)
             {
@@ -23,19 +33,19 @@ namespace MathFun1000
                 problemType.Value = "Tutorial";
             }
             
-            generateCode();
+            GenerateCode();
 
-            setUpButtons();
+            SetUpButtons();
         }
 
-
-        private void setUpProblem()
+        //Description
+        private void SetUpProblem()
         {
             if(!string.IsNullOrEmpty(Request.QueryString["problem"]))
             {
                 if (Request.QueryString["problem"] == "1")
                 {
-                    checkTypeOfProblem();
+                    CheckTypeOfProblem();
                 }
 
                 if (Request.QueryString["problem"] == "2")
@@ -52,12 +62,13 @@ namespace MathFun1000
                 }
                 else
                 {
-                    checkTypeOfProblem();
+                    CheckTypeOfProblem();
                 }
             }
         }
 
-        private void checkTypeOfProblem()
+        //Check to see what type of problem it is
+        private void CheckTypeOfProblem()
         {
             if (problemType.Value.Equals("Tutorial"))
                 steps = new Tutorial();
@@ -69,7 +80,8 @@ namespace MathFun1000
                 steps = new Unguided();
         }
 
-        private void setUpButtons()
+        //Set up basic buttons for the problem
+        private void SetUpButtons()
         {
             if (Convert.ToInt32(stepCount.Value) > 0)
             {
@@ -81,7 +93,7 @@ namespace MathFun1000
                 innerMain.Controls.Add(bt2);
             }
 
-            if (Convert.ToInt32(stepCount.Value) < steps.getNumberOfSteps() - 1)
+            if (Convert.ToInt32(stepCount.Value) < steps.GetNumberOfSteps() - 1)
             {
                 Button bt1 = new Button();
                 bt1.CssClass = bt1.ID = "StepForwardButton";               
@@ -91,7 +103,7 @@ namespace MathFun1000
                 innerMain.Controls.Add(bt1);
             }
 
-            if(Convert.ToInt32(stepCount.Value) == steps.getNumberOfSteps() - 1)
+            if(Convert.ToInt32(stepCount.Value) == steps.GetNumberOfSteps() - 1)
             {
                 Button bt3 = new Button();
                 bt3.CssClass = bt3.ID = "StepForwardButton";
@@ -103,26 +115,29 @@ namespace MathFun1000
 
         }
 
+        //Event handler for next button
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
-            incrementStepCount(1);
+            IncrementStepCount(1);
 
-            generateCode();
+            GenerateCode();
        
-            setUpButtons();
+            SetUpButtons();
             
         }
 
+        //Event handler for prev button
         protected void StepBackwardButton_Click(object sender, EventArgs e)
         {
-            incrementStepCount(-1);
+            IncrementStepCount(-1);
 
-            generateCode();
+            GenerateCode();
 
-            setUpButtons();
+            SetUpButtons();
 
         }
 
+        //Event handler for next problem button (next button turns into this button at the end of problem)
         protected void GoToNextProblem_Click(object sender, EventArgs e)
         {
             String problemNum = Request.QueryString["problem"];
@@ -132,20 +147,23 @@ namespace MathFun1000
 
         }
 
-        private void generateCode()
+        //Generates code from the problem itself
+        private void GenerateCode()
         {
-            string parse = steps.generateCode( Convert.ToInt32(stepCount.Value) );
+            string parse = steps.GenerateCode( Convert.ToInt32(stepCount.Value) );
 
-            parseForInput(parse);
+            ParseForInput(parse);
 
         }
 
-        private void parseForInput(string parse)
+        //Description
+        private void ParseForInput(string parse)
         {
             innerMain.InnerHtml = parse;
         }
 
-        private void incrementStepCount(int _inc)
+        //Increment Step Count
+        private void IncrementStepCount(int _inc)
         {
             if (Convert.ToInt32(stepCount.Value) + _inc >= 0)
             {
@@ -155,6 +173,7 @@ namespace MathFun1000
             }
         }
 
+        //Event handler for Fill In The Blank problem type
         protected void FillInTheBlank_Click(object sender, EventArgs e)
         {
             steps = new Fill_In();
@@ -164,11 +183,12 @@ namespace MathFun1000
             FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#819FF7");
             AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
 
-            generateCode();
+            GenerateCode();
 
-            setUpButtons();
+            SetUpButtons();
         }
 
+        //Event handler for Tutorial problem type
         protected void Tutorial_Click(object sender, EventArgs e)
         {
             steps = new Tutorial();
@@ -178,11 +198,12 @@ namespace MathFun1000
             FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
             AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
 
-            generateCode();
+            GenerateCode();
 
-            setUpButtons();
+            SetUpButtons();
         }
 
+        //Event handler for Unguided problem type
         protected void AnswerOnly_Click(object sender, EventArgs e)
         {
             steps = new Unguided();
@@ -194,9 +215,9 @@ namespace MathFun1000
 
             stepCount.Value = "0";
 
-            generateCode();
+            GenerateCode();
 
-            setUpButtons();
+            SetUpButtons();
         }
     }
 }

@@ -357,7 +357,6 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="tester_class.cs" />
     <Compile Include="Tutorial.cs" />
     <Compile Include="Unguided.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">

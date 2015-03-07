@@ -1,23 +1,34 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Fill_In.cs
+*
+* Brief Description: Fill_In is the fill in the blank question
+* for the problem. It will have boxes to fill in your answer
+* and check to see if you are correct.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MathFun1000 {
-    public class Fill_In : IProblemType {
+namespace MathFun1000 
+{
+    public class Fill_In : IProblemType 
+    {
         public String[] step;
         public String[] example;
         public String[] rule;
         public int difficulty = 1;
-        public int number_of_steps = 5;
-        public string answer_to_current_step;
-        public int current_step = 0;
+        public int numberOfSteps = 5;
+        public string answerToCurrentStep;
+        public int currentStep = 0;
 
-
-        //Basic Contructor
-        public Fill_In() {
+        //Default constructor, never used except for testing purposes.
+        public Fill_In() 
+        {
             this.difficulty = 2;
-            this.number_of_steps = 5;
+            this.numberOfSteps = 5;
             this.step = new String[] {"Identify the different variables.", 
                                       "Separate the variables into like groups.",
                                       "Combine the like terms.",
@@ -35,34 +46,36 @@ namespace MathFun1000 {
                                       "Rule Here"};
         }
 
-        public Fill_In(String[] step, String[] example, String[] rule, int difficulty, int number_of_steps)
+        //Main Constructor
+        public Fill_In(String[] step, String[] example, String[] rule, int difficulty, int numberOfSteps)
         {
             this.step = step;
             this.example = example;
             this.rule = rule;
             this.difficulty = difficulty;
-            this.number_of_steps = number_of_steps;
+            this.numberOfSteps = numberOfSteps;
         }
 
-        public override string generateCode(int numOfSteps)
+        //GenerateCode creates the code for the said problem and sents it to MathProgram to then create the HTML code in the site
+        public override string GenerateCode(int numOfSteps)
         {
             string code = "";
             if (numOfSteps > -1)
                 for (int i = 0; i <= numOfSteps; i++)
                 {
-                    if (i < number_of_steps)
+                    if (i < numberOfSteps)
                     {
                         code += "<div class=\"StepContainer\">";
 
-                        code += "<div class=\"box\"><p>" + getStepAt(i) + "</p></div>";
+                        code += "<div class=\"box\"><p>" + GetStepAt(i) + "</p></div>";
 
                         if( (i) == numOfSteps)
-                            code += "<div class=\"box\"><p>" + parseForInput(getExampleAt(i)) + "</p></div>";
+                            code += "<div class=\"box\"><p>" + ParseForInput(GetExampleAt(i)) + "</p></div>";
 
                         else
-                            code += "<div class=\"box\"><p>" + parseToRemoveColons(getExampleAt(i)) + "</p></div>";
+                            code += "<div class=\"box\"><p>" + ParseToRemoveColons(GetExampleAt(i)) + "</p></div>";
 
-                        code += "<div class=\"box\"><p>" + getRuleAt(i) + "</p></div>";
+                        code += "<div class=\"box\"><p>" + GetRuleAt(i) + "</p></div>";
 
                         code += "<div class=\"buttons\">";
                         code += "</div>";
@@ -75,7 +88,8 @@ namespace MathFun1000 {
 
         }
 
-        private string parseToRemoveColons(string parse)
+        //Remove the ::, which indicates the use of a fill in box inside the problem
+        private string ParseToRemoveColons(string parse)
         {
             if (parse.IndexOf("::") >= 0)
             {
@@ -90,7 +104,8 @@ namespace MathFun1000 {
             return parse;
         }
 
-        private string parseForInput(string parse)
+        //Places input boxes inside of the code string to then be sent to the website.
+        private string ParseForInput(string parse)
         {
             string code = "";
 
@@ -125,8 +140,6 @@ namespace MathFun1000 {
                             //"document.getElementById(\"CheckLabel\").innerHTML = \"Hello\";" +
                         "} </script>";
 
-                
-
                 return code;
             }
 
@@ -134,35 +147,37 @@ namespace MathFun1000 {
             
         }
 
-        public override int getNumberOfSteps()
+        //Start - Get and Sets
+        public override int GetNumberOfSteps()
         {
-            return number_of_steps;
+            return numberOfSteps;
         }
 
-        public override string getExampleAt(int index)
+        public override string GetExampleAt(int index)
         {
             return example[index];
         }
 
-        public override string getStepAt(int index)
+        public override string GetStepAt(int index)
         {
             return step[index];
         }
 
-        public override string getRuleAt(int index)
+        public override string GetRuleAt(int index)
         {
             return rule[index];
         }
 
-        public void incrementStep()
+        public void IncrementStep()
         {
-            this.current_step++;
+            this.currentStep++;
         }
 
-        public void decrementStep()
+        public void DecrementStep()
         {
-            this.current_step--;
+            this.currentStep--;
 
         }
+        //End
     }
 }

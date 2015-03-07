@@ -11,7 +11,7 @@ namespace MathFun1000
 {
 
 
-    public partial class _Default
+    public partial class Default
     {
     }
 }

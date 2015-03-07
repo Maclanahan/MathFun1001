@@ -1,3 +1,10 @@
+/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: ViewSwitcher.ascx.cs
+*
+* Brief Description: Description.
+*/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +24,7 @@ namespace MathFun1000
 
         protected string SwitchUrl { get; private set; }
 
+        //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine current view

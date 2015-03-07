@@ -1,4 +1,13 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Site.Master.cs
+*
+* Brief Description: Site.Master is an over all template for all
+* the sites we create, it controls color, looks, and over all feel
+* of every class to keep consistent.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +23,13 @@ namespace MathFun1000
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
 
+        //On page load this event handler is called.
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //None
+        }
+
+        //On page initiation this event handler is called
         protected void Page_Init(object sender, EventArgs e)
         {
             // The code below helps to protect against XSRF attacks
@@ -43,10 +59,11 @@ namespace MathFun1000
                 Response.Cookies.Set(responseCookie);
             }
 
-            Page.PreLoad += master_Page_PreLoad;
+            Page.PreLoad += MasterPagePreLoad;
         }
 
-        protected void master_Page_PreLoad(object sender, EventArgs e)
+        //Master Page Preload
+        protected void MasterPagePreLoad(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -65,9 +82,6 @@ namespace MathFun1000
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
