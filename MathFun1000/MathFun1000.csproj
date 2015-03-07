@@ -52,6 +52,7 @@
     <Reference Include="Microsoft.ScriptManager.WebForms">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -135,6 +136,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="AddStep.aspx" />
     <Content Include="Chapters.aspx" />
     <Content Include="Content\MathProblemStyle.css" />
     <Content Include="Content\Site.css" />
@@ -192,6 +194,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="DisplayProblems.aspx" />
     <Content Include="Graph.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -209,6 +212,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="LoggedIn.aspx" />
+    <Content Include="LogIn.aspx" />
     <Content Include="MathProgram.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Dan.pubxml" />
@@ -240,6 +245,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="UserRegistration.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -255,6 +261,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddStep.aspx.cs">
+      <DependentUpon>AddStep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddStep.aspx.designer.cs">
+      <DependentUpon>AddStep.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -315,6 +328,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DisplayProblems.aspx.cs">
+      <DependentUpon>DisplayProblems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DisplayProblems.aspx.designer.cs">
+      <DependentUpon>DisplayProblems.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Fill_In.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -327,7 +347,22 @@
       <DependentUpon>Graph.aspx</DependentUpon>
     </Compile>
     <Compile Include="Graphs.cs" />
+    <Compile Include="InputValidation.cs" />
     <Compile Include="IProblemType.cs" />
+    <Compile Include="LoggedIn.aspx.cs">
+      <DependentUpon>LoggedIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoggedIn.aspx.designer.cs">
+      <DependentUpon>LoggedIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MathProgram.aspx.cs">
       <DependentUpon>MathProgram.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,6 +370,7 @@
     <Compile Include="MathProgram.aspx.designer.cs">
       <DependentUpon>MathProgram.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PasswordHash.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Problems.aspx.cs">
       <DependentUpon>Problems.aspx</DependentUpon>
@@ -361,6 +397,13 @@
     <Compile Include="tester_class.cs" />
     <Compile Include="Tutorial.cs" />
     <Compile Include="Unguided.cs" />
+    <Compile Include="UserRegistration.aspx.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserRegistration.aspx.designer.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -375,6 +418,9 @@
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
