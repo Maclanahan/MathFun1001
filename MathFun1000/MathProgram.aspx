@@ -14,9 +14,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
     <div _designerregion="0">
-        <asp:Button ID="Tutorial" runat="server" Text="Tutorial" BackColor="#58ACFA" OnClick="Tutorial_Click"/>
-        <asp:Button ID="FillInTheBlank" runat="server" Text="Fill In The Blank" BackColor="#58ACFA" OnClick="FillInTheBlank_Click"/>
-        <asp:Button ID="AnswerOnly" runat="server" Text="Answer Only" BackColor="#58ACFA" OnClick="AnswerOnly_Click"/>
+        <asp:Button ID="Tutorial" runat="server" Text="Tutorial" OnClick="Tutorial_Click"/>
+        <asp:Button ID="FillInTheBlank" runat="server" Text="Fill In The Blank" OnClick="FillInTheBlank_Click"/>
+        <asp:Button ID="AnswerOnly" runat="server" Text="Answer Only" OnClick="AnswerOnly_Click"/>
     </div>
 
 
