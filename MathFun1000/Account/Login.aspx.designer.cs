@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MathFun1000.Account
-{
-
-
-    public partial class Login
-    {
-
+namespace MathFun1000.Account {
+    
+    
+    public partial class Login {
+        
+        /// <summary>
+        /// form_login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Login form_login;
+        
         /// <summary>
         /// RegisterHyperLink control.
         /// </summary>
@@ -22,7 +29,7 @@ namespace MathFun1000.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
-
+        
         /// <summary>
         /// OpenAuthLogin control.
         /// </summary>

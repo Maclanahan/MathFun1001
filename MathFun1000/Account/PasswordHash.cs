@@ -30,7 +30,7 @@ using System;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace MathFun1000
+namespace MathFun1000.Account
 {
     /// <summary>
     /// Salted password hashing with PBKDF2-SHA1.

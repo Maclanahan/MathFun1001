@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MathFun1000
+namespace MathFun1000.Account
 {
     public class InputValidation
     {

@@ -25,7 +25,7 @@ namespace MathFun1000
 
         private void addStep()
         {
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["webAppconnString"].ToString();
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
 
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             conn.Open();

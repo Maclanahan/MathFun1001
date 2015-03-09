@@ -8,6 +8,10 @@ namespace MathFun1000.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
+        MySql.Data.MySqlClient.MySqlConnection conn;
+        MySql.Data.MySqlClient.MySqlCommand cmd;
+        String queryStr;
+
         protected string SuccessMessage
         {
             get;
@@ -90,6 +94,39 @@ namespace MathFun1000.Account
             // offset and format. Here we're converting it to the server timezone and formatting
             // as a short date and a long time string, using the current thread culture.
             return utcDateTime.HasValue ? utcDateTime.Value.ToLocalTime().ToString("G") : "[never]";
+        }
+
+        private void updatePassword()
+        {
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
+            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+            conn.Open();
+            queryStr = "";
+
+            queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt)" +
+            "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
+
+            queryStr = "UPDATE db_9bad3d_test.userinfo SET Password=?pword WHERE UserName=?uname";
+
+            cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+            cmd.Parameters.AddWithValue("?uname", User.Identity.Name);
+
+            String saltHashReturned = PasswordHash.CreateHash(changePassword.NewPassword);
+            int commaIndex = saltHashReturned.IndexOf(":");
+            String extractedString = saltHashReturned.Substring(0, commaIndex);
+            commaIndex = saltHashReturned.IndexOf(":");
+            extractedString = saltHashReturned.Substring(commaIndex + 1);
+            commaIndex = extractedString.IndexOf(":");
+            String salt = extractedString.Substring(0, commaIndex);
+            commaIndex = extractedString.IndexOf(":");
+            extractedString = extractedString.Substring(commaIndex + 1);
+
+            String hash = extractedString;
+            cmd.Parameters.AddWithValue("?SlowHashSalt", saltHashReturned);
+
+            cmd.ExecuteReader();
+            conn.Close();
+
         }
     }
 }
