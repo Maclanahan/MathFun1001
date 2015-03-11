@@ -13,13 +13,13 @@
     <form id="form1" runat="server">
     <div>
            <p>Enter Information:</p>
-           <asp:TextBox ID="Info_TextBox" Text="" runat="server" Height="130px" Width="400px" TextMode="MultiLine" />
+           <asp:TextBox ID="Info_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" />
            
            <p>Enter Example:</p>
-           <asp:TextBox ID="Example_TextBox" Text="" runat="server" Height="130px" Width="400px" TextMode="MultiLine" />
+           <asp:TextBox ID="Example_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" />
 
            <p>Enter Rules:</p>
-           <asp:TextBox ID="Rules_TextBox" Text="" runat="server" Height="130px" Width="400px" TextMode="MultiLine" />
+           <asp:TextBox ID="Rules_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" />
 
            <p>Enter Difficulty:</p>
            <p>1: Easy, 2: Medium, 3: Hard</p>

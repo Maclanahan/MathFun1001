@@ -103,15 +103,15 @@ namespace MathFun1000.Account
             conn.Open();
             queryStr = "";
 
-            queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt)" +
-            "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
+            //queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt)" +
+            //"VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
 
             queryStr = "UPDATE db_9bad3d_test.userinfo SET Password=?pword WHERE UserName=?uname";
 
             cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
             cmd.Parameters.AddWithValue("?uname", User.Identity.Name);
 
-            String saltHashReturned = PasswordHash.CreateHash(changePassword.NewPassword);
+            String saltHashReturned = PasswordHash.CreateHash(password.Text);
             int commaIndex = saltHashReturned.IndexOf(":");
             String extractedString = saltHashReturned.Substring(0, commaIndex);
             commaIndex = saltHashReturned.IndexOf(":");
