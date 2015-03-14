@@ -1,35 +1,40 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddStep.aspx.cs" Inherits="MathFun1000.AddTutorial" %>
+﻿<%@ Page Title="Add Step" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddStep.aspx.cs" Inherits="MathFun1000.AddTutorial" MaintainScrollPositionOnPostback="true"%>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Add Step </title>
-</head>
-<body>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+ 
+
+</asp:Content>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    
     <a href="DisplayProblems.aspx">Display Problems</a>
     <p>This Page Adds Individual Tutorial Step for Each Problem</p>
 
-    <form id="form1" runat="server">
+    
     <div>
-           <p>Enter Information:</p>
-           <asp:TextBox ID="Info_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" />
+           <p>Enter Information:</p><br/>
+           <asp:TextBox ID="Info_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" /><br/>
            
-           <p>Enter Example:</p>
-           <asp:TextBox ID="Example_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" />
+           <p>Enter Example:</p><br/>
+           <asp:TextBox ID="Example_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" /><br/>
 
-           <p>Enter Rules:</p>
-           <asp:TextBox ID="Rules_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" />
+           <p>Enter Rules:</p><br/>
+           <asp:TextBox ID="Rules_TextBox" Text="" runat="server" Height="90px" Width="600px" TextMode="MultiLine" /><br/>
 
-           <p>Enter Difficulty:</p>
-           <p>1: Easy, 2: Medium, 3: Hard</p>
-           <asp:TextBox ID="Diff_TextBox" Text="" runat="server" />
+           <p>Enter Difficulty:</p><br/>
+           <p>1: Easy, 2: Medium, 3: Hard</p><br/>
+           <asp:TextBox ID="Diff_TextBox" Text="" runat="server" /><br/>
            <br />
     </div>
 
            <asp:Button ID="Btn_AddStep" Text ="Add Step" runat="server" OnClick="addStep_Click" />
 
     
-    </form>
-</body>
-</html>
+    
+</asp:Content>

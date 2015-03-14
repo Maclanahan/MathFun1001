@@ -18,20 +18,33 @@ namespace MathFun1000.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
+
+            if(IsPostBack && username.Value != "" && email.Value != "")
+            {
+                MessageBox("POSTBACK");
+                //registerUserWithSlowHash();
+            }
         }
 
         protected void RegisterUser_CreatedUser(object sender, EventArgs e)
         {
-            FormsAuthentication.SetAuthCookie(RegisterUser.UserName, createPersistentCookie: false);
+            //MessageBox("HereFirst");
+
+            //FormsAuthentication.SetAuthCookie(RegisterUser.UserName, createPersistentCookie: false);
+            MessageBox("In Created User");
+
+            username.Value = RegisterUser.UserName;
+            email.Value = RegisterUser.Email;
+            password.Value = RegisterUser.Password;
 
             registerUserWithSlowHash();
 
-            string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-            if (!OpenAuth.IsLocalUrl(continueUrl))
-            {
-                continueUrl = "~/";
-            }
-            Response.Redirect(continueUrl);
+            //string continueUrl = RegisterUser.ContinueDestinationPageUrl;
+           // if (!OpenAuth.IsLocalUrl(continueUrl))
+           // {
+            //    continueUrl = "~/";
+           // }
+           // Response.Redirect(continueUrl);
         }
 
        ///**
@@ -48,13 +61,16 @@ namespace MathFun1000.Account
          **/
         private void registerUserWithSlowHash()
         {
+            MessageBox("In Slow Hash");
             bool methodStatus = true;
-            if (InputValidation.ValidateUserName(RegisterUser.UserName) == false)
+            if (InputValidation.ValidateUserName(username.Value) == false)
             {
+                MessageBox("Failed Name");
                 methodStatus = false;
             }
-            if (InputValidation.ValidateEmail(RegisterUser.Email) == false)
+            if (InputValidation.ValidateEmail(email.Value) == false)
             {
+                MessageBox("Failed Email");
                 methodStatus = false;
             }
             if (methodStatus == true)
@@ -68,10 +84,10 @@ namespace MathFun1000.Account
                 "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
 
                 cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
-                cmd.Parameters.AddWithValue("?UserName", RegisterUser.UserName);
+                cmd.Parameters.AddWithValue("?UserName", username.Value);
                 cmd.Parameters.AddWithValue("?EmailAddress", RegisterUser.Email);
 
-                String saltHashReturned = PasswordHash.CreateHash(RegisterUser.Password);
+                String saltHashReturned = PasswordHash.CreateHash(password.Value);
                 int commaIndex = saltHashReturned.IndexOf(":");
                 String extractedString = saltHashReturned.Substring(0, commaIndex);
                 commaIndex = saltHashReturned.IndexOf(":");
@@ -86,9 +102,26 @@ namespace MathFun1000.Account
 
                 cmd.ExecuteReader();
                 conn.Close();
-
+                //MessageBox("Here");
                 //lbl_Confirmation.Text = "Congratulations, you are registered!";
+                FormsAuthentication.SetAuthCookie(RegisterUser.UserName, createPersistentCookie: false);
+
+                string continueUrl = RegisterUser.ContinueDestinationPageUrl;
+                if (!OpenAuth.IsLocalUrl(continueUrl))
+                {
+                    continueUrl = "~/";
+                }
+                Response.Redirect(continueUrl);
             }
+
+            
+        }
+
+        private void MessageBox(string msg)
+        {
+            Label lbl = new Label();
+            lbl.Text = "<script language='javascript'>" + Environment.NewLine + "window.alert('" + msg + "')</script>";
+            Page.Controls.Add(lbl);
         }
     }
 }
