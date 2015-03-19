@@ -77,7 +77,7 @@ a {
 
 p
 {
-    color: #c8c8c8;
+    color: black;
     display:inline-block;
 }
 
@@ -379,6 +379,7 @@ aside {
 
 /* login page */
 #loginForm {
+    color: #c8c8c8;
     border-right: solid 2px #c8c8c8;
     float: left;
     width: 55%;
