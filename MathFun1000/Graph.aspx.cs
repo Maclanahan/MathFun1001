@@ -31,10 +31,9 @@ namespace MathFun1000
         //Description
         protected void DrawGraph(int[] newGraphX, int[] newGraphY) 
         {
-            LineGraph.Legends.Add("Where does this show?");
+            LineGraph.Legends.Add("");
             LineGraph.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
-            LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");
-            //LineGraph.ChartAreas[0].RecalculateAxesScale();
+            LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");;
         }
 
         //Description
