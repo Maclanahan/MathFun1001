@@ -33,11 +33,11 @@ namespace MathFun1000
                 "Combine the like terms.", 
                 "Recombine the terms after removing the parenthese to make an equation in its seimplets form. Since the variables are differnt, this is the simplest form.", 
                 "Solution"};
-            this.example = new String[] {"<p style=\"color:blue\">(2x<sup>2</sup>y</p> <p style=\"color:red\">-3xy)</p> <p>+</p> <p style=\"color:blue\">(6x<sup>2</sup>y</p><p>-</p><p style=\"color:red\">9xy)</p>", 
-                                        "<p style=\"color:blue\">(2x<sup>2</sup>y+6x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(-3xy-9xy)</p>",
-                                        "<p style=\"color:blue\">(8x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(-12xy)</p>", 
-                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>", 
-                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>"};
+            this.example = new String[] {"<p style=\\\"color:blue\\\">(2x<sup>2</sup>y</p> <p style=\\\"color:red\\\">-3xy)</p> <p>+</p> <p style=\\\"color:blue\\\">(6x<sup>2</sup>y</p><p>-</p><p style=\\\"color:red\\\">9xy)</p>", 
+                                        "<p style=\\\"color:blue\\\">(2x<sup>2</sup>y+6x<sup>2</sup>y)</p> <p>+</p> <p style=\\\"color:red\\\">(-3xy-9xy)</p>",
+                                        "<p style=\\\"color:blue\\\">(8x<sup>2</sup>y)</p> <p>+</p> <p style=\\\"color:red\\\">(-12xy)</p>", 
+                                        "<p style=\\\"color:blue\\\">8x<sup>2</sup>y</p> <p>-</p> <p style=\\\"color:red\\\">12xy</p>", 
+                                        "<p style=\\\"color:blue\\\">8x<sup>2</sup>y</p> <p>-</p> <p style=\\\"color:red\\\">12xy</p>"};
             this.rule = new String[] {"Rule Here", 
                 "Rule Here", 
                 "Rule Here", 

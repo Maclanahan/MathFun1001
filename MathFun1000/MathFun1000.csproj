@@ -217,6 +217,7 @@
     <Content Include="Global.asax" />
     <Content Include="LoggedIn.aspx" />
     <Content Include="MathProgram.aspx" />
+    <Content Include="MathProgramJavascript.aspx" />
     <Content Include="MultipleChoice.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Dan.pubxml" />
@@ -227,6 +228,7 @@
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\tutorial.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -373,6 +375,13 @@
       <DependentUpon>MathProgram.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\PasswordHash.cs" />
+    <Compile Include="MathProgramJavascript.aspx.cs">
+      <DependentUpon>MathProgramJavascript.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MathProgramJavascript.aspx.designer.cs">
+      <DependentUpon>MathProgramJavascript.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MultipleChoice.aspx.cs">
       <DependentUpon>MultipleChoice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
