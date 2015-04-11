@@ -12,12 +12,14 @@ body {
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    
+    align-content: center;
+
 }
 
 .row
 {
-    background-color: #c8c8c8;
+
+    background-color: #333;
     text-align: right;
     font-size: 10px;
     display: block;
@@ -27,11 +29,32 @@ body {
     padding: 5px 5px 5px 5px;
     border-radius: 5px;
     height: 15px;
-    width: 840px;
-    
+    width: inherit;
+    color: white;
 }
 
-.box
+.examplebox 
+{
+    display:inline-block;
+    width: 250px;
+    min-height: 50px;
+    font-size: 15px;
+    padding: 10px 10px 10px 10px;
+    margin:  5px 5px 5px 5px;
+    border: 2px solid #000;
+    vertical-align: middle;
+    background-color: #C5CEFF;
+    height: inherit;
+    text-align: center;
+}
+
+.examplebox p
+{
+    text-align: center;
+   vertical-align: middle;
+}
+
+.stepbox 
 {
     display:inline-block;
     width: 250px;
@@ -42,7 +65,37 @@ body {
     border: 2px solid #000;
     vertical-align: bottom;
     background-color: #C5CEFF;
-    height: auto;
+    height: inherit;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.stepbox p
+{
+    text-align: center;
+     vertical-align: middle;
+}
+
+.rulebox 
+{
+    display:inline-block;
+    width: 250px;
+    min-height: 50px;
+    font-size: 15px;
+    padding: 10px 10px 10px 10px;
+    margin:  5px 5px 5px 5px;
+    border: 2px solid #000;
+    vertical-align: bottom;
+    background-color: #C5CEFF;
+    height: inherit;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.rulebox p
+{
+    text-align: center;
+    vertical-align: middle;
 }
 
 .MainContainer
@@ -177,11 +230,13 @@ h5, h6 {
     background-color: #222;
     clear: both;
     padding-bottom: 35px;
+    align-content: center;
 }
 
     .main-content {
         padding-left: 10px;
         padding-top: 30px;
+        align-content: center;
     }
 
 header .content-wrapper {

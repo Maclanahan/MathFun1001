@@ -6,13 +6,16 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
- 
 
 </asp:Content>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
+    <%--<script src="Scripts/greensock/TweenLite.min.js"></script>
+    <script src="Scripts/greensock/jquery.gsap.min.js"></script>
+    <script src="Scripts/greensock/TimelineLite.min.js"></script>--%>
+
     <div id="arrayData" runat="server">
 
     </div>
@@ -21,6 +24,9 @@
 
 
     <div class="MainContainer" id="MainController" runat="server">
+    <input id="HidestepColumn" type="button" value="Hide steps" class="hideColumn" onclick="hideColumn('step')"/>
+    <input id="HideruleColumn" type="button" value="Hide rules" class="StepForwardButton" onclick="hideColumn('rule')"/>
+
         <div class="innerMain" id="innerMain" runat="server">
             
             <div class="buttons" id="buttons" runat="server" >
