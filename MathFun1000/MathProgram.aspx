@@ -13,6 +13,16 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
+    <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ 
+                TeX: { 
+                    extensions: ["autobold.js"]}
+                });
+        </script> 
+        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+        </script>
+    
     <div _designerregion="0">
         <asp:Button ID="Tutorial" runat="server" Text="Tutorial" OnClick="Tutorial_Click"/>
         <asp:Button ID="FillInTheBlank" runat="server" Text="Fill In The Blank" OnClick="FillInTheBlank_Click"/>
