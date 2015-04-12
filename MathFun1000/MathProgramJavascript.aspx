@@ -34,7 +34,7 @@
             </div>
                
         </div>
-        <input id="StepForward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
+        <input id="StepBackward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
         <input id="StepForward" type="button" value="Next" class="StepForwardButton" onclick="stepForward()"/>
     </div>
     <script type="text/javascript" src="Scripts/tutorial.js"></script>

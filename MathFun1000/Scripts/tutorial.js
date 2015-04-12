@@ -1,6 +1,9 @@
 ﻿var currentStep = 0;
 var totalNumOfSteps = example.length;
 
+var rulesHidden = false;
+var stepesHidden = false;
+
 var mainArea = document.getElementById("MainContent_innerMain");
 nextRow();
 
@@ -25,13 +28,28 @@ function nextRow()
         mainArea.appendChild(rowDiv);
         mainArea.appendChild(innerRowDiv);
 
-        $(rowDiv).slideDown(500);
+        if (rulesHidden)
+            $("#rulebox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
+
+        if (stepesHidden)
+            $("#stepbox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
+
+
+        $(rowDiv).slideUp(0);
+        $(rowDiv).slideDown(500, scrollToBottomOfPage());
         setBoxHeights(innerRowDiv);
 
         currentStep++;
         
     }
 };
+
+function scrollToBottomOfPage()
+{
+    console.log("here");
+    $("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, 500);
+    //$("#StepBackward").animate({ scrollTop: $("#StepBackward")[0].scrollHeight }, 1000);
+}
 
 function setBoxHeights(innerRow)
 {
@@ -48,17 +66,17 @@ function setBoxHeights(innerRow)
     $(innerRow).slideUp(0);
     $(innerRow).slideDown(500);
 
-    $('#stepbox' + currentStep).animate({ height: height }, 1000, function () { });
+    $('#stepbox' + currentStep).animate({ height: height }, 500, function () { });
    // $('#stepbox' + currentStep).css('min-height', height + 'px');
     //$('#stepbox' + currentStep).css('max-height', height + 'px');
    //$('#stepbox' + currentStep + ' > p').css('line-height', box[0] - 40 + 'px');
 
-    $('#examplebox' + currentStep).animate({ height: height }, 1000, function () { });
+    $('#examplebox' + currentStep).animate({ height: height }, 500, function () { });
     //$('#examplebox' + currentStep).css('min-height', height + 'px');
     //$('#examplebox' + currentStep).css('max-height', height + 'px');
     $('#examplebox' + currentStep + '> p').css('line-height', height - 40 + 'px');
 
-    $('#rulebox' + currentStep).animate({ height: height }, 1000, function () { });
+    $('#rulebox' + currentStep).animate({ height: height }, 500, function () { });
     //$('#rulebox' + currentStep).css('min-height', height + 'px');
     //$('#rulebox' + currentStep).css('max-height', height + 'px');
     $('#rulebox' + currentStep + ' > p').css('line-height', height - 40 + 'px');
@@ -92,6 +110,9 @@ function makeRule() {
     par.textContent = rule[currentStep];
 
     newDiv.appendChild(par);
+
+    
+
     return (newDiv);
 }
 
@@ -99,44 +120,66 @@ function makeRule() {
 function stepForward()
 {
     nextRow();
+
+    if (currentStep > 1)
+        $("#StepBackward").slideDown(300);
+
+    if (currentStep === totalNumOfSteps)
+        $("#StepForward").slideUp(300);
 };
 
 function stepBack()
 {
-    if (currentStep > 0)
+    if (currentStep > 1)
     {
         currentStep--;
 
         var row = document.getElementById("row" + (currentStep));
         $(row).slideUp(500, function () { row.parentNode.removeChild(row); });
        
-
-
-
         var inner = document.getElementById("innerRow" + (currentStep));
         $(inner).slideUp(500, function () { inner.parentNode.removeChild(inner); });
-        
+
+
+        if(currentStep < 2)
+            $("#StepBackward").slideUp(300);
+
+        if (currentStep < totalNumOfSteps)
+            $("#StepForward").slideDown(300);
     }
+
 };
 
 function hideColumn(col)
 {
     //var text = 
-    console.log(col);
+    //console.log(col);
     $("." + col + "box").animate({ opacity: 0.00, width: "toggle", padding: "toggle"}, 500, function () { });
 
     var button = document.getElementById('Hide' + col + 'Column');
     button.setAttribute("onclick", "showColumn(\'" + col + "\')");
     button.setAttribute("value", "Show " + col + "s");
+
+    if (col === "step")
+        stepesHidden = true;
+
+    if (col === "rule")
+        rulesHidden = true;
 }
 
 function showColumn(col)
 {
     $('.' + col + 'box').animate({ opacity: 1.00, width: "toggle", padding: "toggle" }, 500, function () { });
-    console.log(col);
+    //console.log(col);
     var button = document.getElementById('Hide' + col + 'Column');
     button.setAttribute("onclick", "hideColumn(\'" + col + "\')");
     button.setAttribute("value", "Hide " + col + "s");
+
+    if (col === "step")
+        stepesHidden = false;
+
+    if (col === "rule")
+        rulesHidden = false;
 }
 
 function accordion(i)
