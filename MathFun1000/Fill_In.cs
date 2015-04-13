@@ -34,11 +34,16 @@ namespace MathFun1000
                                       "Combine the like terms.",
                                       "Recombine the terms after removing the parentheses to make an equation in its simplest form. Since the variables are different, this is the simplest form.",
                                       "Solution"};
-            this.example = new String[]{"<p style=\"color:blue\">(2x<sup>2</sup>y</p> <p style=\"color:red\">-3xy)</p> <p>+</p> <p style=\"color:blue\">(6x<sup>2</sup>y</p><p>-</p><p style=\"color:red\">9xy)</p>", 
+            /*this.example = new String[]{"<p style=\"color:blue\">(2x<sup>2</sup>y</p> <p style=\"color:red\">-3xy)</p> <p>+</p> <p style=\"color:blue\">(6x<sup>2</sup>y</p><p>-</p><p style=\"color:red\">9xy)</p>", 
                                         "<p style=\"color:blue\">(2x<sup>2</sup>y+::6::x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(-3xy-9xy)</p>",
                                         "<p style=\"color:blue\">(8x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(::-12::xy)</p>", 
                                         "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>::-::</p> <p style=\"color:red\">12xy</p>", 
-                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>"};
+                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>"};*/
+            /*this.example = new String[] {"$$\\color{blue}{(2x^2y}-\\color{red}{3xy)} + \\color{blue}{(6x^2y}-\\color{red}{9xy)}$$",
+                                          "$$\\mbox{\\color{blue}{(2x^2y}+}$$::6::$$\\mbox{\\color{blue}{x^2y)}+\\color{red}{(-3xy-9xy)}}$$",
+                                          "$$\\color{blue}{(8x^2y)}+$$::-12::$$\\color{red}{(xy)}$$",
+                                          "$$\\color{blue}{8x^2y}$$::-::$$\\color{red}{12xy}$$",
+                                          "$$\\color{blue}{8x^2y}-\\color{red}{12xy}$$"};*/
             this.rule = new String[] {"Rule Here",
                                       "Rule Here",
                                       "Rule Here",
