@@ -1,11 +1,11 @@
 ﻿html {
-    background-color: #333;
+    background-color: #222;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #333;
+    background-color: #222;
     border-top: solid 10px #000;
     color: #000;
     font-size: .85em;
@@ -25,7 +25,7 @@ body {
     margin:  5px 5px 5px 5px;
     border: 2px solid #000;
     vertical-align: bottom;
-    background-color: #C5CEFF;
+    background-color: #fff2e7;
 }
 
 .MainContainer
@@ -157,7 +157,7 @@ h5, h6 {
 }
 
 #body {
-    background-color: #222;
+    background-color: #4b4d52;
     clear: both;
     padding-bottom: 35px;
 }
@@ -206,7 +206,7 @@ footer {
 }
 
     #login a {
-        background-color: #68709F;
+        background-color: #de8642;
         margin-left: 10px;
         margin-right: 3px;
         padding: 2px 3px;
@@ -214,7 +214,7 @@ footer {
     }
 
     #login a:hover {
-            color: #58ACFA;
+            color: #fff2e7;
         }
 
     #login a.username {
@@ -256,7 +256,7 @@ ul#menu {
         }
 
         ul#menu li a:hover {
-            color: #58ACFA;
+            color: #de8642;
             text-decoration: none;
         }
 
@@ -265,17 +265,17 @@ ul#menu {
 ----------------------------------------------------------*/
 /* featured */
 .featured {
-    background-color: #222;
+    background-color: #4b4d52;
 }
 
     .featured .content-wrapper {
-        background-color: #68709F;
+        background-color: #D0cabf;
         color: #c8c8c8;
         padding: 20px 40px 30px 40px;
     }
 
         .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #c8c8c8;
+            color: #000;
         }
 
         .featured p {
@@ -480,7 +480,8 @@ fieldset {
     input[type="submit"],
     input[type="button"],
     button {
-        background-color: #68709F;
+        //background-color: #68709F;
+        background-color: #DE8642;
         border: 2px solid #0000;
         cursor: pointer;
         font-size: 1.2em;
@@ -492,7 +493,7 @@ fieldset {
     }
 
     input[type="submit"]:hover {
-        color: #58ACFA ;
+        color: #d0cabf ;
     }
 
     td input[type="submit"],

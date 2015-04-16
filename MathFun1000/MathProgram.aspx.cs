@@ -179,9 +179,9 @@ namespace MathFun1000
             steps = new Fill_In();
             problemType.Value = "FillIn";
 
-            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#68709F");
-            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
-            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#68709F");
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#429ade");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
 
             GenerateCode();
 
@@ -194,9 +194,9 @@ namespace MathFun1000
             steps = new Tutorial();
             problemType.Value = "Tutorial";
 
-            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
-            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#68709F");
-            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#68709F");
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#429ade");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
 
             GenerateCode();
 
@@ -209,9 +209,9 @@ namespace MathFun1000
             steps = new Unguided();
             problemType.Value = "Unguided";
 
-            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#68709F");
-            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#68709F");
-            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#58ACFA");
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#429ade");
 
             stepCount.Value = "0";
 
