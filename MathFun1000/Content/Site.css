@@ -9,7 +9,7 @@ body {
     border-top: solid 10px #000;
     color: #000;
     font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
     margin: 0;
     padding: 0;
     
@@ -17,8 +17,23 @@ body {
 
 .box
 {
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
     display:inline-block;
     width: 250px;
+    min-height: 50px;
+    font-size: 15px;
+    padding: 10px 10px 10px 10px;
+    margin:  5px 5px 5px 5px;
+    border: 2px solid #000;
+    vertical-align: bottom;
+    background-color: #fff2e7;
+}
+
+.boxQuestion
+{
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
+    display:inline-block;
+    width: 500px;
     min-height: 50px;
     font-size: 15px;
     padding: 10px 10px 10px 10px;
@@ -40,6 +55,15 @@ body {
     display:inline-block;
     margin: 10px 10px 10px 10px;
     border: 2px solid #555;
+    
+}
+
+.StepContainerQuestion
+{
+    display:inline-block;
+    margin: 10px 10px 10px 10px;
+    border: 2px solid #555;
+    width: 600px;
     
 }
 
@@ -183,7 +207,8 @@ footer {
 ----------------------------------------------------------*/
 .site-title {
     color: #c8c8c8;
-    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    /*font-family: Rockwell, Consolas, "Courier New", Courier, monospace;*/
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
     font-size: 2.3em;
     margin: 0;
 }
@@ -266,6 +291,8 @@ ul#menu {
 /* featured */
 .featured {
     background-color: #4b4d52;
+    height: 178px;
+    margin-bottom: 115px;
 }
 
     .featured .content-wrapper {
@@ -463,7 +490,7 @@ fieldset {
     }
 
     textarea {
-        font-family: inherit;
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
         width: 500px;
     }
     
@@ -480,9 +507,9 @@ fieldset {
     input[type="submit"],
     input[type="button"],
     button {
-        //background-color: #68709F;
+        /*background-color: #68709F;*/
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
         background-color: #DE8642;
-        border: 2px solid #0000;
         cursor: pointer;
         font-size: 1.2em;
         font-weight: 600;
@@ -490,7 +517,7 @@ fieldset {
         padding: 7px;
         margin-right: 8px;
         width: auto;
-    }
+        }
 
     input[type="submit"]:hover {
         color: #d0cabf ;

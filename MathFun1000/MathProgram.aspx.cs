@@ -47,8 +47,7 @@ namespace MathFun1000
                 {
                     CheckTypeOfProblem();
                 }
-
-                if (Request.QueryString["problem"] == "2")
+                else if (Request.QueryString["problem"] == "2")
                 {
                     String[] step = new String[] { "step1", "step2", "step3" };
                     String[] example = new String[] { "step1", "step2", "step3" };
@@ -56,9 +55,13 @@ namespace MathFun1000
 
                     steps = new Tutorial(step, example, rule, 1, 3);
                 }
-                if (Request.QueryString["problem"] == "3") 
+                else if (Request.QueryString["problem"] == "3") 
                 {
                     Response.Redirect("Graph.aspx");
+                }
+                else if (Request.QueryString["problem"] == "4")
+                {
+                    Response.Redirect("Multi.aspx");
                 }
                 else
                 {
