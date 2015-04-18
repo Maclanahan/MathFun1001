@@ -16,20 +16,20 @@ namespace MathFun1000
 {
     public partial class Graph : System.Web.UI.Page
     {
-        Graphs newGraphX = new Graphs();
-        Graphs newGraphY = new Graphs();
+        //Graphs newGraph = new Graphs();
+        Graphs newGraph = new Graphs("y=2x^2+5");
 
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e) 
         {
             
-            int[] xAxis = newGraphX.GetX();
-            int[] yAxis = newGraphY.GetY();            
+            int[] xAxis = newGraph.GetX();
+            double[] yAxis = newGraph.GetY();            
             DrawGraph(xAxis, yAxis);
         }
 
         //Description
-        protected void DrawGraph(int[] newGraphX, int[] newGraphY) 
+        protected void DrawGraph(int[] newGraphX, double[] newGraphY) 
         {
             LineGraph.Legends.Add("");
             LineGraph.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;

@@ -41,7 +41,7 @@ namespace MathFun1000
                                         "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>"};*/
             this.example = new String[] {"$$\\color{blue}{(2x^2y}-\\color{red}{3xy)} + \\color{blue}{(6x^2y}-\\color{red}{9xy)}$$",
                                           "$$\\color{blue}{(2x^2y}+\\bbox[4px, border:2px solid black]{???}\\ \\color{blue}{x^2y)}+\\color{red}{(-3xy-9xy)}$$",
-                                          "$$\\color{blue}{(8x^2y)}\\bbox[4px, border:2px solid black]{???}\\ \\color{red}{(xy)}$$",
+                                          "$$\\color{blue}{(8x^2y)}\\bbox[4px, border:2px solid black]{???}\\color{red}{(xy)}$$",
                                           "$$\\color{blue}{8x^2y}\\bbox[4px, border:2px solid black]{???}\\color{red}{12xy}$$",
                                           "$$\\color{blue}{8x^2y}-\\color{red}{12xy}$$"};
             this.rule = new String[] {"Rule Here",
