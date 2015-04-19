@@ -22,7 +22,11 @@
 
     
 
-
+    <div class="ControllButtons">
+        <input id="tutorial" type="button" value="Tutorial" onclick="tutorialParser()"/>
+        <input id="fillIn" type="button" value="Fill In" onclick="fillInParser()"/>
+        <input id="unguided" type="button" value="Answer Only" onclick="unguidedParser()"/>
+    </div>
     <div class="MainContainer" id="MainController" runat="server">
     <input id="HidestepColumn" type="button" value="Hide steps" class="hideColumn" onclick="hideColumn('step')"/>
     <input id="HideruleColumn" type="button" value="Hide rules" class="StepForwardButton" onclick="hideColumn('rule')"/>
@@ -34,9 +38,34 @@
             </div>
                
         </div>
+
+        
+
+        
+
+        <div id="answerArea" >
+            <%--<input id="answerField" type="text" />--%>
+            <p style="float: left; margin-right: 5px;">Answer:   </p>
+            <input class="answerBox" id="AnswerBox" type="text" value="" autoComplete="off"/>
+            <input type="button" value="&#10003" onclick="checkAnswer()"/>
+            <label id="answerLabel" style="display: inline-block; vertical-align: top;"></label>
+        </div>
+
+        <div id="unguidedAnswerArea" >
+            <%--<input id="answerField" type="text" />--%>
+            <p style="float: left; margin-right: 5px;">Answer:   </p>
+            <input class="answerBox" id="unguidedAnswerBox" type="text" value="" autoComplete="off"/>
+            <input type="button" value="&#10003" onclick="checkUnguidedAnswer()"/>
+            <label id="unguidedAnswerLabel" style="display: inline-block; vertical-align: top;"></label>
+        </div>
+
         <input id="StepBackward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
         <input id="StepForward" type="button" value="Next" class="StepForwardButton" onclick="stepForward()"/>
+        
     </div>
+
+    
+
     <script type="text/javascript" src="Scripts/tutorial.js"></script>
     <asp:HiddenField ID="stepCount" runat="server" value="0"/>
     <asp:HiddenField ID="problemNumber" runat="server" value="0"/>

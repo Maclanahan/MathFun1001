@@ -135,6 +135,48 @@ body {
     outline:solid;
     outline-color:black;
     outline-width:1px;
+    display: inline-block;
+    
+}
+
+#answerArea
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 29%;
+    //text-align: center;
+
+    //display:inline-block;
+    //width: 250px;
+    //min-height: 50px;
+    //font-size: 15px;
+    padding: 10px 10px 10px 10px;
+    //margin:  5px 5px 5px 5px;
+    border: 2px solid #000;
+    //vertical-align: middle;
+    background-color: #C5CEFF;
+    //height: inherit;
+    //text-align: center;
+}
+
+#unguidedAnswerArea
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    //text-align: center;
+
+    //display:inline-block;
+    //width: 250px;
+    //min-height: 50px;
+    //font-size: 15px;
+    padding: 10px 10px 10px 10px;
+    //margin:  5px 5px 5px 5px;
+    border: 2px solid #000;
+    //vertical-align: middle;
+    background-color: #C5CEFF;
+    //height: inherit;
+    //text-align: center;
 }
 
 a {
@@ -149,6 +191,7 @@ p
 {
     color: black;
     display:inline-block;
+    //vertical-align:text-bottom;
 }
 
 .answerBox
