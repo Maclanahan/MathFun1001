@@ -16,11 +16,11 @@ namespace MathFun1000
         {
             literal_ChapterNum.Text = "2";
             literal_ProblemNum.Text = "1";
-            literal_Problem.Text = "What's brown and sticky?";
+            literal_Problem.Text = "2+2 equals?";
             CheckBox1.Text = "A stick!";
             CheckBox2.Text = "Melted Chocolate!";
             CheckBox3.Text = "Sponge?";
-            CheckBox4.Text = "A rock.";
+            CheckBox4.Text = "4";
             CheckBox5.Text = "Who cares?";
             bool isChecked = false;
         }

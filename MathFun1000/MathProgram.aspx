@@ -13,15 +13,9 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
-    <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({ 
-                TeX: { 
-                    extensions: ["autobold.js"]}
-                });
-        </script> 
-        <script type="text/javascript"
-            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-        </script>
+    
+
+    
     
     <div _designerregion="0">
         <asp:Button ID="Tutorial" runat="server" Text="Tutorial" OnClick="Tutorial_Click"/>
@@ -43,4 +37,35 @@
     <asp:HiddenField ID="stepCount" runat="server" value="0"/>
     <asp:HiddenField ID="problemNumber" runat="server" value="0"/>
     <asp:HiddenField ID="problemType" runat="server" value="FillIn" />
+
+    <script>
+       // $(document).ready(function () { $(".MainContainer").slideDown(500); });
+      $(".MainContainer").css("visibility", "hidden");
+      //$(".MainContainer").slideUp(0);
+       
+    </script>
+
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+     </script>
+
+    <script type="text/x-mathjax-config">
+           
+         
+            MathJax.Hub.Config({ 
+                TeX: { 
+                        extensions: ["autobold.js"],
+                        messageStyle: 'none', tex2jax: {preview: 'none'}
+                    }
+            
+                
+        });
+
+        MathJax.Hub.Queue( function() 
+        {
+            $(".MainContainer").css("visibility", "");
+            //$(".MainContainer").slideDown(500);
+        });
+        </script> 
+        
 </asp:Content>
