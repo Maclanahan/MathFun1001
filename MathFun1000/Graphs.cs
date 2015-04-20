@@ -16,7 +16,7 @@ namespace MathFun1000
     public class Graphs
     {
         public int[] xAxis = { -3, -2, -1, 0, 1, 2, 3 };
-        public double[] yAxis = new double[7];
+        public double[] yAxis = {0, 0, 0, 0, 0, 0, 0};
         public int difficulty = 1;
         public int numberOfSteps = 5;
         public int currentStep = 0;
@@ -34,7 +34,7 @@ namespace MathFun1000
         public Graphs(String theEquation) 
         {
             this.equation = theEquation;
-            generatePoints(this.equation);
+            getPiecePositions(this.xAxis, this.equation);
         }
 
 
@@ -49,72 +49,76 @@ namespace MathFun1000
             return this.yAxis;
         }
 
-        //Gets the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)
-        
-        public void generatePoints(String equation){
+        //Gets the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)        
+        public void getPiecePositions(int[] xAxis, String equation) {
             char op = '+';
-            int[]  x = { -3, -2, -1, 0, 1, 2, 3 };
-            int xPos = 0, powPos = 0, m = 1, b = 0, pow = 1;
-                       
+            int xPos = 0, powPos = 0, m = 1, b = 0, opPos = 0, pow = 1;
+            Boolean powered = false;
+
             for (int index = 2; index < equation.Length; index++) {
-                if (equation[index].Equals('x')){
+                if (equation[index].Equals('x')) {
                     xPos = index;
-                    if(index > 2)
-                        m = getM(xPos, equation);                
                 }
-                if (equation[index].Equals('^')){
+                if (equation[index].Equals('^')) {
                     powPos = index;
-                    pow = getPow(powPos, equation);
+                    powered = true;
                 }
-                if(equation[index].Equals('+') || equation[index].Equals('-') || 
-                equation[index].Equals('*') || equation[index].Equals('/')){
+                if (equation[index].Equals('+') || equation[index].Equals('-')) {
                     op = equation[index];
-                    b = getB(index + 1, equation);
-                }              
+                    opPos = index;
+                }
             }
 
-            for(int i = 0; i < 7; i ++){
+            getPieces(xPos, powPos, opPos, m, b, pow, powered, op);
+        }//end getPiecePositions
+
+        public void getPieces(int xPos, int powPos, int opPos, int m, int b, int pow, Boolean powered, char op) { //y=x+5
+            String temp = "";
+
+            for (int index = 2; index < equation.Length; index++) {
+                if (equation[2] != 'x') {
+                    temp += equation[index];
+                    if (index + 1 == xPos) {
+                        m = Convert.ToInt32(temp);
+                        temp = "";
+                        index += 2;
+                    }
+                    if (powered == true && index == opPos - 1) {
+                        pow = Convert.ToInt32(temp);
+                        temp = "";
+                        index += 1;
+                    }
+                    if (index + 1 == equation.Length) {
+                        b = Convert.ToInt32(temp);
+                    }
+                }
+                else {
+                    temp += equation[index];
+                    if (powered == true) {
+                        if (index == xPos + 2) {
+                            pow = Convert.ToInt32(temp.Substring(2));
+                            temp = "";
+                        }
+                        if (opPos > 0 && index == xPos + 4) {
+                            b = Convert.ToInt32(temp.Substring(1));
+                            temp = "";
+                        }
+                    }
+                    else if (powered == false && index + 1 == equation.Length) {
+                        b = Convert.ToInt32(temp.Substring(2));
+                    }
+                }
+            }//end for
+            generatePoints(m, b, pow, op);
+        }//end getpieces
+        public void generatePoints(int m, int b, int pow, char op) {
+            for (int i = 0; i < yAxis.Length; i++) {
                 if (op.Equals('+'))
-                    yAxis[i] = m * Math.Pow(x[i], pow) + b;
-                if(op.Equals('-'))
-                    yAxis[i] = m * Math.Pow(x[i], pow) - b;
-                if(op.Equals('*'))
-                    yAxis[i] = m * Math.Pow(x[i], pow) * b;
-                if(op.Equals('/'))    
-                    yAxis[i] = m * Math.Pow(x[i], pow) / b;
+                    yAxis[i] = m * Math.Pow(xAxis[i], pow) + b;
+                if (op.Equals('-'))
+                    yAxis[i] = m * Math.Pow(xAxis[i], pow) - b;
             }
-        }
 
-        public static int getM(int xPos, String equation) {
-
-            String temp = "";
-            int m = 0;
-            for (int index = 2; index < xPos; index++) {
-                temp += equation[index];
-            }
-            m = Convert.ToInt32(temp);
-            return m;
-        }
-        public static int getPow(int powPos, String equation) {
-
-            String temp = "";
-            int pow = 1;
-            for (int index = powPos + 1;
-                index < equation.Length && (!(equation[index].Equals('+')) && !(equation[index].Equals('-')) &&
-                !(equation[index].Equals('*')) && !(equation[index].Equals('/'))); index++) {
-                temp += equation[index];
-            }
-            pow = Convert.ToInt32(temp);
-            return pow;
-        }
-        public static int getB(int index, String equation) {
-            String temp = "";
-            int b = 0;
-            for (int i = index; i < equation.Length; i++)
-                temp += equation[index];
-
-            b = Convert.ToInt32(temp);
-            return b;
         }
     }
 }

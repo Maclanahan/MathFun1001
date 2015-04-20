@@ -17,7 +17,7 @@ namespace MathFun1000
     public partial class Graph : System.Web.UI.Page
     {
         //Graphs newGraph = new Graphs();
-        Graphs newGraph = new Graphs("y=2x^2+5");
+        Graphs newGraph = new Graphs("y=x+1");
 
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e) 
