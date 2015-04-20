@@ -183,7 +183,7 @@ namespace MathFun1000
             problemType.Value = "FillIn";
 
             Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
-            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#429ade");
+            FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#91501D");
             AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
 
             GenerateCode();
@@ -197,7 +197,7 @@ namespace MathFun1000
             steps = new Tutorial();
             problemType.Value = "Tutorial";
 
-            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#429ade");
+            Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#91501D");
             FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
             AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
 
@@ -214,7 +214,7 @@ namespace MathFun1000
 
             Tutorial.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
             FillInTheBlank.BackColor = System.Drawing.ColorTranslator.FromHtml("#DE8642");
-            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#429ade");
+            AnswerOnly.BackColor = System.Drawing.ColorTranslator.FromHtml("#91501D");
 
             stepCount.Value = "0";
 
