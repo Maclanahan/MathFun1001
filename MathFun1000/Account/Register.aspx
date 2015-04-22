@@ -60,7 +60,4 @@
 <asp:CompleteWizardStep runat="server"></asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
-    <asp:HiddenField ID="email" runat="server" />
-    <asp:HiddenField ID="username" runat="server" />
-    <asp:HiddenField ID="password" runat="server" />
 </asp:Content>

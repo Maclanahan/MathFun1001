@@ -215,7 +215,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="LoggedIn.aspx" />
+    <Content Include="Account\LoggedIn.aspx" />
     <Content Include="MathProgram.aspx" />
     <Content Include="Multi.aspx" />
     <Content Include="MultipleChoice.aspx" />
@@ -363,11 +363,11 @@
     <Compile Include="Graphs.cs" />
     <Compile Include="Account\InputValidation.cs" />
     <Compile Include="IProblemType.cs" />
-    <Compile Include="LoggedIn.aspx.cs">
+    <Compile Include="Account\LoggedIn.aspx.cs">
       <DependentUpon>LoggedIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LoggedIn.aspx.designer.cs">
+    <Compile Include="Account\LoggedIn.aspx.designer.cs">
       <DependentUpon>LoggedIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="MathProgram.aspx.cs">

@@ -45,7 +45,7 @@ namespace MathFun1000.Account
                 queryStr = "";
                 queryStr = "SELECT EmailAddress, SlowHashSalt FROM db_9bad3d_test.userinfo WHERE UserName=?uname";
                 cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
-                cmd.Parameters.AddWithValue("?uname", form_login.UserName);
+                cmd.Parameters.AddWithValue("?uname", textboxUserName.Text);
                 reader = cmd.ExecuteReader();
 
                 while (reader.HasRows && reader.Read())
@@ -68,7 +68,7 @@ namespace MathFun1000.Account
                     for (int i = 0; i < salthashList.Count; i++)
                     {
                         queryStr = "";
-                        bool validUser = PasswordHash.ValidatePassword(form_login.Password, salthashList[i]);
+                        bool validUser = PasswordHash.ValidatePassword(textboxPassword.Text, salthashList[i]);
                         if (validUser == true)
                         {
                             Session["uname"] = nameList[i];
@@ -77,14 +77,14 @@ namespace MathFun1000.Account
                         }
                         else
                         {
-                            form_login.FailureText = "User not authenticated";
+                            lbl_Confirmation.Text = "User not authenticated";
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                form_login.FailureText = "E: User not authenticated";
+                lbl_Confirmation.Text = "E: User not authenticated";
             }
         }
 
@@ -101,6 +101,19 @@ namespace MathFun1000.Account
             else
             {
                 return false;
+            }
+        }
+
+        protected void btnLogIn_Click(object sender, EventArgs e)
+        {
+            if (checkAgainstWhiteList(textboxUserName.Text) == true && checkAgainstWhiteList(textboxPassword.Text) == true)
+            {
+
+                LoginWithPasswordHashFunction();
+            }
+            else
+            {
+                lbl_Confirmation.Text = "Invalid characters.";
             }
         }
 
