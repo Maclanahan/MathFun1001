@@ -24,8 +24,10 @@ namespace MathFun1000
         {
             
             int[] xAxis = newGraph.GetX();
-            double[] yAxis = newGraph.GetY();            
+            double[] yAxis = newGraph.GetY();
+            //GenerateCode();
             DrawGraph(xAxis, yAxis);
+            
         }
 
         //Description
@@ -34,6 +36,16 @@ namespace MathFun1000
             LineGraph.Legends.Add("");
             LineGraph.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
             LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");;
+        }
+        
+        private void GenerateCode() {
+            string parse = newGraph.GenerateCode();
+
+            ParseForInput(parse);
+        }
+        
+        private void ParseForInput(string parase) {
+            //innerMain.InnerHtml = parase;
         }
 
         //Description

@@ -49,6 +49,14 @@ namespace MathFun1000
             return this.yAxis;
         }
 
+        public String GenerateCode() {
+            String code = "";
+            code += "<div class=\"buttons\">";
+            code += "</div>";
+
+            return code;
+        }
+
         //Gets the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)        
         public void getPiecePositions(int[] xAxis, String equation) {
             char op = '+';

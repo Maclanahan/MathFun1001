@@ -7,16 +7,15 @@
 
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
- 
-
+<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server" >
+    
 </asp:Content>
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">    
     <link href="Content/MathProblemStyle.css" rel="stylesheet" />
-
-    <asp:Chart ID="LineGraph" runat="server" Width="400" Height="400">
+    <div class ="graph" id="graph" runat="server" style="float:left">
+    <asp:Chart ID="LineGraph" runat="server" Width="400px" Height="400px" >
         <Series>
             <asp:Series ChartType="Line" Name="Series1">
             </asp:Series>
@@ -26,10 +25,16 @@
             </asp:ChartArea>
         </ChartAreas>
     </asp:Chart>
+    
+    </div>
+    <div class ="radioButtonList" id="rbList" runat="server" style="float:right;">
 
-    <br />
-    <br />
+    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+        
+    </asp:RadioButtonList>
 
-    <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
-
+    </div>
+    <div class="buttons" id="buttons" runat="server" style="margin-top:431px">
+        <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
+    </div>
 </asp:Content>
