@@ -60,7 +60,7 @@ function nextRow()
         setBoxHeights(innerRowDiv);
 
         currentStep++;
-        
+        MathJax.Hub.Typeset();
     }
 };
 

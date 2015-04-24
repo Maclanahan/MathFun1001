@@ -10,34 +10,16 @@
 namespace MathFun1000 {
     
     
-    public partial class MathProgram {
+    public partial class MathProgramJavascript {
         
         /// <summary>
-        /// Tutorial control.
+        /// arrayData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Tutorial;
-        
-        /// <summary>
-        /// FillInTheBlank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button FillInTheBlank;
-        
-        /// <summary>
-        /// AnswerOnly control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AnswerOnly;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl arrayData;
         
         /// <summary>
         /// MainController control.
