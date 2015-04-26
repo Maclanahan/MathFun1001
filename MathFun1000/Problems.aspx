@@ -7,13 +7,22 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
- 
-
+    
+    
+    
 </asp:Content>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    
+    <section class="featured">
+        
+        <div class="content-wrapper">
+        
+            <p ID="ChapterTitle" runat="server" style="font-size: 30px;"></p><br/>
+
+            <p ID="Intro" runat="server"></p>
+        </div>
+    </section>
     <asp:Button ID="Button1" runat="server" Text="Problem 1" OnClick="Button1_Click" Width="210px" />
     <br/>
     <asp:Button ID="Button2" runat="server" Text="Problem 2" OnClick="Button2_Click" Width="210px" />

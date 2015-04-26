@@ -31,7 +31,7 @@ namespace MathFun1000
             this.step = new String[] {"Identify the different variables.", 
                 "Separate the variables into like groups.", 
                 "Combine the like terms.", 
-                "Recombine the terms after removing the parenthese to make an equation in its seimplets form. Since the variables are differnt, this is the simplest form.", 
+                "Recombine the terms after removing the parenthese to make an equation in its seimplets form. Since the variables are different, this is the simplest form.", 
                 "Solution"};
 
             /*this.example = new String[] {"<p style=\"color:blue\">(2x<sup>2</sup>y</p> <p style=\"color:red\">-3xy)</p> <p>+</p> <p style=\"color:blue\">(6x<sup>2</sup>y</p><p>-</p><p style=\"color:red\">9xy)</p>", 

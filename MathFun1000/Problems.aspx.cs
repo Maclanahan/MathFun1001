@@ -12,6 +12,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySql.Data.Common;
+using System.Data;
 
 namespace MathFun1000
 {
@@ -20,7 +24,44 @@ namespace MathFun1000
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
-            //None
+            querryDatabase();
+        }
+
+        private void querryDatabase()
+        {
+            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySql.Data.MySqlClient.MySqlCommand cmd;
+            String queryStr;
+
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
+            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+            queryStr = "";
+            queryStr = "SELECT Chapter_Title, Chapter_Intro FROM chapter WHERE Chapter_ID = 0;"; 
+
+            using (cmd = new MySqlCommand(queryStr, conn))
+            {
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        SetTitle(reader.GetString(0));
+                        SetDescription(reader.GetString(1));
+                    }
+                }
+
+                conn.Close();
+            }
+        }
+
+        private void SetDescription(string p)
+        {
+            Intro.InnerText = p;
+        }
+
+        private void SetTitle(string p)
+        {
+            ChapterTitle.InnerText = p;
         }
 
         //Start - These buttons are made for test purpuses, they will be dynamically created in final product
@@ -36,12 +77,12 @@ namespace MathFun1000
 
         protected void Button3_Click(object sender, EventArgs e) 
         {
-            Response.Redirect("MathProgram.aspx?problem=" + "3");
+            Response.Redirect("Graph.aspx");
         }
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MathProgram.aspx?problem=" + "4");
+            Response.Redirect("Multi.aspx");
         }
         //End
     }

@@ -13,6 +13,24 @@ namespace MathFun1000 {
     public partial class Problems {
         
         /// <summary>
+        /// ChapterTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChapterTitle;
+        
+        /// <summary>
+        /// Intro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Intro;
+        
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

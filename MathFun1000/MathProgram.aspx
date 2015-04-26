@@ -68,27 +68,25 @@
 
     <script>
         // $(document).ready(function () { $(".MainContainer").slideDown(500); });
-        //$(".MainContainer").css("visibility", "hidden");
-        //$(".MainContainer").slideUp(0);
+        $(".MainContainer").css("visibility", "hidden");
+        $(".MainContainer").slideUp(0);
 
     </script>
 
     
 
-    <script type="text/javascript" src="Scripts/tutorial.js"></script>
+    
 
     <script type="text/javascript"
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
      </script>
 
-    <script type="text/x-mathjax-config">
-           
-         
-            MathJax.Hub.Config({ 
-                TeX: { 
-                        extensions: ["autobold.js"],
-                        //messageStyle: 'none', tex2jax: {preview: 'none'}
-                    }
+    <script type="text/x-mathjax-config">  
+       MathJax.Hub.Config({ 
+            TeX: { 
+                    extensions: ["autobold.js"],
+                    //messageStyle: 'none', tex2jax: {preview: 'none'}
+                 }
             
                 
         });
@@ -96,9 +94,11 @@
         MathJax.Hub.Queue( function() 
         {
             $(".MainContainer").css("visibility", "");
-            //$(".MainContainer").slideDown(500);
+            $(".MainContainer").slideDown(500);
         });
-        </script> 
+    </script> 
+
+    <script type="text/javascript" src="Scripts/tutorial.js"></script>
 
     <asp:HiddenField ID="stepCount" runat="server" value="0"/>
     <asp:HiddenField ID="problemNumber" runat="server" value="0"/>

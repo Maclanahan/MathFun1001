@@ -25,6 +25,8 @@ $("#answerArea").slideUp(0);
 $("#unguidedAnswerArea").slideUp(0);
 
 var mainArea = document.getElementById("MainContent_innerMain");
+
+tutorialParser(); //removes answer tags as default, so MathJax parses correctly
 nextRow();
 
 function nextRow()
@@ -201,7 +203,25 @@ function tutorialParser()
     resetProblem();
 
     problemType.prototype.parser = function () {
-        //alert("FILL IN");
+        var string = "";
+        string = example[currentStep];
+
+        //alert(string.indexOf("<answer>"));
+        //alert(string.indexOf("</answer>"));
+        if (string.indexOf("<answer>") !== -1)
+
+        {
+            //answer = string.substring(string.indexOf("<answer>") + 8, string.indexOf("</answer>"));
+            //string = string.replace("<answer>" + answer + "</answer>", " <input class=\"answerBox\" id=\"AnswerBox\" type=\"text\" value=\"\" autoComplete=\"off\"/> ");
+            string = string.replace("<answer>", "");
+            string = string.replace("</answer>", "");
+
+            //$("#StepForward").slideUp(500);
+
+            //$("#AnswerBox").width(25);
+            //showAnswerBox();
+            return string;
+        }
 
         return example[currentStep];
     }
@@ -249,6 +269,14 @@ function unguidedParser()
     var string = "";
     string = example[example.length - 1];
     string = string.replace(/<(?:.|\n)*?>/gm, '');
+    string = string.replace(/\$/g, '');
+    string = string.replace(/\\/g, '');
+    string = string.replace(/\{/g, '');
+    string = string.replace(/\}/g, '');
+    string = string.replace(/color/g, '');
+    string = string.replace(/blue/g, '');
+    string = string.replace(/red/g, '');
+    string = string.replace(/green/g, '');
     string = string.replace(/ /g, '');
 
     //alert(string);

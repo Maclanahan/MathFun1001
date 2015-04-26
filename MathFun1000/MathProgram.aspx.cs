@@ -13,6 +13,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySql.Data.Common;
+using System.Data;
 
 namespace MathFun1000
 {
@@ -25,11 +29,47 @@ namespace MathFun1000
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
-            steps = new Tutorial();
+            querryDatabase();
+
+            //steps = new Tutorial();
 
             convertToJavaScript();
 
             executeJavaScript();
+        }
+
+        private void querryDatabase()
+        {
+            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySql.Data.MySqlClient.MySqlCommand cmd;
+            String queryStr;
+
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
+            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+            queryStr = "";
+            queryStr = "SELECT Info,Example,Rules FROM step WHERE Problem_ID = "+ Request.QueryString["problem"] +" ORDER BY Step_ID ASC;";
+            
+            using (cmd = new MySqlCommand(queryStr, conn))
+            {
+                conn.Open();
+                using(var reader = cmd.ExecuteReader())
+                {
+                    var info = new List<string>();
+                    var example = new List<string>();
+                    var rule = new List<string>();
+
+                    while (reader.Read())
+                    {
+                        info.Add(reader.GetString(0));
+                        example.Add(reader.GetString(1));
+                        rule.Add(reader.GetString(2));
+                    }
+
+                    steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), 0, info.Count);
+                }
+
+                conn.Close();
+            }
         }
 
         private void executeJavaScript()
