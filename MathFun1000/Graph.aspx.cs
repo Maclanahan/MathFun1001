@@ -18,6 +18,7 @@ namespace MathFun1000
     {
         //Graphs newGraph = new Graphs();
         Graphs newGraph = new Graphs("y=x+1");
+        String[] options;
 
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e) 
@@ -27,15 +28,26 @@ namespace MathFun1000
             double[] yAxis = newGraph.GetY();
             //GenerateCode();
             DrawGraph(xAxis, yAxis);
+            UpdateLabels();
             
         }
 
-        //Description
+        
         protected void DrawGraph(int[] newGraphX, double[] newGraphY) 
         {
             LineGraph.Legends.Add("");
             LineGraph.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
-            LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");;
+            LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");
+        }
+
+        protected void UpdateLabels() {
+            options = newGraph.getEquationOptions();
+            Label1.Text = options[0];
+            Label2.Text = options[1];
+            Label3.Text = options[2];
+            Label4.Text = options[3];
+            Label5.Text = options[4];
+
         }
         
         private void GenerateCode() {

@@ -20,12 +20,12 @@ namespace MathFun1000
         public int difficulty = 1;
         public int numberOfSteps = 5;
         public int currentStep = 0;
+        public String[] options;
         public String equation = "";
 
         //Default constructor meant for testing.
         public Graphs()
         {
-            this.numberOfSteps = 1;
             this.xAxis = new int[] { -3, -2, -1, 0, 1, 2, 3 };
             this.yAxis = new double[] { 9, 4, 1, 0, 1, 4, 9 };
         }
@@ -34,7 +34,8 @@ namespace MathFun1000
         public Graphs(String theEquation) 
         {
             this.equation = theEquation;
-            getPiecePositions(this.xAxis, this.equation);
+            findPiecePositions(this.xAxis, this.equation);
+
         }
 
 
@@ -49,16 +50,29 @@ namespace MathFun1000
             return this.yAxis;
         }
 
-        public String GenerateCode() {
-            String code = "";
-            code += "<div class=\"buttons\">";
-            code += "</div>";
+        public string[] getEquationOptions() {
+            int ans;
+            Random rnd = new Random();
+            ans = rnd.Next(0, 5);
 
-            return code;
+            this.options = new String[] { "$$\\color{white}{y=x}$$",
+                                          "$$\\color{white}{y=x+5}$$",
+                                          "$$\\color{white}{y=x^2}$$",
+                                          "$$\\color{white}{y=6x^3+4}$$",
+                                          "$$\\color{white}{y=3x+5}$$"};
+            
+            options[ans] = "$$\\color{white}{" + this.equation + "}$$";
+            
+            return options;
+        }
+
+        public String GenerateCode() 
+        {            
+            return null;
         }
 
         //Gets the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)        
-        public void getPiecePositions(int[] xAxis, String equation) {
+        public void findPiecePositions(int[] xAxis, String equation) {
             char op = '+';
             int xPos = 0, powPos = 0, m = 1, b = 0, opPos = 0, pow = 1;
             Boolean powered = false;
