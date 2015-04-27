@@ -22,7 +22,7 @@ var problem = new problemType();
 $("#answerArea").slideUp(0);
 $("#unguidedAnswerArea").slideUp(0);
 
-var mainArea = document.getElementById("MainContent");
+var mainArea = document.getElementById("MainContent_innerMain");
 
 //tutorialParser(); //removes answer tags as default, so MathJax parses correctly
 nextRow();
@@ -42,7 +42,7 @@ function nextRow() {
         //innerRowDiv.appendChild(makeStep());
         innerRowDiv.appendChild(makeExample());
         //innerRowDiv.appendChild(makeRule());
-
+        //alert(document.getElementById("MainContent_innerMain"));
         mainArea.appendChild(rowDiv);
         mainArea.appendChild(innerRowDiv);
 

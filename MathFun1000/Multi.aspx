@@ -50,7 +50,7 @@
             });
         </script> 
 
-       <script type="text/javascript" src="Scripts/Multi.js"></script>
+       
         <asp:HiddenField ID="stepCount" runat="server" value="0"/>
 
         <div class="innerMain" id="innerMain" runat="server">
@@ -60,6 +60,8 @@
             </div>
                
         </div>
-    </div>
 
+        
+    </div>
+    <script type="text/javascript" src="Scripts/Multi.js"></script>
 </asp:Content>
