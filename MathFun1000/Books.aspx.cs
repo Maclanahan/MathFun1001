@@ -55,7 +55,7 @@ namespace MathFun1000
         {
             for(int i = 0; i < id.Count; i++)
             {
-                var button = new Button { ID = id[i], Text = name[i] };
+                var button = new Button { ID = id[i], Text = name[i], Width = 210 };
                 //button.Click += ButtonClick;
                 button.Command += new CommandEventHandler(DynamicCommand);
                 button.CommandArgument = id[i];

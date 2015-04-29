@@ -47,7 +47,10 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
-            queryStr = "SELECT Info,Example,Rules FROM step WHERE Problem_ID = "+ Request.QueryString["problem"] +" ORDER BY Step_ID ASC;";
+            if (Request.QueryString.HasKeys())
+                queryStr = "SELECT Info,Example,Rules FROM step WHERE Problem_ID = " + Request.QueryString["problem"] + " ORDER BY Step_ID ASC;";
+            else
+                Response.Redirect("Books.aspx");
             
             using (cmd = new MySqlCommand(queryStr, conn))
             {

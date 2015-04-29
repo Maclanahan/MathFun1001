@@ -41,7 +41,12 @@
                
         </div>
 
-        
+        <script>
+            // $(document).ready(function () { $(".MainContainer").slideDown(500); });
+            $(".MainContainer").css("visibility", "hidden");
+            //$(".MainContainer").slideUp(333);
+
+        </script>
 
         
 
@@ -66,12 +71,7 @@
         
     </div>
 
-    <script>
-        // $(document).ready(function () { $(".MainContainer").slideDown(500); });
-        $(".MainContainer").css("visibility", "hidden");
-        $(".MainContainer").slideUp(0);
-
-    </script>
+    
 
     
 
@@ -93,8 +93,10 @@
 
         MathJax.Hub.Queue( function() 
         {
+            $(".MainContainer").slideDown(1500);
             $(".MainContainer").css("visibility", "");
-            $(".MainContainer").slideDown(500);
+            $(".MainContainer").css("opacity", "0");
+            $(".MainContainer").animate({opacity: 1}, 1500)
         });
     </script> 
 

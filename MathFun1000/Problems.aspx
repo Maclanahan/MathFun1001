@@ -23,6 +23,11 @@
             <p ID="Intro" runat="server"></p>
         </div>
     </section>
+    
+    <asp:PlaceHolder ID="ButtonHolder" runat="server"></asp:PlaceHolder>
+    <br/>
+    <br/>
+    <br/>
     <asp:Button ID="Button1" runat="server" Text="Problem 1" OnClick="Button1_Click" Width="210px" />
     <br/>
     <asp:Button ID="Button2" runat="server" Text="Problem 2" OnClick="Button2_Click" Width="210px" />

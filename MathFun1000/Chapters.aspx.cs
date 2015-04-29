@@ -38,8 +38,11 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
-            queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = " + Request.QueryString["book"] + " ORDER BY Chapter_ID ASC;";
-            //queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter ORDER BY Chapter_ID ASC;";
+
+            if (Request.QueryString.HasKeys())
+                queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = " + Request.QueryString["book"] + " ORDER BY Chapter_ID ASC;";
+            else
+                Response.Redirect("Books.aspx");
 
             using (cmd = new MySqlCommand(queryStr, conn))
             {
@@ -66,7 +69,7 @@ namespace MathFun1000
         {
             for(int i = 0; i < id.Count; i++)
             {
-                var button = new Button { ID = id[i], Text = name[i] };
+                var button = new Button { ID = id[i], Text = name[i], Width = 210 };
                 //button.Click += ButtonClick;
                 button.Command += new CommandEventHandler(DynamicCommand);
                 button.CommandArgument = id[i];

@@ -21,6 +21,8 @@ namespace MathFun1000
 {
     public partial class Problems : System.Web.UI.Page
     {
+        private int ProblemNum = 1;
+
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,7 +38,10 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
-            queryStr = "SELECT Chapter_Title, Chapter_Intro FROM chapter WHERE Chapter_ID = 0;"; 
+            if (Request.QueryString.HasKeys())
+                queryStr = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Problem_ID FROM problem AS p INNER JOIN chapter AS c WHERE c.Chapter_ID = " + Request.QueryString["chapter"] + " AND p.Chapter_ID = " + Request.QueryString["chapter"] + ";";
+            else
+                Response.Redirect("Books.aspx");
 
             using (cmd = new MySqlCommand(queryStr, conn))
             {
@@ -47,11 +52,29 @@ namespace MathFun1000
                     {
                         SetTitle(reader.GetString(0));
                         SetDescription(reader.GetString(1));
+                        SetButton(reader.GetString(2));
                     }
                 }
 
                 conn.Close();
             }
+        }
+
+        private void SetButton(string p)
+        {
+            var button = new Button { ID = p, Text = "Problem " + ProblemNum, Width = 210 };
+            button.Command += new CommandEventHandler(DynamicCommand);
+            button.CommandArgument = p;
+            ButtonHolder.Controls.Add(button);
+            ButtonHolder.Controls.Add(new LiteralControl("<br />"));
+
+
+            ProblemNum++;
+        }
+
+        private void DynamicCommand(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("MathProgram.aspx?problem=" + e.CommandArgument);
         }
 
         private void SetDescription(string p)
