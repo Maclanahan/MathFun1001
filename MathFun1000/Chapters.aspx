@@ -12,6 +12,5 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Button ID="Button1" runat="server" Text="Chapter 1" OnClick="Button1_Click" Width="190px" /> 
-    
+    <asp:PlaceHolder ID="ChapterHolder" runat="server"></asp:PlaceHolder>
 </asp:Content>

@@ -10,15 +10,24 @@
 namespace MathFun1000 {
     
     
-    public partial class Chapters {
+    public partial class Books {
         
         /// <summary>
-        /// ChapterHolder control.
+        /// ButtonHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ChapterHolder;
+        protected global::System.Web.UI.WebControls.PlaceHolder ButtonHolder;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

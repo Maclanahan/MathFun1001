@@ -1,11 +1,4 @@
-﻿/* Team Name: Math Fun 1000
-* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
-* Class: Chapters.aspx.cs
-*
-* Brief Description: Chapters webpage code.
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,16 +11,13 @@ using System.Data;
 
 namespace MathFun1000
 {
-    public partial class Chapters : System.Web.UI.Page
+    public partial class Books : System.Web.UI.Page
     {
-        private Tutorial tut1;
-        private Tutorial tut2;
-
-        //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
             querryDatabase();
         }
+
 
         private void querryDatabase()
         {
@@ -38,8 +28,7 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
-            queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = " + Request.QueryString["book"] + " ORDER BY Chapter_ID ASC;";
-            //queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter ORDER BY Chapter_ID ASC;";
+            queryStr = "SELECT Book_ID, Book_Name FROM book ORDER BY Book_ID ASC;";
 
             using (cmd = new MySqlCommand(queryStr, conn))
             {
@@ -70,16 +59,15 @@ namespace MathFun1000
                 //button.Click += ButtonClick;
                 button.Command += new CommandEventHandler(DynamicCommand);
                 button.CommandArgument = id[i];
-                ChapterHolder.Controls.Add(button);
-                ChapterHolder.Controls.Add(new LiteralControl("<br />"));
+                ButtonHolder.Controls.Add(button);
+                ButtonHolder.Controls.Add(new LiteralControl("<br />"));
             }
             
         }
 
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect("Problems.aspx?chapter=" + e.CommandArgument);
+            Response.Redirect("Chapters.aspx?book=" + e.CommandArgument);
         }
     }
-
 }

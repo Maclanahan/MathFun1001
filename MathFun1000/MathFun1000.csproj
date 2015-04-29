@@ -220,6 +220,7 @@
     <Content Include="Multi.aspx" />
     <Content Include="MultipleChoice.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Books.aspx" />
     <None Include="Properties\PublishProfiles\Dan.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Problems.aspx" />
@@ -424,6 +425,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Books.aspx.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Books.aspx.designer.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
