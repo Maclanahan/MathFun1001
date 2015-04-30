@@ -42,12 +42,11 @@ namespace MathFun1000
 
         protected void UpdateLabels() {
             options = newGraph.getEquationOptions();
-            Label1.Text = options[0];
-            Label2.Text = options[1];
-            Label3.Text = options[2];
-            Label4.Text = options[3];
-            Label5.Text = options[4];
 
+            for (int i = 0; i < 5; i++) {
+                RadioButtonList1.Items[i].Text = options[i];
+
+            }
         }
         
         private void GenerateCode() {

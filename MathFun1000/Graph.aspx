@@ -7,11 +7,11 @@
 
     <style type="text/css">
         #rbList {
-            margin-left: 28px;
+            margin-left: 20px;
             margin-right: 15px;
-            margin-bottom: 28px;
-            height: 264px;
-            margin-top: 33px;
+            margin-bottom: 7px;
+            height: 425px;
+            margin-top: 0px;
         }
     </style>
     
@@ -29,33 +29,10 @@
 </asp:Content>
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">    
-
-    <script type="text/javascript"
-            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-     </script>
-
-    <script type="text/x-mathjax-config">
-           
-         
-            MathJax.Hub.Config({ 
-                TeX: { 
-                        extensions: ["autobold.js"],
-                        //messageStyle: 'none', tex2jax: {preview: 'none'}
-                    }
-            
-                
-        });
-
-        MathJax.Hub.Queue( function() 
-        {
-            $(".radioButtonList").css("visibility", "");
-            //$(".MainContainer").slideDown(500);
-        });
-        </script>
-
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server"> 
+    
     <link href="Content/MathProblemStyle.css" rel="stylesheet" />     
-        <div class ="graph" id="graph" runat="server" style="border-style: groove; border-color: inherit; border-width: medium; float:left; width: 399px; height: 399px;">
+        <div class ="graph" id="graph" runat="server" style="border-style: groove; border-color: inherit; border-width: medium; float:left; width: 399px; height: 399px; margin-left: 17px; margin-right: 26px; margin-top: 22px; margin-bottom: 14px;">
             
             <asp:Chart ID="LineGraph" runat="server" Width="400px" Height="400px" style="float:left; margin-right: 20px; margin-bottom: 23px;" >
                 <Series>
@@ -68,27 +45,49 @@
                 </ChartAreas>
             </asp:Chart>
         </div>
-        <div class ="radioButtonList" id="rbList" runat="server" style="float:right; width: 426px;">
+    <div class ="radioButtonList" id="rbList" runat="server" style="width: 427px;">
                             
-                <hr />
-                <asp:RadioButton  ID="RadioButton1" runat="server"></asp:RadioButton>
-                   <asp:Label ID="Label1" runat="server" Text="Label" Font-Size="Large" ></asp:Label>                
-                <hr />                
-                <asp:RadioButton ID="RadioButton2" runat="server"></asp:RadioButton>
-                   <asp:Label ID="Label2" runat="server" Text="Label" Font-Size="Large"></asp:Label>
-                <hr />
-                <asp:RadioButton ID="RadioButton3" runat="server"></asp:RadioButton>
-                   <asp:Label ID="Label3" runat="server" Text="Label" Font-Size="Large"></asp:Label>
-                <hr />
-                <asp:RadioButton ID="RadioButton4" runat="server"></asp:RadioButton>
-                   <asp:Label ID="Label4" runat="server" Text="Label" Font-Size="Large"></asp:Label>
-                <hr />
-                <asp:RadioButton ID="RadioButton5" runat="server"></asp:RadioButton>
-                   <asp:Label ID="Label5" runat="server" Text="Label" Font-Size="Large"></asp:Label>
-                <hr />
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatColumns="1" RepeatLayout="Table">
                 
+                <asp:ListItem Value="0" Text="Label"></asp:ListItem>                
+                <asp:ListItem Value="1" Text="Label"></asp:ListItem>
+                <asp:ListItem Value="2" Text="Label"></asp:ListItem>
+                <asp:ListItem Value="3" Text="Label"></asp:ListItem>
+                <asp:ListItem Value="4" Text="Label"></asp:ListItem>
+
+            </asp:RadioButtonList>                
         </div>
-    <div class="buttons" id="buttons" runat="server" style="margin-top:431px;">
+    
+    <script>
+        $(".graph").css("visibility", "hidden");
+        $(".radioButtonList").css("visibility", "hidden");
+        $(".radioButtonList").slideUp(0);
+    </script>
+
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+    <script type="text/x-mathjax-config">
+           
+         
+            MathJax.Hub.Config({ 
+                TeX: { 
+                        extensions: ["autobold.js"],
+                        messageStyle: 'none', tex2jax: {preview: 'none'}
+                    }
+            
+                
+        });
+
+        MathJax.Hub.Queue( function() 
+        {            
+            $(".radioButtonList").css("visibility", "");
+            $(".radioButtonList").slideDown(500);
+            setTimeout(function(){$(".graph").css("visibility", "");}, 2000);
+        });
+        </script>
+    <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
         
         <asp:Button ID="CheckAnswer" runat="server" Text="Check" />
         <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />

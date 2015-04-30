@@ -49,94 +49,13 @@ namespace MathFun1000 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rbList;
         
         /// <summary>
-        /// RadioButton1 control.
+        /// RadioButtonList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// RadioButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// RadioButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton3;
-        
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
-        /// RadioButton4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton4;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// RadioButton5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton5;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
         
         /// <summary>
         /// buttons control.
