@@ -10,7 +10,7 @@ var answer = "";
 
 function problemType()
 {
-    //this.parser = tutorialParser();
+    
 }
 
 problemType.prototype.parser = function ()
@@ -70,7 +70,6 @@ function scrollToBottomOfPage()
 {
     console.log("here");
     $("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, 500);
-    //$("#StepBackward").animate({ scrollTop: $("#StepBackward")[0].scrollHeight }, 1000);
 }
 
 function setBoxHeights(innerRow)
@@ -206,20 +205,11 @@ function tutorialParser()
         var string = "";
         string = example[currentStep];
 
-        //alert(string.indexOf("<answer>"));
-        //alert(string.indexOf("</answer>"));
         if (string.indexOf("<answer>") !== -1)
-
         {
-            //answer = string.substring(string.indexOf("<answer>") + 8, string.indexOf("</answer>"));
-            //string = string.replace("<answer>" + answer + "</answer>", " <input class=\"answerBox\" id=\"AnswerBox\" type=\"text\" value=\"\" autoComplete=\"off\"/> ");
             string = string.replace("<answer>", "");
             string = string.replace("</answer>", "");
 
-            //$("#StepForward").slideUp(500);
-
-            //$("#AnswerBox").width(25);
-            //showAnswerBox();
             return string;
         }
 
@@ -236,12 +226,9 @@ function fillInParser()
         var string = "";
         string = example[currentStep];
 
-        //alert(string.indexOf("<answer>"));
-        //alert(string.indexOf("</answer>"));
         if (string.indexOf("<answer>") !== -1)
         {
             answer = string.substring(string.indexOf("<answer>") + 8, string.indexOf("</answer>"));
-            //string = string.replace("<answer>" + answer + "</answer>", " <input class=\"answerBox\" id=\"AnswerBox\" type=\"text\" value=\"\" autoComplete=\"off\"/> ");
             string = string.replace("<answer>" + answer + "</answer>", "???");
 
             $("#StepForward").slideUp(500);
@@ -252,8 +239,6 @@ function fillInParser()
 
         else
         {
-            //$("#StepForward").slideDown(500);
-
             hideAnswerBox();
         }
 
@@ -279,7 +264,6 @@ function unguidedParser()
     string = string.replace(/green/g, '');
     string = string.replace(/ /g, '');
 
-    //alert(string);
     answer = string;
     $("#unguidedAnswerLabel").text(string);
     $("#unguidedAnswerBox").width(230);
@@ -297,7 +281,6 @@ function unguidedParser()
 function showAnswerBox()
 {
     $("#answerArea").slideDown(500);
-    //$("#AnswerBox").width(answer. * 10);
 }
 
 function hideAnswerBox()
@@ -308,7 +291,6 @@ function hideAnswerBox()
 function showUnguidedAnswerBox()
 {
     $("#unguidedAnswerArea").slideDown(500);
-    //$("#AnswerBox").width(answer. * 10);
 }
 
 function hideUnguidedAnswerBox()
@@ -325,20 +307,16 @@ function checkAnswer()
 
     if (input === answer)
     {
-        //$("#answerLabel").text("CORRECT!");
         hideAnswerBox();
         $("#AnswerBox").val("");
-        //$("#examplebox" + (currentStep - 1)).html(example[currentStep - 1]);
-        
-        //$("#unguidedAnswerArea").slideUp(500);
+
+        $("#answerLabel").text("");//step is correct in case user answered wrong the first time.
 
         stepForward();
     }
     else
         $("#answerLabel").text("INCORRECT");
 
-    //alert($("#AnswerBox").val());
-    //alert(answer);
 }
 
 function checkUnguidedAnswer() {
@@ -346,11 +324,10 @@ function checkUnguidedAnswer() {
 
     input.replace(/ /g, '');
 
-    if (input === answer) {
-        //$("#answerLabel").text("CORRECT!");
+    if (input === answer)
+    {
         hideAnswerBox();
         $("#unguidedAnswerBox").val("");
-        //$("#examplebox" + (example.length - 1)).html(example[example.length - 1]);
 
         currentStep = example.length - 1;
 
@@ -361,13 +338,10 @@ function checkUnguidedAnswer() {
     else
         $("#unguidedAnswerLabel").text("INCORRECT");
 
-    //alert($("#AnswerBox").val());
-    //alert(answer);
 }
 
 function resetProblem()
 {
-    //alert(step.length);
 
     for(var i = 0; i < step.length; i++)
     {
@@ -377,6 +351,5 @@ function resetProblem()
     hideAnswerBox();
     hideUnguidedAnswerBox();
     $("#StepForward").slideDown(500);
-    //alert(i);
-    //currentStep = 1;
+
 }

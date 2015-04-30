@@ -23,7 +23,7 @@ namespace MathFun1000
     public partial class MathProgramJavascript : System.Web.UI.Page
     {
         public Problem problem = new Problem();
-        public IProblemType steps = new Unguided();
+        public IProblemType steps = new Tutorial();
         private int currentProblemNumber;
 
         //On page load this event handler is called.
@@ -31,7 +31,7 @@ namespace MathFun1000
         {
             querryDatabase();
 
-            //steps = new Tutorial();
+            SetUpButtons();
 
             convertToJavaScript();
 
@@ -47,15 +47,21 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
+            Console.WriteLine(Request.QueryString["problem"]);
             if (Request.QueryString.HasKeys())
-                queryStr = "SELECT Info,Example,Rules FROM step WHERE Problem_ID = " + Request.QueryString["problem"] + " ORDER BY Step_ID ASC;";
+                queryStr = "SELECT step.Info, step.Example, step.Rules FROM `step`"
+                    + " INNER JOIN problem ON step.Problem_ID = problem.Problem_ID"
+                    + " WHERE step.Problem_ID = " + Request.QueryString["problem"] 
+                    + " AND problem.Chapter_ID = " + Request.QueryString["chapter"]
+                    + " ORDER BY step.Step_ID ASC;";
+                
             else
                 Response.Redirect("Books.aspx");
-            
+
             using (cmd = new MySqlCommand(queryStr, conn))
             {
                 conn.Open();
-                using(var reader = cmd.ExecuteReader())
+                using (var reader = cmd.ExecuteReader())
                 {
                     var info = new List<string>();
                     var example = new List<string>();
@@ -68,7 +74,13 @@ namespace MathFun1000
                         rule.Add(reader.GetString(2));
                     }
 
-                    steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), 0, info.Count);
+                    if (info.Count > 0)
+                        steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), 0, info.Count);
+                    else
+                    {
+                        conn.Close();
+                        Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"]);
+                    }
                 }
 
                 conn.Close();
@@ -101,29 +113,22 @@ namespace MathFun1000
             arrayData.InnerHtml = script;
         }
 
-        //Description
-        private void SetUpProblem()
-        {
-
-        }
-
-        //Check to see what type of problem it is
-        private void CheckTypeOfProblem()
-        {
-
-        }
-
         //Set up basic buttons for the problem
         private void SetUpButtons()
         {
-
+            var button = new Button { CssClass = "StepForwardButton", Text = "Next Problem >>" };
+            button.Click += StepForwardButton_Click;
+            buttons.Controls.Add(button);
 
         }
 
         //Event handler for next button
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
+            int num = Int32.Parse(Request.QueryString["problem"]);
+            num++;
 
+            Response.Redirect("MathProgram.aspx?problem=" + num + "&chapter=" + Request.QueryString["chapter"]);
 
         }
 

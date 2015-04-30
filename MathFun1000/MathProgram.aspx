@@ -35,9 +35,7 @@
 
         <div class="innerMain" id="innerMain" runat="server">
             
-            <div class="buttons" id="buttons" runat="server" >
-                
-            </div>
+            
                
         </div>
 
@@ -70,7 +68,9 @@
         <input id="StepForward" type="button" value="Next" class="StepForwardButton" onclick="stepForward()"/>
         
     </div>
-
+    <div class="buttons" id="buttons" runat="server" >
+                
+    </div>
     
 
     
