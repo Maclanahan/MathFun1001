@@ -40,7 +40,8 @@ namespace MathFun1000
             queryStr = "";
 
             if (Request.QueryString.HasKeys())
-                queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = " + Request.QueryString["book"] + " ORDER BY Chapter_ID ASC;";
+                queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = " + Request.QueryString["book"] 
+                    + " ORDER BY Chapter_ID ASC;";
             else
                 Response.Redirect("Books.aspx");
 
