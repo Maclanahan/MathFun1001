@@ -128,59 +128,54 @@ namespace MathFun1000
             int num = Int32.Parse(Request.QueryString["problem"]);
             num++;
 
-            Response.Redirect("MathProgram.aspx?problem=" + num + "&chapter=" + Request.QueryString["chapter"]);
+            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySql.Data.MySqlClient.MySqlCommand cmd;
+            String queryStr;
+
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
+            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+            queryStr = "";
+            //Console.WriteLine(Request.QueryString["problem"]);
+            if (Request.QueryString.HasKeys())
+                queryStr = "SELECT Problem_ID FROM `problem`"
+                    + " WHERE Problem_ID > " + Request.QueryString["problem"]
+                    + " AND Chapter_ID = " + Request.QueryString["chapter"]
+                    + " ORDER BY Problem_ID ASC;";
+
+            else
+                Response.Redirect("Books.aspx");
+
+            string problem = "";
+
+            using (cmd = new MySqlCommand(queryStr, conn))
+            {
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    
+                    while (reader.Read())
+                    {
+                        problem = reader.GetString(0);
+                    }
+
+                    if (problem != "")
+                    {
+                        conn.Close();
+                        Response.Redirect("MathProgram.aspx?problem=" + problem + "&chapter=" + Request.QueryString["chapter"]);
+                    }
+
+                    else
+                    {
+                        conn.Close();
+                        Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"]);
+                    }
+                }
+
+            }
+
+           
 
         }
 
-        //Event handler for prev button
-        protected void StepBackwardButton_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        //Event handler for next problem button (next button turns into this button at the end of problem)
-        protected void GoToNextProblem_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        //Generates code from the problem itself
-        private void GenerateCode()
-        {
-
-
-        }
-
-        //Description
-        private void ParseForInput(string parse)
-        {
-
-        }
-
-        //Increment Step Count
-        private void IncrementStepCount(int _inc)
-        {
-
-        }
-
-        //Event handler for Fill In The Blank problem type
-        protected void FillInTheBlank_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //Event handler for Tutorial problem type
-        protected void Tutorial_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //Event handler for Unguided problem type
-        protected void AnswerOnly_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
