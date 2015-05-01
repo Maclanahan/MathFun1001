@@ -604,7 +604,7 @@ fieldset {
         background: #ccc;
         color: #222;
         font-size: 1.2em;
-        margin: 5px 5px 6px 5px;
+        margin: 5px 5px 5px 5px;
         padding: 5px;
         }
 
@@ -633,8 +633,8 @@ fieldset {
         font-size: 1.2em;
         font-weight: 600;
         color: #0000;
-        padding: 7px;
-        margin-right: 8px;
+        //padding: 7px;
+        //margin-right: 8px;
         width: auto;
     }
 

@@ -198,6 +198,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="DisplayProblems.aspx" />
+    <Content Include="ERROR.aspx" />
     <Content Include="Graph.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -349,6 +350,13 @@
     </Compile>
     <Compile Include="DisplayProblems.aspx.designer.cs">
       <DependentUpon>DisplayProblems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ERROR.aspx.cs">
+      <DependentUpon>ERROR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ERROR.aspx.designer.cs">
+      <DependentUpon>ERROR.aspx</DependentUpon>
     </Compile>
     <Compile Include="Fill_In.cs" />
     <Compile Include="Global.asax.cs">

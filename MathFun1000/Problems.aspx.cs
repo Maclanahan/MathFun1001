@@ -43,20 +43,29 @@ namespace MathFun1000
             else
                 Response.Redirect("Books.aspx");
 
-            using (cmd = new MySqlCommand(queryStr, conn))
-            {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        SetTitle(reader.GetString(0));
-                        SetDescription(reader.GetString(1));
-                        SetButton(reader.GetString(2));
-                    }
-                }
 
-                conn.Close();
+            try
+            {
+                using (cmd = new MySqlCommand(queryStr, conn))
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            SetTitle(reader.GetString(0));
+                            SetDescription(reader.GetString(1));
+                            SetButton(reader.GetString(2));
+                        }
+                    }
+
+                    conn.Close();
+                }
+            } catch (Exception e)
+            {
+                //need to log the exception
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -74,7 +83,8 @@ namespace MathFun1000
 
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect("MathProgram.aspx?problem=" + e.CommandArgument + "&chapter=" + Request.QueryString["chapter"]);
+            Response.Redirect("MathProgram.aspx?problem=" + e.CommandArgument + "&chapter=" + Request.QueryString["chapter"], false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         private void SetDescription(string p)
@@ -90,22 +100,26 @@ namespace MathFun1000
         //Start - These buttons are made for test purpuses, they will be dynamically created in final product
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MathProgram.aspx?problem=" + "1");
+            Response.Redirect("MathProgram.aspx?problem=" + "1", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MathProgram.aspx?problem=" + "2");
+            Response.Redirect("MathProgram.aspx?problem=" + "2", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         protected void Button3_Click(object sender, EventArgs e) 
         {
-            Response.Redirect("Graph.aspx");
+            Response.Redirect("Graph.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Multi.aspx");
+            Response.Redirect("Multi.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
         //End
     }

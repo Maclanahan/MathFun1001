@@ -57,33 +57,41 @@ namespace MathFun1000
                 
             else
                 Response.Redirect("Books.aspx");
-
-            using (cmd = new MySqlCommand(queryStr, conn))
+            try
             {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
+                using (cmd = new MySqlCommand(queryStr, conn))
                 {
-                    var info = new List<string>();
-                    var example = new List<string>();
-                    var rule = new List<string>();
-
-                    while (reader.Read())
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        info.Add(reader.GetString(0));
-                        example.Add(reader.GetString(1));
-                        rule.Add(reader.GetString(2));
+                        var info = new List<string>();
+                        var example = new List<string>();
+                        var rule = new List<string>();
+
+                        while (reader.Read())
+                        {
+                            info.Add(reader.GetString(0));
+                            example.Add(reader.GetString(1));
+                            rule.Add(reader.GetString(2));
+                        }
+
+                        if (info.Count > 0)
+                            steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), 0, info.Count);
+                        else
+                        {
+                            conn.Close();
+                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
                     }
 
-                    if (info.Count > 0)
-                        steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), 0, info.Count);
-                    else
-                    {
-                        conn.Close();
-                        Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"]);
-                    }
+                    conn.Close();
                 }
-
-                conn.Close();
+            } catch (Exception e)
+            {
+                //need to log the exception
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -125,9 +133,6 @@ namespace MathFun1000
         //Event handler for next button
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
-            int num = Int32.Parse(Request.QueryString["problem"]);
-            num++;
-
             MySql.Data.MySqlClient.MySqlConnection conn;
             MySql.Data.MySqlClient.MySqlCommand cmd;
             String queryStr;
@@ -135,7 +140,7 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
-            //Console.WriteLine(Request.QueryString["problem"]);
+
             if (Request.QueryString.HasKeys())
                 queryStr = "SELECT Problem_ID FROM `problem`"
                     + " WHERE Problem_ID > " + Request.QueryString["problem"]
@@ -147,35 +152,40 @@ namespace MathFun1000
 
             string problem = "";
 
-            using (cmd = new MySqlCommand(queryStr, conn))
-            {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
+            try{
+                using (cmd = new MySqlCommand(queryStr, conn))
                 {
-                    
-                    while (reader.Read())
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        problem = reader.GetString(0);
+
+                        while (reader.Read())
+                        {
+                            problem = reader.GetString(0);
+                        }
+
+                        if (problem != "")
+                        {
+                            conn.Close();
+                            Response.Redirect("MathProgram.aspx?problem=" + problem + "&chapter=" + Request.QueryString["chapter"], false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
+
+                        else
+                        {
+                            conn.Close();
+                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
                     }
 
-                    if (problem != "")
-                    {
-                        conn.Close();
-                        Response.Redirect("MathProgram.aspx?problem=" + problem + "&chapter=" + Request.QueryString["chapter"]);
-                    }
-
-                    else
-                    {
-                        conn.Close();
-                        Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"]);
-                    }
                 }
-
+            } catch(Exception e2)
+            {
+                //need to log the exception
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
-
-           
-
         }
-
     }
 }

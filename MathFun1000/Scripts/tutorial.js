@@ -23,6 +23,7 @@ var problem = new problemType();
 
 $("#answerArea").slideUp(0);
 $("#unguidedAnswerArea").slideUp(0);
+$("#StepBackward").slideUp(0);
 
 var mainArea = document.getElementById("MainContent_innerMain");
 

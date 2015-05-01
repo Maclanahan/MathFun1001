@@ -30,24 +30,32 @@ namespace MathFun1000
             queryStr = "";
             queryStr = "SELECT Book_ID, Book_Name FROM book ORDER BY Book_ID ASC;";
 
-            using (cmd = new MySqlCommand(queryStr, conn))
+            try
             {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
+                using (cmd = new MySqlCommand(queryStr, conn))
                 {
-                    var id = new List<string>();
-                    var name = new List<string>();
-
-                    while (reader.Read())
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        id.Add(reader.GetString(0));
-                        name.Add(reader.GetString(1));
+                        var id = new List<string>();
+                        var name = new List<string>();
+
+                        while (reader.Read())
+                        {
+                            id.Add(reader.GetString(0));
+                            name.Add(reader.GetString(1));
+                        }
+
+                        setUpButtons(id, name);
                     }
 
-                    setUpButtons(id, name);
+                    conn.Close();
                 }
-
-                conn.Close();
+            } catch (Exception e)
+            {
+                //need to log the exception
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -67,7 +75,8 @@ namespace MathFun1000
 
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect("Chapters.aspx?book=" + e.CommandArgument);
+            Response.Redirect("Chapters.aspx?book=" + e.CommandArgument, false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

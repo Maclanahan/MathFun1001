@@ -44,25 +44,32 @@ namespace MathFun1000
                     + " ORDER BY Chapter_ID ASC;";
             else
                 Response.Redirect("Books.aspx");
-
-            using (cmd = new MySqlCommand(queryStr, conn))
+            try
             {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
+                using (cmd = new MySqlCommand(queryStr, conn))
                 {
-                    var id = new List<string>();
-                    var name = new List<string>();
-
-                    while (reader.Read())
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        id.Add(reader.GetString(0));
-                        name.Add(reader.GetString(1));
+                        var id = new List<string>();
+                        var name = new List<string>();
+
+                        while (reader.Read())
+                        {
+                            id.Add(reader.GetString(0));
+                            name.Add(reader.GetString(1));
+                        }
+
+                        setUpButtons(id, name);
                     }
 
-                    setUpButtons(id, name);
+                    conn.Close();
                 }
-
-                conn.Close();
+            }  catch (Exception e)
+            {
+                //need to log the exception
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -82,7 +89,8 @@ namespace MathFun1000
 
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect("Problems.aspx?chapter=" + e.CommandArgument);
+            Response.Redirect("Problems.aspx?chapter=" + e.CommandArgument, false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 

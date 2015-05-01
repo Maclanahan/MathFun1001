@@ -63,9 +63,9 @@
             <input type="button" value="&#10003" onclick="checkUnguidedAnswer()"/>
             <label id="unguidedAnswerLabel" style="display: inline-block; vertical-align: top;"></label>
         </div>
-
-        <input id="StepBackward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
         <input id="StepForward" type="button" value="Next" class="StepForwardButton" onclick="stepForward()"/>
+        <input id="StepBackward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
+        
         
     </div>
     <div class="buttons" id="buttons" runat="server" >
