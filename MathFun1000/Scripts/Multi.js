@@ -6,7 +6,10 @@ var totalNumOfSteps = 5;
 var rulesHidden = false;
 var stepesHidden = false;
 
-var answer = "";
+var CurrentAnswer = "";
+var CorrectAnswer = example[totalNumOfSteps+1];
+
+//window.alert(CorrectAnswer);
 
 function problemType() {
     //this.parser = tutorialParser();
@@ -27,40 +30,125 @@ var mainArea = document.getElementById("MainContent_innerMain");
 //tutorialParser(); //removes answer tags as default, so MathJax parses correctly
 nextRow();
 
-function nextRow() {
-    if (currentStep < totalNumOfSteps) {
-        var rowDiv = document.createElement('div');
-        rowDiv.setAttribute('class', 'row');
-        rowDiv.setAttribute('id', 'row' + currentStep);
-        rowDiv.setAttribute('onclick', "accordion(" + currentStep + ")");
-        rowDiv.innerHTML = "+-";
 
-        var innerRowDiv = document.createElement('div');
-        innerRowDiv.setAttribute('class', 'insideRow');
-        innerRowDiv.setAttribute('id', 'innerRow' + currentStep);
+function nextRow()
+{
 
-        //innerRowDiv.appendChild(makeStep());
-        innerRowDiv.appendChild(makeExample());
-        //innerRowDiv.appendChild(makeRule());
-        //alert(document.getElementById("MainContent_innerMain"));
-        mainArea.appendChild(rowDiv);
-        mainArea.appendChild(innerRowDiv);
+    if (currentStep < totalNumOfSteps)
+    {
+        if(currentStep == 1)
+        {
+            //If currentStep is 1 then the Question is showing. Then we need to show all the multi questions.
+            for(var i=0;i<4;i++)
+            {
+                var rowDiv = document.createElement('div');
+                rowDiv.setAttribute('class', 'row');
+                rowDiv.setAttribute('id', 'row' + currentStep);
+                rowDiv.setAttribute('onclick', "highLightBar(row"+ currentStep + ","+currentStep+")");
+                //rowDiv.innerHTML = "+-";
 
-        //if (rulesHidden)
-        //    $("#rulebox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
+                var innerRowDiv = document.createElement('div');
+                innerRowDiv.setAttribute('class', 'insideRow');
+                innerRowDiv.setAttribute('id', 'innerRow' + currentStep);
 
-        //if (stepesHidden)
-        //    $("#stepbox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
+                innerRowDiv.appendChild(makeExample());
+
+                mainArea.appendChild(rowDiv);
+                mainArea.appendChild(innerRowDiv);
+
+                $(rowDiv).slideUp(0);
+                $(rowDiv).slideDown(500, scrollToBottomOfPage());
+                setBoxHeights(innerRowDiv);
+
+                currentStep++;
+                MathJax.Hub.Typeset();
+            }
+
+        }
+        else
+        {
+            var rowDiv = document.createElement('div');
+            rowDiv.setAttribute('class', 'row');
+            rowDiv.setAttribute('id', 'row' + currentStep);
+            //rowDiv.setAttribute('onclick', "highLightBar(" + currentStep + ")");
+            //rowDiv.innerHTML = "+-";
+
+            var innerRowDiv = document.createElement('div');
+            innerRowDiv.setAttribute('class', 'insideRow');
+            innerRowDiv.setAttribute('id', 'innerRow' + currentStep);
+
+            //innerRowDiv.appendChild(makeStep());
+            innerRowDiv.appendChild(makeExample());
+            //innerRowDiv.appendChild(makeRule());
+            //alert(document.getElementById("MainContent_innerMain"));
+            mainArea.appendChild(rowDiv);
+            mainArea.appendChild(innerRowDiv);
+
+            //if (rulesHidden)
+            //    $("#rulebox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
+
+            //if (stepesHidden)
+            //    $("#stepbox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
 
 
-        $(rowDiv).slideUp(0);
-        $(rowDiv).slideDown(500, scrollToBottomOfPage());
-        setBoxHeights(innerRowDiv);
+            $(rowDiv).slideUp(0);
+            $(rowDiv).slideDown(500, scrollToBottomOfPage());
+            setBoxHeights(innerRowDiv);
 
-        currentStep++;
-        MathJax.Hub.Typeset();
+            currentStep++;
+            MathJax.Hub.Typeset();
+        }
     }
 };
+
+function highLightBar(bar,curStep)
+{
+    var rowOne = document.getElementById("row1");
+    var rowTwo = document.getElementById("row2");
+    var rowThree = document.getElementById("row3");
+    var rowFour = document.getElementById("row4");
+
+    if(curStep == 1)
+    {
+        //clear rest of bar's and highlight and make first option current.
+        rowOne.style.background = '#74DF00';
+        rowTwo.style.background = '#333';
+        rowThree.style.background = '#333';
+        rowFour.style.background = '#333';
+    }
+    else if(curStep == 2)
+    {
+        rowOne.style.background = '#333';
+        rowTwo.style.background = '#74DF00';
+        rowThree.style.background = '#333';
+        rowFour.style.background = '#333';
+    }
+    else if(curStep == 3)
+    {
+        rowOne.style.background = '#333';
+        rowTwo.style.background = '#333';
+        rowThree.style.background = '#74DF00';
+        rowFour.style.background = '#333';
+    }
+    else if(curStep == 4)
+    {
+        rowOne.style.background = '#333';
+        rowTwo.style.background = '#333';
+        rowThree.style.background = '#333';
+        rowFour.style.background = '#74DF00';
+    }
+
+    //if (bar.style.background == 'rgb(116, 223, 0)')
+    //{
+    //    bar.style.background = '#333';
+    //}
+    //else
+    //{
+    //    bar.style.background = '#74DF00';
+    //}
+    
+
+}
 
 function scrollToBottomOfPage() {
     console.log("here");
@@ -135,7 +223,8 @@ function stepForward() {
 };
 
 function stepBack() {
-    if (currentStep > 1) {
+    if (currentStep > 1)
+    {
         currentStep--;
 
         var row = document.getElementById("row" + (currentStep));
