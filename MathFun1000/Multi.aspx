@@ -19,8 +19,8 @@
     </div>
 
     <div class="MainContainer" id="MainController" runat="server">
-        <input id="StepBackward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
-        <input id="StepForward" type="button" value="Next" class="StepForwardButton" onclick="stepForward()"/>
+<%--        <input id="StepBackward" type="button" value="ERROR" class="StepBackwardButton" onclick="stepBack()"/>--%>
+        <input id="StepForward" type="button" value="Show Answers" class="StepForwardButton" onclick="stepForward()"/>
         
          <script>
              // $(document).ready(function () { $(".MainContainer").slideDown(500); });
@@ -64,4 +64,50 @@
         
     </div>
     <script type="text/javascript" src="Scripts/Multi.js"></script>
-</asp:Content>
+
+    <div class="MainContainer" id="MainController0" runat="server">
+<%--        <input id="StepBackward" type="button" value="ERROR" class="StepBackwardButton" onclick="stepBack()"/>--%>
+        <input id="Confirmbtn" type="button" value="Confirm" class="Confirmcl" onclick="Confirm()"/>
+        
+         <script>
+             // $(document).ready(function () { $(".MainContainer").slideDown(500); });
+             $(".MainContainer").css("visibility", "hidden");
+             $(".MainContainer").slideUp(0);
+
+        </script>
+
+         <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+        </script>
+
+        <script type="text/x-mathjax-config">  
+           MathJax.Hub.Config({ 
+                TeX: { 
+                        extensions: ["autobold.js"],
+                        //messageStyle: 'none', tex2jax: {preview: 'none'}
+                     }
+            
+                
+            });
+
+            MathJax.Hub.Queue( function() 
+            {
+                $(".MainContainer").css("visibility", "");
+                $(".MainContainer").slideDown(500);
+            });
+        </script> 
+
+       
+        <asp:HiddenField ID="stepCount0" runat="server" value="0"/>
+
+        <div class="innerMain" id="innerMain0" runat="server">
+            
+            <div class="buttons" id="buttons0" runat="server" >
+                
+            </div>
+               
+        </div>
+
+        
+    </div>
+    </asp:Content>

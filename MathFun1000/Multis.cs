@@ -21,8 +21,8 @@ namespace MathFun1000
         {
 
             this.Question = "This is a really long test question, This would be an example of a long test question.?";
-            this.Answer1 = "Wr on gWRON GwrongWRON Gwro ngW RON Gw ro ng df i can hear the worlds given to me in a phrase but can you hear my heart, can you hear it scream when i say I am not normal. I Cant feel what others feel.";
-            this.Answer2 = "WrongW rongWrong";
+            this.Answer1 = "This is a very long answer, Sit down and let me tell you a story....I was a young boy, a boy with a dream, a dream to dream, a dream that was bigger then any dream that you or any one has ever dreampt";
+            this.Answer2 = "This is wrong wrong wrong";
             this.Answer3 = "Correct";
             this.Answer4 = "Wrong";
             this.Correct = "Correct";
