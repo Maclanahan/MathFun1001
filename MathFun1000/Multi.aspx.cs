@@ -17,6 +17,7 @@ namespace MathFun1000
             querryDatabase();
 
             GenerateCode();
+            //CorrectAnswer();//Give JavaScript Correct Answer.
             SetUpButtons();
         }
 
@@ -30,10 +31,22 @@ namespace MathFun1000
 
         }
 
+        public void CorrectAnswer()
+        {
+            string TheCorrectAnswer = multi_int.getCorrect();
+
+            string script = "<script>";
+            script += "var CorrectAnswer = "+TheCorrectAnswer+";\n";
+            script += "</script>\n";
+            arrayData.InnerHtml = script;
+        }
+
         private void GenerateCode()
         {
+            string TheCorrectAnswer = multi_int.getCorrect();
             string script = "<script>";
             script += "var example = [];\n";
+            script += "var CorrectAnswer = \"" + TheCorrectAnswer + "\";\n";
 
             for (int i = 0; i < multi_int.GetNumberOfSteps(); i++)
             {
@@ -68,7 +81,7 @@ namespace MathFun1000
             script += "</script>\n";
             arrayData.InnerHtml = script;
 
-
+            
 
 
             //string parse = multi_int.GenerateCode();
