@@ -129,6 +129,12 @@ function Confirm()
         var confirmButton = document.getElementById("Confirmbtn");
         confirmButton.hidden = true;
 
+        document.getElementById("row1").onclick = "";
+        document.getElementById("row2").onclick = "";
+        document.getElementById("row3").onclick = "";
+        document.getElementById("row4").onclick = "";
+        //rowOne.Enabled = false;
+
         ////Notify if correct or not.
 
         CurrentRow.style.background = '#74DF00';
