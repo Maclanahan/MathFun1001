@@ -453,7 +453,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Graph Temp Folder\" />
+    <Folder Include="Images\Graph_TempFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
