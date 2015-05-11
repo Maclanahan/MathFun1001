@@ -225,6 +225,7 @@
     <None Include="Properties\PublishProfiles\Dan.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Problems.aspx" />
+    <Content Include="Rules.aspx" />
     <Content Include="Scripts\Graphs.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -412,6 +413,13 @@
       <DependentUpon>Problems.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules.aspx.cs">
+      <DependentUpon>Rules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rules.aspx.designer.cs">
+      <DependentUpon>Rules.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
