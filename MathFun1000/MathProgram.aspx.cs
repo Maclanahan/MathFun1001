@@ -24,7 +24,6 @@ namespace MathFun1000
     {
         public Problem problem = new Problem();
         public IProblemType steps = new Tutorial();
-        private int currentProblemNumber;
 
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
@@ -49,8 +48,9 @@ namespace MathFun1000
             queryStr = "";
             Console.WriteLine(Request.QueryString["problem"]);
             if (Request.QueryString.HasKeys())
-                queryStr = "SELECT step.Info, step.Example, step.Rules FROM `step`"
+                queryStr = "SELECT step.Info, step.Example, rule.rule_name, rule.rule_Link FROM `step`"
                     + " INNER JOIN problem ON step.Problem_ID = problem.Problem_ID"
+                    + " LEFT JOIN rule ON step.rules = rule.rule_ID"
                     + " WHERE step.Problem_ID = " + Request.QueryString["problem"] 
                     + " AND problem.Chapter_ID = " + Request.QueryString["chapter"]
                     + " ORDER BY step.Step_ID ASC;";
@@ -89,7 +89,9 @@ namespace MathFun1000
                 }
             } catch (Exception e)
             {
+                conn.Close();
                 //need to log the exception
+                Console.WriteLine(e.Message);
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -114,7 +116,6 @@ namespace MathFun1000
                 script += "step[" + i + "] = \"" + steps.GetStepAt(i) + "\";\n";
                 script += "example[" + i + "] = \"" + steps.GetExampleAt(i) + "\";\n";
                 script += "rule[" + i + "] = \"" + steps.GetRuleAt(i) + "\";\n";
-
             }
 
             script += "</script>\n";

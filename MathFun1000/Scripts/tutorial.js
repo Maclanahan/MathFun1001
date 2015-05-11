@@ -64,6 +64,8 @@ function nextRow()
 
         currentStep++;
         MathJax.Hub.Typeset();
+
+        
     }
 };
 
@@ -124,8 +126,16 @@ function makeRule() {
     newDiv.setAttribute('class', 'rulebox');
     var par = document.createElement('p');
     par.textContent = rule[currentStep];
-
+    ///////////////////////////////
+    var test = document.createElement('p');
+    test.setAttribute('id', 'ruleExplaination' + currentStep);
+    test.setAttribute('class', 'ruleExplain');
+    test.innerText = "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><p>Hello World</p>"
+    //////////////////////////////////
     newDiv.appendChild(par);
+    //newDiv.appendChild(test);
+
+    
 
     return (newDiv);
 }
