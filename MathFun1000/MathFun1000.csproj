@@ -225,6 +225,7 @@
     <None Include="Properties\PublishProfiles\Dan.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Problems.aspx" />
+    <Content Include="Scripts\Graphs.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
@@ -444,6 +445,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Graph Temp Folder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

@@ -20,6 +20,7 @@ namespace MathFun1000
         public int difficulty = 1;
         public int numberOfSteps = 5;
         public int currentStep = 0;
+        public int ans = -1;
         public String[] options;
         public String equation = "";
 
@@ -35,7 +36,7 @@ namespace MathFun1000
         {
             this.equation = theEquation;
             findPiecePositions(this.xAxis, this.equation);
-
+            picAns();
         }
 
 
@@ -50,10 +51,14 @@ namespace MathFun1000
             return this.yAxis;
         }
 
-        public string[] getEquationOptions() {
-            int ans;
+        public void picAns() 
+        {
+
             Random rnd = new Random();
             ans = rnd.Next(0, 5);
+        }
+
+        public string[] getEquationOptions() {            
 
             this.options = new String[] { "$$\\color{white}{y=x}$$",
                                           "$$\\color{white}{y=x+5}$$",
@@ -66,9 +71,15 @@ namespace MathFun1000
             return options;
         }
 
+        public int getAns() 
+        {
+            return this.ans;
+        }
+
         public String GenerateCode() 
         {            
             return null;
+
         }
 
         //Gets the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)        

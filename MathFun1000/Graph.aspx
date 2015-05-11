@@ -45,18 +45,24 @@
                 </ChartAreas>
             </asp:Chart>
         </div>
-    <div class ="radioButtonList" id="rbList" runat="server" style="width: 427px;">
+    
+    
+    
+    <div class ="radioButtonList" id="rbList" runat="server" style="width: 175px;">
                             
-            <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatColumns="1" RepeatLayout="Table">
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatColumns="1" RepeatLayout="Table" >
                 
-                <asp:ListItem Value="0" Text="Label"></asp:ListItem>                
-                <asp:ListItem Value="1" Text="Label"></asp:ListItem>
-                <asp:ListItem Value="2" Text="Label"></asp:ListItem>
-                <asp:ListItem Value="3" Text="Label"></asp:ListItem>
-                <asp:ListItem Value="4" Text="Label"></asp:ListItem>
+                <asp:ListItem Value="0"></asp:ListItem>                
+                <asp:ListItem Value="1"></asp:ListItem>
+                <asp:ListItem Value="2"></asp:ListItem>
+                <asp:ListItem Value="3"></asp:ListItem>
+                <asp:ListItem Value="4"></asp:ListItem>
 
-            </asp:RadioButtonList>                
-        </div>
+            </asp:RadioButtonList>
+        
+            <input type="button" id="checkAnswerButton" value="Check Answer" onclick="CheckAns()" >
+                  
+    </div>
     
     <script>
         $(".graph").css("visibility", "hidden");
@@ -83,14 +89,17 @@
         MathJax.Hub.Queue( function() 
         {            
             $(".radioButtonList").css("visibility", "");
-            $(".radioButtonList").slideDown(500);
-            setTimeout(function(){$(".graph").css("visibility", "");}, 2000);
+            $(".radioButtonList").slideDown(500, scrollToBottomOfPage());
+            setTimeout(function(){$(".graph").css("visibility", "");}, 750);
         });
         </script>
+
+    
     <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
-        
-        <asp:Button ID="CheckAnswer" runat="server" Text="Check" />
-        <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
+
+       <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
         
     </div>
+
+    <script type="text/javascript" src="Scripts/Graphs.js"></script>
 </asp:Content>

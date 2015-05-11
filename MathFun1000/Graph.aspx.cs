@@ -29,7 +29,7 @@ namespace MathFun1000
             //GenerateCode();
             DrawGraph(xAxis, yAxis);
             UpdateLabels();
-            
+            RadioButtonList1.Attributes.Add("onclick", "CheckAns('RadioButtonList1');");
         }
 
         
@@ -40,23 +40,47 @@ namespace MathFun1000
             LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");
         }
 
-        protected void UpdateLabels() {
+        protected void UpdateLabels() 
+        {
+            bool first = true;
+            int i = 0;
             options = newGraph.getEquationOptions();
 
-            for (int i = 0; i < 5; i++) {
-                RadioButtonList1.Items[i].Text = options[i];
-
+            for (i = 0; i < 5; i++) 
+            {
+                RadioButtonList1.Items[i].Value = options[i];
             }
+            
         }
-        
-        private void GenerateCode() {
-            string parse = newGraph.GenerateCode();
 
-            ParseForInput(parse);
+        protected void UpdateUser() 
+        {
+            RadioButtonList1.Items[1].Text = "$$Correct!!$$";
         }
         
-        private void ParseForInput(string parase) {
-            //innerMain.InnerHtml = parase;
+        private void GenerateCode()
+        {
+            options = newGraph.getEquationOptions();
+
+            string script = "<script>";
+            script += "var ans = " + newGraph.getAns() + ";\n";
+                        
+            //script += "<asp:RadioButtonList ID=\"RadioButtonList1\" runat=\"server\" RepeatColumns=\"1\" RepeatLayout=\"Table\">\n";
+                
+              //  script += "<asp:ListItem Value=\"0\" Text=\"" + options[0] +"\"></asp:ListItem>\n";                
+              //  script += "<asp:ListItem Value=\"1\" Text=\"" + options[1] +"\"></asp:ListItem>\n";
+              //  script += "<asp:ListItem Value=\"2\" Text=\"" + options[2] + "\"></asp:ListItem>\n";
+              //  script += "<asp:ListItem Value=\"3\" Text=\"" + options[3] + "\"></asp:ListItem>\n";
+              //  script += "<asp:ListItem Value=\"4\" Text=\"" + options[4] +"\"></asp:ListItem>\n";
+
+           //script += "</asp:RadioButtonList>\n";
+
+            script += "<input type=\"button\" value=\"Check Answer\" onclick=\"UpdateUser()\" />";
+
+            script += "</script>\n";            
+            
+        rbList.InnerHtml = script;
+
         }
 
         //Description
@@ -66,6 +90,19 @@ namespace MathFun1000
             int num = Convert.ToInt32(problemNum) + 1;
             Console.Out.WriteLine(num);
             Response.Redirect("MathProgram.aspx?problem=" + num.ToString());
+        }
+
+        protected void CheckAnswer(object sender, EventArgs e) 
+        {
+            int ChoosenButton = -1;
+            ChoosenButton = RadioButtonList1.SelectedIndex;
+
+            if (ChoosenButton == newGraph.ans) {
+                options[1] = "$$\\color{green}{CORRECT!!}$$";
+            }
+            else {
+                options[1] = "$$\\color{red}{INCORRECT!\\: Please\\: try\\: again!}$$";
+            }
         }
     }
 }
