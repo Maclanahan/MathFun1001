@@ -2,45 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace MathFun1000.Account
 {
-    public partial class Register : Page
+    public partial class Register : System.Web.UI.Page
     {
         MySql.Data.MySqlClient.MySqlConnection conn;
         MySql.Data.MySqlClient.MySqlCommand cmd;
         String queryStr;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
+            lbl_Confirmation.Text = "";
         }
 
-        protected void RegisterUser_CreatedUser(object sender, EventArgs e)
+        /**
+         * This class handles the Register button.
+         **/
+        protected void btnRegister_Click(object sender, EventArgs e)
         {
-            FormsAuthentication.SetAuthCookie(RegisterUser.UserName, createPersistentCookie: false);
-
             registerUserWithSlowHash();
-
-            string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-            if (!OpenAuth.IsLocalUrl(continueUrl))
-            {
-                continueUrl = "~/";
-            }
-            Response.Redirect(continueUrl);
         }
-
-        ///**
-        //  * This class handles the Register button.
-        //  **/
-        // protected void btnRegister_Click(object sender, EventArgs e)
-        // {
-        //     registerUserWithSlowHash();
-        // }
 
         /**
          * Current Register User Method. 
@@ -49,11 +32,11 @@ namespace MathFun1000.Account
         private void registerUserWithSlowHash()
         {
             bool methodStatus = true;
-            if (InputValidation.ValidateUserName(RegisterUser.UserName) == false)
+            if (InputValidation.ValidateUserName(textboxUserName.Text) == false)
             {
                 methodStatus = false;
             }
-            if (InputValidation.ValidateEmail(RegisterUser.Email) == false)
+            if (InputValidation.ValidateEmail(textboxEmailAddress.Text) == false)
             {
                 methodStatus = false;
             }
@@ -68,10 +51,10 @@ namespace MathFun1000.Account
                 "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
 
                 cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
-                cmd.Parameters.AddWithValue("?UserName", RegisterUser.UserName);
-                cmd.Parameters.AddWithValue("?EmailAddress", RegisterUser.Email);
+                cmd.Parameters.AddWithValue("?UserName", textboxUserName.Text);
+                cmd.Parameters.AddWithValue("?EmailAddress", textboxEmailAddress.Text);
 
-                String saltHashReturned = PasswordHash.CreateHash(RegisterUser.Password);
+                String saltHashReturned = PasswordHash.CreateHash(textboxPassword.Text);
                 int commaIndex = saltHashReturned.IndexOf(":");
                 String extractedString = saltHashReturned.Substring(0, commaIndex);
                 commaIndex = saltHashReturned.IndexOf(":");
@@ -87,8 +70,28 @@ namespace MathFun1000.Account
                 cmd.ExecuteReader();
                 conn.Close();
 
-                //lbl_Confirmation.Text = "Congratulations, you are registered!";
+                lbl_Confirmation.Text = "Congratulations, you are registered!";
             }
         }
+
+        /**
+         * Original working Register User Method, not used anymore. 
+         * Security: Password in Text
+         **/
+        //private void registerUser()
+        //{
+        //    String connString = System.Configuration.ConfigurationManager.ConnectionStrings["webAppconnString"].ToString();
+        //    conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+        //    conn.Open();
+        //    queryStr = "";
+
+        //    queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, Password)" + 
+        //        "VALUES('" + textboxUserName.Text + "','" + textboxEmailAddress.Text + "','" + textboxPassword.Text + "')";      
+
+        //    cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+        //    cmd.ExecuteReader();
+
+        //    conn.Close();
+        //}
     }
 }

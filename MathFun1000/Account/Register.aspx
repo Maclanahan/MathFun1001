@@ -1,63 +1,52 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MathFun1000.Account.Register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MathFun1000.Account.Register" %>
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title">
-        <h1><%: Title %>.</h1>
-        <h2>Use the form below to create a new account.</h2>
-    </hgroup>
+<!DOCTYPE html>
 
-    <asp:CreateUserWizard runat="server" ID="RegisterUser" ViewStateMode="Disabled" OnCreatedUser="RegisterUser_CreatedUser">
-        <LayoutTemplate>
-            <asp:PlaceHolder runat="server" ID="wizardStepPlaceholder" />
-            <asp:PlaceHolder runat="server" ID="navigationPlaceholder" />
-        </LayoutTemplate>
-        <WizardSteps>
-            <asp:CreateUserWizardStep runat="server" ID="RegisterUserWizardStep">
-                <ContentTemplate>
-                    <p class="message-info">
-                        Passwords are required to be a minimum of <%: Membership.MinRequiredPasswordLength %> characters in length.
-                    </p>
-
-                    <p class="validation-summary-errors">
-                        <asp:Literal runat="server" ID="ErrorMessage" />
-                    </p>
-
-                    <fieldset>
-                        <legend>Registration Form</legend>
-                        <ol>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                                <asp:TextBox runat="server" ID="UserName" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                                    CssClass="field-validation-error" ErrorMessage="The user name field is required." />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
-                                <asp:TextBox runat="server" ID="Email" TextMode="Email" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                    CssClass="field-validation-error" ErrorMessage="The email address field is required." />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
-                                <asp:TextBox runat="server" ID="Password" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
-                                    CssClass="field-validation-error" ErrorMessage="The password field is required." />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="ConfirmPassword">Confirm password</asp:Label>
-                                <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
-                                     CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The confirm password field is required." />
-                                <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
-                                     CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
-                            </li>
-                        </ol>
-                        <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="btnRegister" />
-                    </fieldset>
-                </ContentTemplate>
-                <CustomNavigationTemplate />
-            </asp:CreateUserWizardStep>
-<asp:CompleteWizardStep runat="server"></asp:CompleteWizardStep>
-        </WizardSteps>
-    </asp:CreateUserWizard>
-</asp:Content>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>User Registration</title>
+</head>
+<body>
+    <p>This is the User Registration Page</p>
+    <form id="form1" runat="server">
+    <div>
+        <p>
+            <asp:Label ID="Label1" runat="server" Text="User Name"></asp:Label>
+        </p>
+        
+        <p>
+            <asp:TextBox ID="textboxUserName" runat="server" Height="24px" Width="302px"></asp:TextBox>
+            <%--<asp:RequiredFieldValidator ID ="usernameReq" runat="server" ErrorMessage="User Name is required!" SetFocusOnError="true" />--%>
+        </p>
+        <p>
+            <asp:Label ID="Label2" runat="server" Text="Email Address"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="textboxEmailAddress" runat="server" Height="24px" Width="300px"></asp:TextBox>
+            <%--<asp:RequiredFieldValidator ID ="emailReq" runat="server" ErrorMessage="Email Address is required!" SetFocusOnError="true" />--%>
+        </p>
+        <p>
+            <asp:Label ID="Label3" runat="server" Text="Password"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="textboxPassword" TextMode="Password" runat="server" Height="24px" Width="300px"></asp:TextBox>
+            <%--<asp:RequiredFieldValidator ID ="passwordReq" runat="server" ErrorMessage="Password is required!" SetFocusOnError="true" />--%>
+        </p>
+        <p>
+            <asp:Label ID="Label4" runat="server" Text="Confirm Password"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="textboxConfirmPassword" TextMode="Password" runat="server" Height="24px" Width="300px"></asp:TextBox>
+            <%--<asp:RequiredFieldValidator ID ="confirmPasswordReq" runat="server" ErrorMessage="Confirm Password is required!" SetFocusOnError="true" />--%>
+        </p>
+        <p>
+            <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Register" />
+        </p>
+        <%--http://www.java2s.com/Tutorial/ASP.NET/0160__Validation/UseCompareValidatortocheckpasswordfieldandconfirmpasswordfield.htm--%>
+        </div>
+        <p>
+            <asp:Label ID="lbl_Confirmation" runat="server"></asp:Label>
+        </p>
+    </form>
+</body>
+</html>
