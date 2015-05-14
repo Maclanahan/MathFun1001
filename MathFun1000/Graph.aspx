@@ -58,12 +58,11 @@
                 <asp:ListItem Value="3"></asp:ListItem>
                 <asp:ListItem Value="4"></asp:ListItem>
 
-            </asp:RadioButtonList>
-        
-            <input type="button" id="checkAnswerButton" value="Check Answer" onclick="CheckAns()" >
-                  
+            </asp:RadioButtonList> 
     </div>
-    
+    <div>
+            <label id="CorrectLabel" style="display: inline-block; font-size:xx-large; text-align:center; vertical-align: top;"></label><br />
+    </div>
     <script>
         $(".graph").css("visibility", "hidden");
         $(".radioButtonList").css("visibility", "hidden");

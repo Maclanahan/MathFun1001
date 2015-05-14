@@ -29,7 +29,7 @@ namespace MathFun1000
             //GenerateCode();
             DrawGraph(xAxis, yAxis);
             UpdateLabels();
-            RadioButtonList1.Attributes.Add("onclick", "CheckAns('RadioButtonList1');");
+            RadioButtonList1.Attributes.Add("onclick", "CheckAns('" + newGraph.getAns() + "');");
         }
 
         

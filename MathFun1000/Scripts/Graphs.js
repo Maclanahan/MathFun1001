@@ -1,36 +1,35 @@
 ﻿var mainArea = document.getElementById("MainContent_innerMain");
+var label = document.getElementById("MainContent_Label1");
+label.hidden = true;
 var correct = false;
 var selected = -1;
 
 
-function CheckAns(id) 
-{
-
-    var radio = document.getElementsByName(id);
-    for (var j = 0; j < radio.length; j++) {
-        if (radio[j].checked)
-           document.getElementById('txt1').value = radio[j].value;
+function CheckAns(ans)
+{      
+    var answer = document.getElementById("MainContent_RadioButtonList1_" + ans);
+    
+    if (answer.checked == true)
+    {
+        $("#CorrectLabel").css("visibility", "hidden");
+        $("#CorrectLabel").text("$$\\color{green}{CORRECT!!}$$");
+        MathJax.Hub.Typeset();
+        $("#CorrectLabel").css("visibility", "");
     }
 
-    alert(radio.length);
-
-    /*var elementRef = document.getElementById('<%= RadioButton1.ClientID %>');
-    var radioButtonListArray = elementRef.getElementsByTagName('input');
-    var rbElement = elementRef.nextSibling;
-    for (var i = 0; i < radioButtonListArray.length; i++) {
-        var radioButtonRef = radioButtonListArray[i];
-
-        //if (i == radioButtonNumber) {
-            var labelArray = radioButtonRef.parentNode.getElementsByTagName('label');
-            alert(labelArray);
-            rbElement.value("DOES THIS SHOW?");
-
-            if (labelArray.length > 0) {
-                labelArray[0].innerHTML("Changed label");
-                break;
-            }
-        //}
-    }*/
+    for (var i = 0; i < 5; i++)
+    {
+        if(i == ans)
+            i++;
+        var check = document.getElementById("MainContent_RadioButtonList1_" + i);
+        if(check.checked == true)
+        {
+            $("#CorrectLabel").css("visibility", "hidden");
+            $("#CorrectLabel").text("$$\\color{red}{INCORRECT!!\\: Please\\: try\\: again!}$$");
+            MathJax.Hub.Typeset();
+            $("#CorrectLabel").css("visibility", "");
+        }
+    }
 }
 
 function scrollToBottomOfPage()
