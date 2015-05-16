@@ -125,15 +125,14 @@ function makeRule() {
     newDiv.setAttribute('id', 'rulebox' + currentStep);
     newDiv.setAttribute('class', 'rulebox');
     var par = document.createElement('p');
-    par.textContent = rule[currentStep];
-    ///////////////////////////////
-    var test = document.createElement('p');
-    test.setAttribute('id', 'ruleExplaination' + currentStep);
-    test.setAttribute('class', 'ruleExplain');
-    test.innerText = "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><p>Hello World</p>"
-    //////////////////////////////////
+    var redirect = document.createElement('a');
+    redirect.textContent = rule[currentStep];
+    redirect.setAttribute('href', '/Rules.aspx?#' + link[currentStep]);
+    redirect.setAttribute('target', '_blank');
+
+    par.appendChild(redirect);
     newDiv.appendChild(par);
-    //newDiv.appendChild(test);
+    
 
     
 

@@ -23,6 +23,8 @@ namespace MathFun1000
 
         public abstract string GetRuleAt(int index);
 
+        public abstract string GetLinkAt(int index);
+
         public abstract string GenerateCode(int numOfSteps);
     }
 }

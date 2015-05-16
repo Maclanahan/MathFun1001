@@ -19,6 +19,7 @@ namespace MathFun1000
         public String[] step;
         public String[] example;
         public String[] rule;
+        public String[] link;
         public int difficulty = 1;
         public int numberOfSteps = 5;
         public int currentStep = 0;
@@ -53,11 +54,12 @@ namespace MathFun1000
         }
 
         //Main constructor
-        public Tutorial(String[] step, String[] example, String[] rule, int difficulty, int numberOfSteps)
+        public Tutorial(String[] step, String[] example, String[] rule, String[] link, int difficulty, int numberOfSteps)
         {
             this.step = step;
             this.example = example;
             this.rule = rule;
+            this.link = link;
             this.difficulty = difficulty;
             this.numberOfSteps = numberOfSteps;
         }
@@ -117,6 +119,11 @@ namespace MathFun1000
         public override string GetRuleAt(int index)
         {
             return rule[index];
+        }
+
+        public override string GetLinkAt(int index)
+        {
+            return link[index];
         }
         //End
     }

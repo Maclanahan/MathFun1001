@@ -67,16 +67,18 @@ namespace MathFun1000
                         var info = new List<string>();
                         var example = new List<string>();
                         var rule = new List<string>();
+                        var link = new List<string>();
 
                         while (reader.Read())
                         {
                             info.Add(reader.GetString(0));
                             example.Add(reader.GetString(1));
                             rule.Add(reader.GetString(2));
+                            link.Add(reader.GetString(3));
                         }
 
                         if (info.Count > 0)
-                            steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), 0, info.Count);
+                            steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), link.ToArray(), 0, info.Count);
                         else
                         {
                             conn.Close();
@@ -110,12 +112,14 @@ namespace MathFun1000
             script += "var step = [];\n";
             script += "var example = [];\n";
             script += "var rule = [];\n";
+            script += "var link = [];\n";
 
             for (int i = 0; i < steps.GetNumberOfSteps(); i++)
             {
                 script += "step[" + i + "] = \"" + steps.GetStepAt(i) + "\";\n";
                 script += "example[" + i + "] = \"" + steps.GetExampleAt(i) + "\";\n";
                 script += "rule[" + i + "] = \"" + steps.GetRuleAt(i) + "\";\n";
+                script += "link[" + i + "] = \"" + steps.GetLinkAt(i) + "\";\n";
             }
 
             script += "</script>\n";

@@ -16,8 +16,8 @@ namespace MathFun1000
     public class Problem
     {
 
-        public Unguided unguided;
-        public Fill_In fill_in;
+        //public Unguided unguided;
+        //public Fill_In fill_in;
         public Tutorial tutorial;
         public Graph graph;
 
