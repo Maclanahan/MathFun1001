@@ -6,7 +6,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+    <%--<asp:PlaceHolder ID="MenuHolder" runat="server" >--%>
+        <div id="menuContainer" class="menuContainer" runat="server">
 
+        </div>
+    <%--</asp:PlaceHolder>--%>
 </asp:Content>
 
 
@@ -15,7 +19,7 @@
     <%--<script src="Scripts/greensock/TweenLite.min.js"></script>
     <script src="Scripts/greensock/jquery.gsap.min.js"></script>
     <script src="Scripts/greensock/TimelineLite.min.js"></script>--%>
-
+    
     
 
     <div id="arrayData" runat="server">
@@ -23,7 +27,8 @@
     </div>
 
     
-
+    <br/>
+    <br/>
     <div class="ControllButtons">
         <input id="tutorial" type="button" value="Tutorial" onclick="tutorialParser()"/>
         <input id="fillIn" type="button" value="Fill In" onclick="fillInParser()"/>

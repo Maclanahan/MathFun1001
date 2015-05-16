@@ -154,13 +154,26 @@ body {
 .button
 {
     width:25px;
-    height: 40px;
+    //height: 40px;
     font-size:5px;
     
     //padding: 0px 0px 0px 0px;    
 }
 
+.menuContainer
+{
+    width: 60%;
+    float: right;
+    left: 50%;
 
+    
+}
+
+.menuButton
+{
+    display: inline-block;
+    width:200px;
+}
 
 .answerBox
 {
@@ -180,19 +193,13 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 29%;
-    //text-align: center;
-
-    //display:inline-block;
-    //width: 250px;
-    //min-height: 50px;
-    //font-size: 15px;
+ 
     padding: 10px 10px 10px 10px;
-    //margin:  5px 5px 5px 5px;
+
     border: 2px solid #000;
-    //vertical-align: middle;
+
     background-color: #C5CEFF;
-    //height: inherit;
-    //text-align: center;
+
 }
 
 #unguidedAnswerArea
@@ -453,7 +460,7 @@ hgroup.title h2 {
 /* features */
 section.feature {
     width: 300px;
-    float: left;
+    //float: left;
     padding: 10px;
 }
 

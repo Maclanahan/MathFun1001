@@ -32,6 +32,8 @@ namespace MathFun1000
 
             SetUpButtons();
 
+            SetUpMenu();
+
             convertToJavaScript();
 
             executeJavaScript();
@@ -126,12 +128,47 @@ namespace MathFun1000
             arrayData.InnerHtml = script;
         }
 
+        private void SetUpMenu()
+        {
+            var books = new Button { CssClass = "menuButton", Text = "Books" };
+            books.Click += Book_Click;
+            menuContainer.Controls.Add(books);
+
+            var chapters = new Button { CssClass = "menuButton", Text = "Chapters" };
+            chapters.Click += Chapter_Click;
+            menuContainer.Controls.Add(chapters);
+
+
+            var problems = new Button { CssClass = "menuButton", Text = "Problems" };
+            problems.Click += Problem_Click;
+            menuContainer.Controls.Add(problems);
+        }
+
+        protected void Book_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Books.aspx", false);
+        }
+
+        protected void Chapter_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Chapters.aspx?book=" + Request.QueryString["book"], false);
+        }
+
+        protected void Problem_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"], false);
+        }
+
         //Set up basic buttons for the problem
         private void SetUpButtons()
         {
-            var button = new Button { CssClass = "StepForwardButton", Text = "Next Problem >>" };
-            button.Click += StepForwardButton_Click;
-            buttons.Controls.Add(button);
+            var buttonForward = new Button { CssClass = "StepForwardButton", Text = "Next Problem >>" };
+            buttonForward.Click += StepForwardButton_Click;
+            buttons.Controls.Add(buttonForward);
+
+            var buttonBack = new Button { CssClass = "button", Text = "<< Prev Problem" };
+            buttonBack.Click += StepBackwardButton_Click;
+            buttons.Controls.Add(buttonBack);
 
         }
 
@@ -172,7 +209,7 @@ namespace MathFun1000
                         if (problem != "")
                         {
                             conn.Close();
-                            Response.Redirect("MathProgram.aspx?problem=" + problem + "&chapter=" + Request.QueryString["chapter"], false);
+                            Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + problem, false);
                             Context.ApplicationInstance.CompleteRequest();
                         }
 
@@ -186,6 +223,65 @@ namespace MathFun1000
 
                 }
             } catch(Exception e2)
+            {
+                //need to log the exception
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+        }
+
+        protected void StepBackwardButton_Click(object sender, EventArgs e)
+        {
+            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySql.Data.MySqlClient.MySqlCommand cmd;
+            String queryStr;
+
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
+            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+            queryStr = "";
+
+            if (Request.QueryString.HasKeys())
+                queryStr = "SELECT Problem_ID FROM `problem`"
+                    + " WHERE Problem_ID < " + Request.QueryString["problem"]
+                    + " AND Chapter_ID = " + Request.QueryString["chapter"]
+                    + " ORDER BY Problem_ID ASC;";
+
+            else
+                Response.Redirect("Books.aspx");
+
+            string problem = "";
+
+            try
+            {
+                using (cmd = new MySqlCommand(queryStr, conn))
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            problem = reader.GetString(0);
+                        }
+
+                        if (problem != "")
+                        {
+                            conn.Close();
+                            Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + problem, false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
+
+                        else
+                        {
+                            conn.Close();
+                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
+                    }
+
+                }
+            }
+            catch (Exception e2)
             {
                 //need to log the exception
                 Response.Redirect("ERROR.aspx", false);

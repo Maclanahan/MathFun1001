@@ -13,6 +13,15 @@ namespace MathFun1000 {
     public partial class MathProgramJavascript {
         
         /// <summary>
+        /// menuContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuContainer;
+        
+        /// <summary>
         /// arrayData control.
         /// </summary>
         /// <remarks>

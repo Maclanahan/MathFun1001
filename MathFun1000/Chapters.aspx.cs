@@ -89,7 +89,7 @@ namespace MathFun1000
 
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect("Problems.aspx?chapter=" + e.CommandArgument, false);
+            Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] +"&chapter=" + e.CommandArgument, false);
             Context.ApplicationInstance.CompleteRequest();
         }
     }

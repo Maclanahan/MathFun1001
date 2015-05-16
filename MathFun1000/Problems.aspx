@@ -7,7 +7,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-    
+    <asp:PlaceHolder ID="MenuHolder" runat="server"></asp:PlaceHolder>
     
     
 </asp:Content>
