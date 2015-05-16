@@ -200,6 +200,7 @@
     <Content Include="DisplayProblems.aspx" />
     <Content Include="ERROR.aspx" />
     <Content Include="Graph.aspx" />
+    <Content Include="http404.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -373,6 +374,13 @@
     </Compile>
     <Compile Include="Graphs.cs" />
     <Compile Include="Account\InputValidation.cs" />
+    <Compile Include="http404.aspx.cs">
+      <DependentUpon>http404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="http404.aspx.designer.cs">
+      <DependentUpon>http404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IProblemType.cs" />
     <Compile Include="Account\LoggedIn.aspx.cs">
       <DependentUpon>LoggedIn.aspx</DependentUpon>

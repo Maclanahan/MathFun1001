@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Math Problem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Problems.aspx.cs" Inherits="MathFun1000.Problems" MaintainScrollPositionOnPostback="true"%>
+﻿<%@ Page Title="Problems" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Problems.aspx.cs" Inherits="MathFun1000.Problems" MaintainScrollPositionOnPostback="true"%>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
