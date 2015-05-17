@@ -2,29 +2,33 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-    <nav>
-        <ul>
-            <li>
-                <a href="#distributive">Distributive Property</a>
+    <nav class="navMenu">
+        <ul id="linkList" runat="server">
+            <%--<li>
+                <a href="#MainContent_distributive">Distributive Property</a>
             </li>
             <li>
-                <a href="#associative">Associative Property</a>
+                <a href="#MainContent_associative">Associative Property</a>
             </li>
             <li>
-                <a href="#communative">Communative Property</a>
+                <a href="#MainContent_communative">Communative Property</a>
             </li>
             <li>
-                <a href="#identity">Identity Property</a>
+                <a href="#MainContent_identity">Identity Property</a>
             </li>
             <li>
-                <a href="#zeroProduct">Zero Product Property</a>
-            </li>
+                <a href="#MainContent_zeroProduct">Zero Product Property</a>
+            </li>--%>
         </ul>
     </nav>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <h2 id="distributive">Distributive Property</h2>
+    <div id="ruleHolder" runat="server">
+
+    </div>
+
+    <%--<h2 id="distributive">Distributive Property</h2>
     <div class="ruleDescBox" >
         <p>It's where you pass things outside the parenthesis.</p><br/>
         <p>3x – 6 = 3(x – 2)</p>
@@ -57,6 +61,6 @@
         <p>You multply it by zero, it becomes zero.</p><br/>
         <p>5 * 0 = 0</p>
         <br/><br/><br/><br/><br/>
-    </div>
+    </div>--%>
 
 </asp:Content>

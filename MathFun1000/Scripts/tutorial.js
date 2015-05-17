@@ -127,7 +127,7 @@ function makeRule() {
     var par = document.createElement('p');
     var redirect = document.createElement('a');
     redirect.textContent = rule[currentStep];
-    redirect.setAttribute('href', '/Rules.aspx?#' + link[currentStep]);
+    redirect.setAttribute('href', '/Rules.aspx?#MainContent_' + link[currentStep]);
     redirect.setAttribute('target', '_blank');
 
     par.appendChild(redirect);

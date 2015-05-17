@@ -13,7 +13,7 @@ body {
     margin: 0;
     padding: 0;
     align-content: center;
-    
+    overflow-x: scroll;
 }
 
 .row
@@ -105,6 +105,31 @@ body {
     background-color: #c8c8c8;
     padding: 20px 20px 20px 20px;
     border-width: 3px;
+    margin-left: 250px;
+    border-radius: 15px;
+    max-width: 900px;
+    min-width: 250px;
+    position: static;
+    //float: right;
+    display: block;
+    word-wrap:normal;
+}
+
+.ruleHeader
+{
+    margin-left: 240px;
+    //float: right;
+}
+
+.navMenu
+{
+    position: fixed;
+    width: 220px;
+    padding: 25px 0px 25px 0px;
+    background-color: #c8c8c8;
+    border-radius: 15px;
+    word-wrap: break-word;
+    
 }
 
 .boxQuestion
@@ -173,6 +198,7 @@ body {
 {
     display: inline-block;
     width:200px;
+    
 }
 
 .answerBox
@@ -207,19 +233,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 250px;
-    //text-align: center;
-
-    //display:inline-block;
-    //width: 250px;
-    //min-height: 50px;
-    //font-size: 15px;
     padding: 10px 10px 10px 10px;
-    //margin:  5px 5px 5px 5px;
     border: 2px solid #000;
-    //vertical-align: middle;
     background-color: #C5CEFF;
-    //height: inherit;
-    //text-align: center;
 }
 
 a {
@@ -258,6 +274,8 @@ p
     outline-color:black;
     outline-width:1px;
 }
+
+
 
     a:link, a:visited,
     a:active, a:hover {
