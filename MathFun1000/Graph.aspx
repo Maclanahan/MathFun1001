@@ -96,8 +96,10 @@
     
     <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
 
-       <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
-        
+        <input id="StepForward" type="button" value="Next" class="StepForwardButton" onclick="stepForward()"/>
+        <input id="StepBackward" type="button" value="Prev" class="StepBackwardButton" onclick="stepBack()"/>
+      <!-- <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
+       --> 
     </div>
 
     <script type="text/javascript" src="Scripts/Graphs.js"></script>

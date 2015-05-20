@@ -1,9 +1,4 @@
 ﻿var mainArea = document.getElementById("MainContent_innerMain");
-var label = document.getElementById("MainContent_Label1");
-label.hidden = true;
-var correct = false;
-var selected = -1;
-
 
 function CheckAns(ans)
 {      

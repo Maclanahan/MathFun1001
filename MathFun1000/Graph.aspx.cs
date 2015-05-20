@@ -42,7 +42,6 @@ namespace MathFun1000
 
         protected void UpdateLabels() 
         {
-            bool first = true;
             int i = 0;
             options = newGraph.getEquationOptions();
 
@@ -53,36 +52,6 @@ namespace MathFun1000
             
         }
 
-        protected void UpdateUser() 
-        {
-            RadioButtonList1.Items[1].Text = "$$Correct!!$$";
-        }
-        
-        private void GenerateCode()
-        {
-            options = newGraph.getEquationOptions();
-
-            string script = "<script>";
-            script += "var ans = " + newGraph.getAns() + ";\n";
-                        
-            //script += "<asp:RadioButtonList ID=\"RadioButtonList1\" runat=\"server\" RepeatColumns=\"1\" RepeatLayout=\"Table\">\n";
-                
-              //  script += "<asp:ListItem Value=\"0\" Text=\"" + options[0] +"\"></asp:ListItem>\n";                
-              //  script += "<asp:ListItem Value=\"1\" Text=\"" + options[1] +"\"></asp:ListItem>\n";
-              //  script += "<asp:ListItem Value=\"2\" Text=\"" + options[2] + "\"></asp:ListItem>\n";
-              //  script += "<asp:ListItem Value=\"3\" Text=\"" + options[3] + "\"></asp:ListItem>\n";
-              //  script += "<asp:ListItem Value=\"4\" Text=\"" + options[4] +"\"></asp:ListItem>\n";
-
-           //script += "</asp:RadioButtonList>\n";
-
-            script += "<input type=\"button\" value=\"Check Answer\" onclick=\"UpdateUser()\" />";
-
-            script += "</script>\n";            
-            
-        rbList.InnerHtml = script;
-
-        }
-
         //Description
         protected void GoToNextProblem_Click(object sender, EventArgs e)
         {
@@ -90,19 +59,6 @@ namespace MathFun1000
             int num = Convert.ToInt32(problemNum) + 1;
             Console.Out.WriteLine(num);
             Response.Redirect("MathProgram.aspx?problem=" + num.ToString());
-        }
-
-        protected void CheckAnswer(object sender, EventArgs e) 
-        {
-            int ChoosenButton = -1;
-            ChoosenButton = RadioButtonList1.SelectedIndex;
-
-            if (ChoosenButton == newGraph.ans) {
-                options[1] = "$$\\color{green}{CORRECT!!}$$";
-            }
-            else {
-                options[1] = "$$\\color{red}{INCORRECT!\\: Please\\: try\\: again!}$$";
-            }
         }
     }
 }
