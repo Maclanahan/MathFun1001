@@ -225,6 +225,7 @@
     <Content Include="Books.aspx" />
     <None Include="Properties\PublishProfiles\Dan.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="ParameterizedQuery.aspx" />
     <Content Include="Problems.aspx" />
     <Content Include="Rules.aspx" />
     <Content Include="Scripts\Graphs.js" />
@@ -412,6 +413,13 @@
       <DependentUpon>MultipleChoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Multis.cs" />
+    <Compile Include="ParameterizedQuery.aspx.cs">
+      <DependentUpon>ParameterizedQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParameterizedQuery.aspx.designer.cs">
+      <DependentUpon>ParameterizedQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Problem.cs" />
     <Compile Include="Problems.aspx.cs">
       <DependentUpon>Problems.aspx</DependentUpon>

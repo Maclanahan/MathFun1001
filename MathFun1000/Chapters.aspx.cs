@@ -40,15 +40,18 @@ namespace MathFun1000
             queryStr = "";
 
             if (Request.QueryString.HasKeys())
-                queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = " + Request.QueryString["book"] 
+                queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = ?book" //+ Request.QueryString["book"] 
                     + " ORDER BY Chapter_ID ASC;";
             else
-                Response.Redirect("Books.aspx");
+                Response.Redirect("Books.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             try
             {
                 using (cmd = new MySqlCommand(queryStr, conn))
                 {
                     conn.Open();
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("?book", Request.QueryString["book"]);
                     using (var reader = cmd.ExecuteReader())
                     {
                         var id = new List<string>();
@@ -89,8 +92,16 @@ namespace MathFun1000
 
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] +"&chapter=" + e.CommandArgument, false);
-            Context.ApplicationInstance.CompleteRequest();
+            try
+            {
+                Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + e.CommandArgument, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch(Exception except)
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
         }
     }
 

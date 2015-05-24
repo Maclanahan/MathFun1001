@@ -39,7 +39,8 @@ namespace MathFun1000
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
             if (Request.QueryString.HasKeys())
-                queryStr = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Problem_ID FROM problem AS p INNER JOIN chapter AS c WHERE c.Chapter_ID = " + Request.QueryString["chapter"] + " AND p.Chapter_ID = " + Request.QueryString["chapter"] + ";";
+                queryStr = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Problem_ID FROM problem" 
+                            +" AS p INNER JOIN chapter AS c WHERE c.Chapter_ID = ?chapter AND p.Chapter_ID = ?chapter;";
             else
                 Response.Redirect("Books.aspx");
 
@@ -49,6 +50,10 @@ namespace MathFun1000
                 using (cmd = new MySqlCommand(queryStr, conn))
                 {
                     conn.Open();
+
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())

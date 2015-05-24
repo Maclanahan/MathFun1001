@@ -101,10 +101,18 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             using (conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
             {
-                queryStr = "";
-                queryStr = "UPDATE STEP SET Info='" + info + "',Example='" + Example + "',Rules='" + Rules + "',Difficulty='" + diff + "' WHERE Step_ID='" + id + "';";
+                queryStr = "UPDATE STEP SET info=?info, Example=?example, Rules=?rules, Difficulty=?difficulty WHERE Step_ID=?id";
+                //queryStr = "UPDATE STEP SET Info='" + info + "',Example='" + Example + "',Rules='" + Rules + "',Difficulty='" + diff + "' WHERE Step_ID='" + id + "';";
                 MySqlCommand cmd = new MySqlCommand(queryStr, conn);
                 conn.Open();
+
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("?info", info);
+                cmd.Parameters.AddWithValue("?example", Example);
+                cmd.Parameters.AddWithValue("?rules", Rules);
+                cmd.Parameters.AddWithValue("?difficulty", diff);
+                cmd.Parameters.AddWithValue("?id", id);
+
                 cmd.ExecuteNonQuery();
             }
 

@@ -33,8 +33,16 @@ namespace MathFun1000
             queryStr = "";
 
             queryStr = "INSERT INTO db_9bad3d_test.Step (Info, Example, Rules, Difficulty)" +
-                    "VALUES('" + Info_TextBox.Text + "','" + Example_TextBox.Text + "','" + Rules_TextBox.Text + "','" + Diff_TextBox.Text + "')";
+                //"VALUES('" + Info_TextBox.Text + "','" + Example_TextBox.Text + "','" + Rules_TextBox.Text + "','" + Diff_TextBox.Text + "')";
+                    "VALUES(?Info, ?Example, ?Rules, ?Diff)";
             cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("?Info", Info_TextBox.Text);
+            cmd.Parameters.AddWithValue("?Example", Example_TextBox.Text);
+            cmd.Parameters.AddWithValue("?Rules", Rules_TextBox.Text);
+            cmd.Parameters.AddWithValue("?Diff", Diff_TextBox.Text);
+
             cmd.ExecuteReader();
 
             conn.Close();

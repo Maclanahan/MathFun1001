@@ -53,8 +53,8 @@ namespace MathFun1000
                 queryStr = "SELECT step.Info, step.Example, rule.rule_name, rule.rule_Link FROM `step`"
                     + " INNER JOIN problem ON step.Problem_ID = problem.Problem_ID"
                     + " LEFT JOIN rule ON step.rules = rule.rule_ID"
-                    + " WHERE step.Problem_ID = " + Request.QueryString["problem"] 
-                    + " AND problem.Chapter_ID = " + Request.QueryString["chapter"]
+                    + " WHERE step.Problem_ID = ?problem" //+ Request.QueryString["problem"] 
+                    + " AND problem.Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY step.Step_ID ASC;";
                 
             else
@@ -64,6 +64,10 @@ namespace MathFun1000
                 using (cmd = new MySqlCommand(queryStr, conn))
                 {
                     conn.Open();
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
+                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         var info = new List<string>();
@@ -185,8 +189,8 @@ namespace MathFun1000
 
             if (Request.QueryString.HasKeys())
                 queryStr = "SELECT Problem_ID FROM `problem`"
-                    + " WHERE Problem_ID > " + Request.QueryString["problem"]
-                    + " AND Chapter_ID = " + Request.QueryString["chapter"]
+                    + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
+                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID ASC;";
 
             else
@@ -198,6 +202,10 @@ namespace MathFun1000
                 using (cmd = new MySqlCommand(queryStr, conn))
                 {
                     conn.Open();
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
+                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
+
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -222,7 +230,7 @@ namespace MathFun1000
                     }
 
                 }
-            } catch(Exception e2)
+            } catch(Exception except)
             {
                 //need to log the exception
                 Response.Redirect("ERROR.aspx", false);
@@ -242,8 +250,8 @@ namespace MathFun1000
 
             if (Request.QueryString.HasKeys())
                 queryStr = "SELECT Problem_ID FROM `problem`"
-                    + " WHERE Problem_ID < " + Request.QueryString["problem"]
-                    + " AND Chapter_ID = " + Request.QueryString["chapter"]
+                    + " WHERE Problem_ID < ?problem"// + Request.QueryString["problem"]
+                    + " AND Chapter_ID = ?chapter"// + Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID ASC;";
 
             else
@@ -256,6 +264,10 @@ namespace MathFun1000
                 using (cmd = new MySqlCommand(queryStr, conn))
                 {
                     conn.Open();
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
+                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
+
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -281,7 +293,7 @@ namespace MathFun1000
 
                 }
             }
-            catch (Exception e2)
+            catch (Exception except)
             {
                 //need to log the exception
                 Response.Redirect("ERROR.aspx", false);
