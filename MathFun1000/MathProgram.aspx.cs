@@ -48,7 +48,15 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
-            Console.WriteLine(Request.QueryString["problem"]);
+
+            //Console.WriteLine(Request.QueryString["problem"]);
+
+            //Text to Output box for debugging.
+            System.Diagnostics.Debug.WriteLine("ProblemID: " + Request.QueryString["problem"]);
+            System.Diagnostics.Debug.WriteLine("ChapterID: " + Request.QueryString["chapter"]);
+            System.Diagnostics.Debug.WriteLine("BookID: " + Request.QueryString["book"]);
+            //End
+
             if (Request.QueryString.HasKeys())
                 queryStr = "SELECT step.Info, step.Example, rule.rule_name, rule.rule_Link FROM `step`"
                     + " INNER JOIN problem ON step.Problem_ID = problem.Problem_ID"

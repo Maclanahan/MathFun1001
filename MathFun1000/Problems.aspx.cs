@@ -35,11 +35,13 @@ namespace MathFun1000
             MySql.Data.MySqlClient.MySqlCommand cmd;
             String queryStr;
 
+            //System.Diagnostics.Debug.WriteLine(Request.QueryString["WebAppConnString"]);
+
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             queryStr = "";
             if (Request.QueryString.HasKeys())
-                queryStr = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Problem_ID FROM problem" 
+                queryStr = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Type_ID, p.Problem_ID FROM problem" 
                             +" AS p INNER JOIN chapter AS c WHERE c.Chapter_ID = ?chapter AND p.Chapter_ID = ?chapter;";
             else
                 Response.Redirect("Books.aspx");
@@ -60,7 +62,7 @@ namespace MathFun1000
                         {
                             SetTitle(reader.GetString(0));
                             SetDescription(reader.GetString(1));
-                            SetButton(reader.GetString(2));
+                            SetButton(reader.GetString(3), reader.GetString(2)); // SetButton Takes in 2 Parm's 1 Is the Problem ID other is Problem Type.
                         }
                     }
 
@@ -74,10 +76,28 @@ namespace MathFun1000
             }
         }
 
-        private void SetButton(string p)
+        //Parms - Problem Type is so that Graph and Multi Can be created.
+        //in the DB 1 is set to default, so not to change daniels over all build idea, 2 is Graph, and 3 is Multi.
+        private void SetButton(string p , string problem_type)
         {
             var button = new Button { ID = p, Text = "Problem " + ProblemNum, Width = 210 };
-            button.Command += new CommandEventHandler(DynamicCommand);
+            if(problem_type.Equals("1"))//Default Problem Dynamic Command Creation
+            {
+                button.Command += new CommandEventHandler(DynamicCommand);
+            }
+            else if (problem_type.Equals("2"))//Graph Dynamiac COmmand Creation
+            {
+                button.Command += new CommandEventHandler(DynamicCommandGraph);
+            }
+            else if (problem_type.Equals("3"))//Multi Dynamic Command Creation
+            {
+                button.Command += new CommandEventHandler(DynamicCommandMulti);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("ERROR: Problems.aspx.cs -> Method: SetButton");
+            }
+            
             button.CommandArgument = p;
             ButtonHolder.Controls.Add(button);
             ButtonHolder.Controls.Add(new LiteralControl("<br />"));
@@ -89,6 +109,18 @@ namespace MathFun1000
         private void DynamicCommand(object sender, CommandEventArgs e)
         {
             Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + e.CommandArgument, false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        private void DynamicCommandMulti(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("Multi.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + e.CommandArgument, false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        private void DynamicCommandGraph(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("Graph.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + e.CommandArgument, false);
             Context.ApplicationInstance.CompleteRequest();
         }
 
