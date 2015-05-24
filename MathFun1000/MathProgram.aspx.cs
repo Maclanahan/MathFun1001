@@ -47,7 +47,7 @@ namespace MathFun1000
                     + " WHERE step.Problem_ID = ?problem" //+ Request.QueryString["problem"] 
                     + " AND problem.Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY step.Step_ID ASC;";
-
+                
             List<SQLParameters> param = new List<SQLParameters>();
             param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
             param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
@@ -59,30 +59,30 @@ namespace MathFun1000
                 DataRow[] data = handler.Data;
 
                 if (data.Length > 0)
-                {
-                    var info = new List<string>();
-                    var example = new List<string>();
-                    var rule = new List<string>();
-                    var link = new List<string>();
+                    {
+                        var info = new List<string>();
+                        var example = new List<string>();
+                        var rule = new List<string>();
+                        var link = new List<string>();
 
                     for (int i = 0; i < data.Length; i++)
-                    {
+                        {
                         info.Add(data[i]["Info"].ToString());
                         example.Add(data[i]["Example"].ToString());
                         rule.Add(data[i]["rule_name"].ToString());
                         link.Add(data[i]["rule_Link"].ToString());
-                    }
+                        }
 
-                    steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), link.ToArray(), 0, info.Count);
+                            steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), link.ToArray(), 0, info.Count);
                 }
 
-                else
-                {
+                        else
+                        {
                     Response.Redirect("Books.aspx", false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
 
-            }
+                }
 
             else
             {
@@ -171,22 +171,22 @@ namespace MathFun1000
             SQLHandler handler = new SQLHandler(query, param, 1);
 
             if (handler.executeStatment())
-            {
+                        {
                 DataRow[] data = handler.Data;
 
                 if (data.Length > 0)
-                {
+                        {
                     Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
 
-                else
-                {
-                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
+                        else
+                        {
+                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
 
-            }
+                }
 
             else
             {
@@ -210,22 +210,22 @@ namespace MathFun1000
             SQLHandler handler = new SQLHandler(query, param, 1);
 
             if (handler.executeStatment())
-            {
+                        {
                 DataRow[] data = handler.Data;
 
                 if (data.Length > 0)
-                {
+                        {
                     Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
 
-                else
-                {
-                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
+                        else
+                        {
+                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
 
-            }
+                }
 
             else
             {
