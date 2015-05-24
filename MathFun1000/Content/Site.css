@@ -275,6 +275,21 @@ p
     outline-width:1px;
 }
 
+.progressButton
+{
+    //float: right;
+    display: block;
+    margin-left: 50%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 200px;
+}
+
+.pageTitle
+{
+    margin-left: 35%;
+
+}
 
 
     a:link, a:visited,
@@ -667,7 +682,7 @@ fieldset {
         color: #0000;
         //padding: 7px;
         //margin-right: 8px;
-        width: auto;
+        //width: auto;
     }
 
     input[type="submit"]:hover {

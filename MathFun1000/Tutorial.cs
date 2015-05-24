@@ -51,6 +51,12 @@ namespace MathFun1000
                 "Rule Here", 
                 "Rule Here", 
                 "Rule Here"};
+
+            this.link = new String[] {"Link Here", 
+                "Link Here", 
+                "Link Here", 
+                "Link Here", 
+                "Link Here"};
         }
 
         //Main constructor

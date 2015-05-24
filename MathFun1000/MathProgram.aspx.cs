@@ -36,80 +36,60 @@ namespace MathFun1000
 
             convertToJavaScript();
 
-            executeJavaScript();
+            //executeJavaScript();
         }
 
         private void querryDatabase()
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            MySql.Data.MySqlClient.MySqlCommand cmd;
-            String queryStr;
-
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
-            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-            queryStr = "";
-            Console.WriteLine(Request.QueryString["problem"]);
-            if (Request.QueryString.HasKeys())
-                queryStr = "SELECT step.Info, step.Example, rule.rule_name, rule.rule_Link FROM `step`"
+            string query = "SELECT step.Info, step.Example, rule.rule_name, rule.rule_Link FROM `step`"
                     + " INNER JOIN problem ON step.Problem_ID = problem.Problem_ID"
                     + " LEFT JOIN rule ON step.rules = rule.rule_ID"
                     + " WHERE step.Problem_ID = ?problem" //+ Request.QueryString["problem"] 
                     + " AND problem.Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY step.Step_ID ASC;";
-                
-            else
-                Response.Redirect("Books.aspx");
-            try
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
             {
-                using (cmd = new MySqlCommand(queryStr, conn))
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
                 {
-                    conn.Open();
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
-                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
+                    var info = new List<string>();
+                    var example = new List<string>();
+                    var rule = new List<string>();
+                    var link = new List<string>();
 
-                    using (var reader = cmd.ExecuteReader())
+                    for (int i = 0; i < data.Length; i++)
                     {
-                        var info = new List<string>();
-                        var example = new List<string>();
-                        var rule = new List<string>();
-                        var link = new List<string>();
-
-                        while (reader.Read())
-                        {
-                            info.Add(reader.GetString(0));
-                            example.Add(reader.GetString(1));
-                            rule.Add(reader.GetString(2));
-                            link.Add(reader.GetString(3));
-                        }
-
-                        if (info.Count > 0)
-                            steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), link.ToArray(), 0, info.Count);
-                        else
-                        {
-                            conn.Close();
-                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                        info.Add(data[i]["Info"].ToString());
+                        example.Add(data[i]["Example"].ToString());
+                        rule.Add(data[i]["rule_name"].ToString());
+                        link.Add(data[i]["rule_Link"].ToString());
                     }
 
-                    conn.Close();
+                    steps = new Tutorial(info.ToArray(), example.ToArray(), rule.ToArray(), link.ToArray(), 0, info.Count);
                 }
-            } catch (Exception e)
+
+                else
+                {
+                    Response.Redirect("Books.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
             {
-                conn.Close();
-                //need to log the exception
-                Console.WriteLine(e.Message);
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
-        }
 
-        private void executeJavaScript()
-        {
-            //string script = "<script>";
-
-            //script +=
         }
 
         private void convertToJavaScript()
@@ -179,126 +159,80 @@ namespace MathFun1000
         //Event handler for next button
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            MySql.Data.MySqlClient.MySqlCommand cmd;
-            String queryStr;
-
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
-            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-            queryStr = "";
-
-            if (Request.QueryString.HasKeys())
-                queryStr = "SELECT Problem_ID FROM `problem`"
+            string query = "SELECT Problem_ID FROM `problem`"
                     + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
                     + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID ASC;";
 
-            else
-                Response.Redirect("Books.aspx");
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
 
-            string problem = "";
+            SQLHandler handler = new SQLHandler(query, param, 1);
 
-            try{
-                using (cmd = new MySqlCommand(queryStr, conn))
-                {
-                    conn.Open();
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
-                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-
-                        while (reader.Read())
-                        {
-                            problem = reader.GetString(0);
-                        }
-
-                        if (problem != "")
-                        {
-                            conn.Close();
-                            Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + problem, false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
-
-                        else
-                        {
-                            conn.Close();
-                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
-                    }
-
-                }
-            } catch(Exception except)
+            if (handler.executeStatment())
             {
-                //need to log the exception
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+
         }
 
         protected void StepBackwardButton_Click(object sender, EventArgs e)
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            MySql.Data.MySqlClient.MySqlCommand cmd;
-            String queryStr;
+            string query = "SELECT Problem_ID FROM `problem`"
+                    + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
+                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " ORDER BY Problem_ID DESC;";
 
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
-            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-            queryStr = "";
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
 
-            if (Request.QueryString.HasKeys())
-                queryStr = "SELECT Problem_ID FROM `problem`"
-                    + " WHERE Problem_ID < ?problem"// + Request.QueryString["problem"]
-                    + " AND Chapter_ID = ?chapter"// + Request.QueryString["chapter"]
-                    + " ORDER BY Problem_ID ASC;";
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
 
             else
-                Response.Redirect("Books.aspx");
-
-            string problem = "";
-
-            try
             {
-                using (cmd = new MySqlCommand(queryStr, conn))
-                {
-                    conn.Open();
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
-                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-
-                        while (reader.Read())
-                        {
-                            problem = reader.GetString(0);
-                        }
-
-                        if (problem != "")
-                        {
-                            conn.Close();
-                            Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + problem, false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
-
-                        else
-                        {
-                            conn.Close();
-                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
-                    }
-
-                }
-            }
-            catch (Exception except)
-            {
-                //need to log the exception
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+
         }
     }
 }

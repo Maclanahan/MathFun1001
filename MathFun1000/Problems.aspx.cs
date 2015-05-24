@@ -31,47 +31,42 @@ namespace MathFun1000
 
         private void querryDatabase()
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            MySql.Data.MySqlClient.MySqlCommand cmd;
-            String queryStr;
-
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
-            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-            queryStr = "";
-            if (Request.QueryString.HasKeys())
-                queryStr = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Problem_ID FROM problem" 
+            string query = "SELECT c.Chapter_Title, c.Chapter_Intro, p.Problem_ID FROM problem" 
                             +" AS p INNER JOIN chapter AS c WHERE c.Chapter_ID = ?chapter AND p.Chapter_ID = ?chapter;";
-            else
-                Response.Redirect("Books.aspx");
 
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
 
-            try
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
             {
-                using (cmd = new MySqlCommand(queryStr, conn))
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
                 {
-                    conn.Open();
-
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
-
-                    using (var reader = cmd.ExecuteReader())
+                    for (int i = 0; i < data.Length; i++)
                     {
-                        while (reader.Read())
-                        {
-                            SetTitle(reader.GetString(0));
-                            SetDescription(reader.GetString(1));
-                            SetButton(reader.GetString(2));
-                        }
+                        SetTitle(data[i]["Chapter_Title"].ToString());
+                        SetDescription(data[i]["Chapter_Intro"].ToString());
+                        SetButton(data[i]["Problem_ID"].ToString());
                     }
-
-                    conn.Close();
                 }
-            } catch (Exception e)
+
+                else
+                {
+                    //Response.Redirect("ERROR.aspx", false);
+                    //Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
             {
-                //need to log the exception
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+
         }
 
         private void SetButton(string p)
@@ -125,6 +120,83 @@ namespace MathFun1000
         {
             Response.Redirect("Multi.aspx", false);
             Context.ApplicationInstance.CompleteRequest();
+        }
+
+        protected void NextChapter_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT Chapter_ID FROM `chapter`"
+                    + " WHERE Chapter_ID > ?chapter" //+ Request.QueryString["problem"]
+                    + " AND Book_ID = ?book" //+ Request.QueryString["chapter"]
+                    + " ORDER BY Chapter_ID DESC;";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter",Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?book", Request.QueryString["book"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if(handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] +"&chapter=" + data[0]["Chapter_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Chapters.aspx?book=" + Request.QueryString["book"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+
+        }
+
+        protected void PrevChapter_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT Chapter_ID FROM `chapter`"
+                    + " WHERE Chapter_ID < ?chapter" //+ Request.QueryString["problem"]
+                    + " AND Book_ID = ?book" //+ Request.QueryString["chapter"]
+                    + " ORDER BY Chapter_ID ASC;";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?book", Request.QueryString["book"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + data[0]["Chapter_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Chapters.aspx?book=" + Request.QueryString["book"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
         }
         //End
     }

@@ -13,6 +13,24 @@ namespace MathFun1000 {
     public partial class Chapters {
         
         /// <summary>
+        /// BookTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BookTitle;
+        
+        /// <summary>
+        /// PrevButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PrevButton;
+        
+        /// <summary>
         /// ChapterHolder control.
         /// </summary>
         /// <remarks>
@@ -20,5 +38,14 @@ namespace MathFun1000 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder ChapterHolder;
+        
+        /// <summary>
+        /// NextButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NextButton;
     }
 }

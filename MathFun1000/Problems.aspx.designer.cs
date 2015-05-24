@@ -40,6 +40,15 @@ namespace MathFun1000 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Intro;
         
         /// <summary>
+        /// PrevChapter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PrevChapter;
+        
+        /// <summary>
         /// ButtonHolder control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,14 @@ namespace MathFun1000 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button4;
+        
+        /// <summary>
+        /// NextChapter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NextChapter;
     }
 }

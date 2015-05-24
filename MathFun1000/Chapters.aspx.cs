@@ -20,60 +20,93 @@ namespace MathFun1000
 {
     public partial class Chapters : System.Web.UI.Page
     {
-        private Tutorial tut1;
-        private Tutorial tut2;
 
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
             querryDatabase();
+
+            setBookTitle();
+        }
+
+        private void setBookTitle()
+        {
+            string query = "SELECT Book_Name FROM book WHERE Book_ID = ?book";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?book", Request.QueryString["book"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    BookTitle.InnerText = data[0]["Book_Name"].ToString();
+                }
+
+                else
+                {
+                    Response.Redirect("ERROR.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+
         }
 
         private void querryDatabase()
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            MySql.Data.MySqlClient.MySqlCommand cmd;
-            String queryStr;
-
-            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
-            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-            queryStr = "";
-
-            if (Request.QueryString.HasKeys())
-                queryStr = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = ?book" //+ Request.QueryString["book"] 
+            string query = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = ?book" //+ Request.QueryString["book"] 
                     + " ORDER BY Chapter_ID ASC;";
-            else
-                Response.Redirect("Books.aspx", false);
-                Context.ApplicationInstance.CompleteRequest();
-            try
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?book", Request.QueryString["book"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
             {
-                using (cmd = new MySqlCommand(queryStr, conn))
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
                 {
-                    conn.Open();
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("?book", Request.QueryString["book"]);
-                    using (var reader = cmd.ExecuteReader())
+                    var id = new List<string>();
+                    var name = new List<string>();
+
+                    for(int i = 0; i < data.Length; i++)
                     {
-                        var id = new List<string>();
-                        var name = new List<string>();
-
-                        while (reader.Read())
-                        {
-                            id.Add(reader.GetString(0));
-                            name.Add(reader.GetString(1));
-                        }
-
-                        setUpButtons(id, name);
+                        id.Add(data[i]["Chapter_ID"].ToString());
+                        name.Add(data[i]["Chapter_Title"].ToString());
                     }
 
-                    conn.Close();
+                    setUpButtons(id, name);
                 }
-            }  catch (Exception e)
+
+                else
+                {
+                    //COMMENTED OUT SO THAT I CAN TEST PROPERLY
+
+                    //Response.Redirect("ERROR.aspx", false);
+                    //Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
             {
-                //need to log the exception
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+
         }
 
         private void setUpButtons(List<string> id, List<string> name)
@@ -102,6 +135,80 @@ namespace MathFun1000
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+        }
+
+        protected void PrevButton_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT Book_ID FROM `book`"
+                    + " WHERE Book_ID < ?book"
+                    + " ORDER BY Book_ID DESC;";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?book", Request.QueryString["book"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    Response.Redirect("Chapters.aspx?book=" + data[0]["Book_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Books.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+        }
+
+        protected void NextButton_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT Book_ID FROM `book`"
+                    + " WHERE Book_ID > ?book"
+                    + " ORDER BY Book_ID ASC;";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?book", Request.QueryString["book"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+                if (data.Length > 0)
+                {
+                    Response.Redirect("Chapters.aspx?book=" + data[0]["Book_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Books.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+
+            
         }
     }
 
