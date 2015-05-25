@@ -17,7 +17,7 @@ namespace MathFun1000.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 
             LoginWithPasswordHashFunction();
 
@@ -73,6 +73,8 @@ namespace MathFun1000.Account
                         {
                             Session["uname"] = nameList[i];
                             Response.BufferOutput = true;
+
+                           
                             Response.Redirect("LoggedIn.aspx", false);
                         }
                         else
@@ -121,5 +123,9 @@ namespace MathFun1000.Account
         //{
         //    LoginWithPasswordHashFunction();
         //}
+        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        {
+            Response.Redirect("default.aspx", false);
+        }
     }
 }

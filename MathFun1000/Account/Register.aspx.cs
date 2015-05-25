@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MySql.Data.MySqlClient;
 
 namespace MathFun1000.Account
 {
     public partial class Register : System.Web.UI.Page
     {
-        MySql.Data.MySqlClient.MySqlConnection conn;
-        MySql.Data.MySqlClient.MySqlCommand cmd;
+        MySqlConnection conn;
+        MySqlCommand cmd;
         String queryStr;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lbl_Confirmation.Text = "";
@@ -43,14 +45,14 @@ namespace MathFun1000.Account
             if (methodStatus == true)
             {
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
-                conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+                conn = new MySqlConnection(connString);
                 conn.Open();
                 queryStr = "";
 
                 queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt)" +
                 "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
 
-                cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+                cmd = new MySqlCommand(queryStr, conn);
                 cmd.Parameters.AddWithValue("?UserName", textboxUserName.Text);
                 cmd.Parameters.AddWithValue("?EmailAddress", textboxEmailAddress.Text);
 
@@ -66,7 +68,7 @@ namespace MathFun1000.Account
 
                 String hash = extractedString;
                 cmd.Parameters.AddWithValue("?SlowHashSalt", saltHashReturned);
-
+                cmd.Prepare();
                 cmd.ExecuteReader();
                 conn.Close();
 
