@@ -36,7 +36,7 @@ namespace MathFun1000
         {
             this.equation = theEquation;
             findPiecePositions(this.xAxis, this.equation);
-            picAns();
+            picAnsPos();
         }
 
 
@@ -51,11 +51,12 @@ namespace MathFun1000
             return this.yAxis;
         }
 
-        public void picAns() 
+        public int picAnsPos() 
         {
 
             Random rnd = new Random();
             ans = rnd.Next(0, 5);
+            return ans;
         }
 
         public string[] getEquationOptions() {            
@@ -71,7 +72,7 @@ namespace MathFun1000
             return options;
         }
 
-        public int getAns() 
+        public int getAnsPos() 
         {
             return this.ans;
         }
@@ -82,7 +83,7 @@ namespace MathFun1000
 
         }
 
-        //Gets the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)        
+        //Finds the positions of individual pieces of a y=mx+b equation (EX: y=2x+4 or y=2x^2+4)        
         public void findPiecePositions(int[] xAxis, String equation) {
             char op = '+';
             int xPos = 0, powPos = 0, m = 1, b = 0, opPos = 0, pow = 1;
@@ -103,9 +104,9 @@ namespace MathFun1000
             }
 
             getPieces(xPos, powPos, opPos, m, b, pow, powered, op);
-        }//end getPiecePositions
+        }
 
-        public void getPieces(int xPos, int powPos, int opPos, int m, int b, int pow, Boolean powered, char op) { //y=x+5
+        public void getPieces(int xPos, int powPos, int opPos, int m, int b, int pow, Boolean powered, char op) {
             String temp = "";
 
             for (int index = 2; index < equation.Length; index++) {
@@ -144,6 +145,7 @@ namespace MathFun1000
             }//end for
             generatePoints(m, b, pow, op);
         }//end getpieces
+
         public void generatePoints(int m, int b, int pow, char op) {
             for (int i = 0; i < yAxis.Length; i++) {
                 if (op.Equals('+'))
