@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace MathFun1000.Account
 {
@@ -74,7 +75,11 @@ namespace MathFun1000.Account
                             Session["uname"] = nameList[i];
                             Response.BufferOutput = true;
 
-                           
+                            //Daniel Moore - Note
+
+                            //FormsAuthentication.RedirectFromLoginPage();
+                            //Daniel Moore - Note
+                            FormsAuthentication.SetAuthCookie("?uname",true); // BREAKPOINT
                             Response.Redirect("LoggedIn.aspx", false);
                         }
                         else
