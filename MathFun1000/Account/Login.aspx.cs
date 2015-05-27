@@ -37,6 +37,8 @@ namespace MathFun1000.Account
         {
             List<String> salthashList = null;
             List<String> nameList = null;
+            List<String> typeList = null;
+
             try
             {
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
@@ -44,7 +46,7 @@ namespace MathFun1000.Account
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
                 conn.Open();
                 queryStr = "";
-                queryStr = "SELECT EmailAddress, SlowHashSalt FROM db_9bad3d_test.userinfo WHERE UserName=?uname";
+                queryStr = "SELECT UserName, SlowHashSalt, UserType FROM db_9bad3d_test.userinfo WHERE UserName=?uname";
                 cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
                 cmd.Parameters.AddWithValue("?uname", textboxUserName.Text);
                 reader = cmd.ExecuteReader();
@@ -53,6 +55,7 @@ namespace MathFun1000.Account
                 {
                     if (salthashList == null)
                     {
+                        typeList = new List<String>();
                         salthashList = new List<String>();
                         nameList = new List<String>();
                     }
@@ -72,15 +75,21 @@ namespace MathFun1000.Account
                         bool validUser = PasswordHash.ValidatePassword(textboxPassword.Text, salthashList[i]);
                         if (validUser == true)
                         {
-                            Session["uname"] = nameList[i];
-                            Response.BufferOutput = true;
-
-                            //Daniel Moore - Note
-
-                            //FormsAuthentication.RedirectFromLoginPage();
-                            //Daniel Moore - Note
-                            FormsAuthentication.SetAuthCookie("?uname",true); // BREAKPOINT
-                            Response.Redirect("LoggedIn.aspx", false);
+                            if (validUser == true)
+                            {
+                                if (typeList[i] == "Student")
+                                {
+                                    Session["uname"] = nameList[i];
+                                    Response.BufferOutput = true;
+                                    Response.Redirect("LoggedInStudent.aspx", false);
+                                }
+                                if (typeList[i] == "Teacher")
+                                {
+                                    Session["uname"] = nameList[i];
+                                    Response.BufferOutput = true;
+                                    Response.Redirect("LoggedInTeacher.aspx", false);
+                                }
+                            }
                         }
                         else
                         {
@@ -128,9 +137,9 @@ namespace MathFun1000.Account
         //{
         //    LoginWithPasswordHashFunction();
         //}
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
-        {
-            Response.Redirect("default.aspx", false);
-        }
+        //protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        //{
+        //    Response.Redirect("default.aspx", false);
+        //}
     }
 }

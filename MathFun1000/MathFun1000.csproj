@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account\LoggedInTeacher.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
@@ -217,7 +218,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Account\LoggedIn.aspx" />
+    <Content Include="Account\LoggedInStudent.aspx" />
     <Content Include="MathProgram.aspx" />
     <Content Include="Multi.aspx" />
     <Content Include="MultipleChoice.aspx" />
@@ -274,6 +275,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\LoggedInTeacher.aspx.cs">
+      <DependentUpon>LoggedInTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\LoggedInTeacher.aspx.designer.cs">
+      <DependentUpon>LoggedInTeacher.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddProblems.aspx.cs">
       <DependentUpon>AddProblems.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -383,12 +391,12 @@
       <DependentUpon>http404.aspx</DependentUpon>
     </Compile>
     <Compile Include="IProblemType.cs" />
-    <Compile Include="Account\LoggedIn.aspx.cs">
-      <DependentUpon>LoggedIn.aspx</DependentUpon>
+    <Compile Include="Account\LoggedInStudent.aspx.cs">
+      <DependentUpon>LoggedInStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\LoggedIn.aspx.designer.cs">
-      <DependentUpon>LoggedIn.aspx</DependentUpon>
+    <Compile Include="Account\LoggedInStudent.aspx.designer.cs">
+      <DependentUpon>LoggedInStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="MathProgram.aspx.cs">
       <DependentUpon>MathProgram.aspx</DependentUpon>

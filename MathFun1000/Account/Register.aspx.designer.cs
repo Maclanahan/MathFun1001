@@ -85,6 +85,15 @@ namespace MathFun1000.Account {
         protected global::System.Web.UI.WebControls.TextBox textboxConfirmPassword;
         
         /// <summary>
+        /// rbList_uType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbList_uType;
+        
+        /// <summary>
         /// btnRegister control.
         /// </summary>
         /// <remarks>

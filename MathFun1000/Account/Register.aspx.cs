@@ -44,17 +44,23 @@ namespace MathFun1000.Account
             }
             if (methodStatus == true)
             {
+                String uType = "";
+
+                if (rbList_uType.SelectedItem.ToString() == "Student") { uType = "Student"; }
+                if (rbList_uType.SelectedItem.ToString() == "Teacher") { uType = "Teacher"; }
+                
                 String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
                 conn = new MySqlConnection(connString);
                 conn.Open();
                 queryStr = "";
 
-                queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt)" +
-                "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
+                queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt, UserType)" +
+                "VALUES(?UserName, ?EmailAddress, ?SlowHashSalt, ?UserType)";
 
                 cmd = new MySqlCommand(queryStr, conn);
                 cmd.Parameters.AddWithValue("?UserName", textboxUserName.Text);
                 cmd.Parameters.AddWithValue("?EmailAddress", textboxEmailAddress.Text);
+                cmd.Parameters.AddWithValue("?UserType", uType);
 
                 String saltHashReturned = PasswordHash.CreateHash(textboxPassword.Text);
                 int commaIndex = saltHashReturned.IndexOf(":");
@@ -74,6 +80,11 @@ namespace MathFun1000.Account
 
                 lbl_Confirmation.Text = "Congratulations, you are registered!";
             }
+        }
+
+        protected void checkbox_teacher_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         /**
