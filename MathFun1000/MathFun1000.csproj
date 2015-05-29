@@ -140,9 +140,11 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="AddContent.aspx" />
     <Content Include="AddProblems.aspx" />
     <Content Include="AddStep.aspx" />
     <Content Include="Chapters.aspx" />
+    <Content Include="ContentManager.asmx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -282,6 +284,13 @@
     <Compile Include="Account\LoggedInTeacher.aspx.designer.cs">
       <DependentUpon>LoggedInTeacher.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddContent.aspx.cs">
+      <DependentUpon>AddContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddContent.aspx.designer.cs">
+      <DependentUpon>AddContent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddProblems.aspx.cs">
       <DependentUpon>AddProblems.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -348,6 +357,10 @@
     </Compile>
     <Compile Include="Chapters.aspx.designer.cs">
       <DependentUpon>Chapters.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManager.asmx.cs">
+      <DependentUpon>ContentManager.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
