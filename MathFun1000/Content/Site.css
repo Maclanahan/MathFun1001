@@ -33,6 +33,14 @@ body {
     color: white;
 }
 
+.controlBox
+{
+    display: block;
+    height: 50px;
+    background-color: #000;
+
+}
+
 .examplebox 
 {
     display:inline-block;
