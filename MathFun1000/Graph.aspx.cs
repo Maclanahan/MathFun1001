@@ -24,9 +24,8 @@ namespace MathFun1000
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e) 
         {
-            //querryDatabase();
+            querryDatabase();
             SetUpButtons();
-            newGraph = new Graphs("y=x+1");
             int[] xAxis = newGraph.GetX();
             double[] yAxis = newGraph.GetY();
             DrawGraph(xAxis, yAxis);            
@@ -41,7 +40,8 @@ namespace MathFun1000
             LineGraph.Series[0].Points.DataBindXY(newGraphX, "X", newGraphY, "Y");
         }
 
-        private void querryDatabase() {
+        private void querryDatabase() 
+        {
             MySqlConnection conn;
             MySqlCommand cmd;
             String queryStr = "";
@@ -58,36 +58,38 @@ namespace MathFun1000
             {
                 queryStr = "SELECT Option1, Option2, Option3, Option4, Answer"
                            + "FROM 'graphproblem'"
-                           + "WHERE BookId =" + Request.QueryString["book"]
-                           + "AND ChapterNumber =" + Request.QueryString["chapter"]
-                           + "AND ProblemNumber =" + Request.QueryString["problem"];
+                           + "WHERE Book_ID =" + Request.QueryString["book"]
+                           + "AND Chapter_ID =" + Request.QueryString["chapter"]
+                           + "AND Problem_ID =" + Request.QueryString["problem"] + ";";
             }
             else
                 Response.Redirect("Books.aspx");
             try {
-                using (cmd = new MySqlCommand(queryStr, conn)) {
+                using (cmd = new MySqlCommand(queryStr, conn)) 
+                {
                     conn.Open();
                     cmd.Prepare();
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader()) {
+                    using (MySqlDataReader reader = cmd.ExecuteReader()) 
+                    {
 
                         reader.Read();
                         string[] options = new string[4];
-                        string Answer;
+                        string answer;
 
-                        for (int i = 1; i < 5; i++) 
-                            options[i] = reader.GetString(i);                      
-                        
-                        Answer = reader.GetString(5);                       
-
-                        newGraph = new Graphs(Answer);
-                        UpdateLabels(options, Answer);
+                        options[0] = reader.GetString(1);
+                        options[1] = reader.GetString(2);
+                        options[2] = reader.GetString(3);
+                        options[3] = reader.GetString(4);
+                        answer = reader.GetString(5);
+                        newGraph = new Graphs(answer);
+                        UpdateLabels(options, answer);
                     }
                     conn.Close();
                 }
 
             }
-            catch (Exception e) {
+            catch (Exception e) 
+            {
                 conn.Close();
                 //need to log the exception
                 Console.WriteLine(e.Message);
@@ -97,7 +99,8 @@ namespace MathFun1000
 
         }
 
-        protected void UpdateLabels(String[] options, String answer) {
+        protected void UpdateLabels(String[] options, String answer) 
+        {
             int i = 0;
             int anspos = newGraph.getAnsPos();
 
@@ -163,7 +166,8 @@ namespace MathFun1000
 
         }
 
-        protected void stepBack_Click(object sender, EventArgs e) {
+        protected void stepBack_Click(object sender, EventArgs e) 
+        {
             string query = "SELECT Problem_ID FROM `problem`"
                     + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
                     + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
@@ -191,7 +195,7 @@ namespace MathFun1000
             }
 
             else {
-                Response.Redirect("ERROR.aspx", false);
+                //Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
