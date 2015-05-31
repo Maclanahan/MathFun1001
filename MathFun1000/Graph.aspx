@@ -48,7 +48,7 @@
     
     
     
-    <div class ="radioButtonList" id="rbList" runat="server" style="width: 175px;">
+    <div class ="radioButtonList" id="rbList" runat="server" style="width: 105px;">
                             
             <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatColumns="1" RepeatLayout="Table" >
                 
@@ -97,7 +97,7 @@
     <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
 
         <input id="StepForward" type="button" value="Next Problem >>" class="StepForwardButton" Onclick="stepForward_Click"/>
-        <input id="StepBackward" type="button" value="<< Prev Problem" class="StepBackwardButton" Onclick="stepBack_CLick"/>
+        <input id="StepBackward" type="button" value="<< Prev Problem" class="StepBackwardButton" Onclick="stepBack_Click"/>
       <!-- <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
        --> 
     </div>
