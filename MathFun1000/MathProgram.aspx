@@ -6,11 +6,16 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-    <%--<asp:PlaceHolder ID="MenuHolder" runat="server" >--%>
+    <%--<asp:PlaceHolder ID="MenuHolder" runat="server" >
         <div id="menuContainer" class="menuContainer" runat="server">
 
         </div>
-    <%--</asp:PlaceHolder>--%>
+    </asp:PlaceHolder>--%>
+    <asp:Button ID="Books_Button" OnClick="Book_Click" Text="Books" runat="server" />
+    <asp:Button ID="Chapters_Click" OnClick="Chapter_Click" Text="Chapters" runat="server" />
+    <asp:Button ID="Problems_Click" OnClick="Problem_Click" Text="Problems" runat="server" />
+
+
 </asp:Content>
 
 

@@ -135,71 +135,13 @@ function Confirm()
         document.getElementById("row4").onclick = "";
         //rowOne.Enabled = false;
 
-        ////Notify if correct or not.
 
         CurrentRow.style.background = '#74DF00';
 
-        //var rowDiv = document.createElement('div');
-        //rowDiv.setAttribute('class', 'row');
-        //rowDiv.setAttribute('id', 'row' + 1);
-        ////rowDiv.setAttribute('onclick', "highLightBar(" + currentStep + ")");
-        //rowDiv.innerHTML = "Question";
-        //rowDiv.style.textAlign = "center";
-        //rowDiv.style.fontSize = "medium";
-        //rowDiv.style.pointerEvents = "none";
-
-        //var innerRowDiv = document.createElement('div');
-        //innerRowDiv.setAttribute('class', 'insideRow');
-        //innerRowDiv.setAttribute('id', 'innerRow' + 1);
-
-        ////innerRowDiv.appendChild(makeStep());
-        //innerRowDiv.appendChild(makeExample());
-        ////innerRowDiv.appendChild(makeRule());
-        ////alert(document.getElementById("MainContent_innerMain"));
-        //mainAreaTwo.appendChild(rowDiv);
-        //mainAreaTwo.appendChild(innerRowDiv);
-
-        ////if (rulesHidden)
-        ////    $("#rulebox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
-
-        ////if (stepesHidden)
-        ////    $("#stepbox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
-
-
-        //$(rowDiv).slideUp(0);
-        //$(rowDiv).slideDown(500, scrollToBottomOfPage());
-        //setBoxHeights(innerRowDiv);
-
-        //Show next problem button.
-
-
-
-
-
-
-        //Helper Test DELETE AFTER USE.
-        //var rowDiv = document.createElement('div');
-        //rowDiv.setAttribute('class', 'row');
-        //rowDiv.setAttribute('id', 'row' + currentStep);
-        //rowDiv.setAttribute('onclick', "highLightBar(row" + currentStep + "," + currentStep + ")");
-        //rowDiv.innerHTML = "Answer " + currentStep;
-        //rowDiv.style.textAlign = "center";
-        //rowDiv.style.fontSize = "medium";
-
-        //var innerRowDiv = document.createElement('div');
-        //innerRowDiv.setAttribute('class', 'insideRow');
-        //innerRowDiv.setAttribute('id', 'innerRow' + currentStep);
-
-        //innerRowDiv.appendChild(makeExample());
-
-        //mainAreaTwo.appendChild(rowDiv);
-        //mainAreaTwo.appendChild(innerRowDiv);
 
     }
     else //Wrong
     {
-        //window.alert("Wrong Answer");
-
         CurrentRow.style.background = '#DF0101';
     }
 }
@@ -215,10 +157,6 @@ function highLightBar(bar,curStep)
 
     if(curStep == 1)
     {
-        //clear rest of bar's and highlight and make first option current.
-        //rowOne.style.background = '#74DF00';
-
-        //#D0cabf
         rowOne.style.background = '#D0cabf';
         rowTwo.style.background = '#333';
         rowThree.style.background = '#333';
@@ -254,16 +192,6 @@ function highLightBar(bar,curStep)
         CurrentRow = rowFour;
     }
 
-    //if (bar.style.background == 'rgb(116, 223, 0)')
-    //{
-    //    bar.style.background = '#333';
-    //}
-    //else
-    //{
-    //    bar.style.background = '#74DF00';
-    //}
-    
-    //window.alert(CurrentAnswer);
 }
 
 function scrollToBottomOfPage() {
@@ -296,17 +224,6 @@ function setBoxHeights(innerRow) {
     $('#rulebox' + currentStep + ' > p').css('line-height', height - 40 + 'px');
 };
 
-//function makeStep() {
-//    var newDiv = document.createElement('div');
-//    newDiv.setAttribute('id', 'stepbox' + currentStep);
-//    newDiv.setAttribute('class', 'stepbox');
-//    var par = document.createElement('p');
-//    par.textContent = step[currentStep];
-
-//    newDiv.appendChild(par);
-//    return (newDiv);
-//}
-
 function makeExample() {
     var newDiv = document.createElement('div');
     newDiv.setAttribute('id', 'examplebox' + currentStep);
@@ -314,18 +231,6 @@ function makeExample() {
     newDiv.innerHTML = problem.parser();
     return (newDiv);
 }
-
-//function makeRule() {
-//    var newDiv = document.createElement('div');
-//    newDiv.setAttribute('id', 'rulebox' + currentStep);
-//    newDiv.setAttribute('class', 'rulebox');
-//    var par = document.createElement('p');
-//    par.textContent = rule[currentStep];
-
-//    newDiv.appendChild(par);
-
-//    return (newDiv);
-//}
 
 
 function stepForward() {
@@ -359,188 +264,9 @@ function stepBack() {
 
 };
 
-//function hideColumn(col) {
-//    $("." + col + "box").animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 500, function () { });
-
-//    var button = document.getElementById('Hide' + col + 'Column');
-//    button.setAttribute("onclick", "showColumn(\'" + col + "\')");
-//    button.setAttribute("value", "Show " + col + "s");
-
-//    if (col === "step")
-//        stepesHidden = true;
-
-//    if (col === "rule")
-//        rulesHidden = true;
-//}
-
-//function showColumn(col) {
-//    $('.' + col + 'box').animate({ opacity: 1.00, width: "toggle", padding: "toggle" }, 500, function () { });
-//    var button = document.getElementById('Hide' + col + 'Column');
-//    button.setAttribute("onclick", "hideColumn(\'" + col + "\')");
-//    button.setAttribute("value", "Hide " + col + "s");
-
-//    if (col === "step")
-//        stepesHidden = false;
-
-//    if (col === "rule")
-//        rulesHidden = false;
-//}
-
 function accordion(i) {
     $('#row' + i).next().slideToggle(300);
 }
-
-//function tutorialParser() {
-//    resetProblem();
-
-//    problemType.prototype.parser = function () {
-//        var string = "";
-//        string = example[currentStep];
-
-//        //alert(string.indexOf("<answer>"));
-//        //alert(string.indexOf("</answer>"));
-//        if (string.indexOf("<answer>") !== -1) {
-//            //answer = string.substring(string.indexOf("<answer>") + 8, string.indexOf("</answer>"));
-//            //string = string.replace("<answer>" + answer + "</answer>", " <input class=\"answerBox\" id=\"AnswerBox\" type=\"text\" value=\"\" autoComplete=\"off\"/> ");
-//            string = string.replace("<answer>", "");
-//            string = string.replace("</answer>", "");
-
-//            //$("#StepForward").slideUp(500);
-
-//            //$("#AnswerBox").width(25);
-//            //showAnswerBox();
-//            return string;
-//        }
-
-//        return example[currentStep];
-//    }
-//}
-
-//function fillInParser() {
-//    resetProblem();
-
-//    problemType.prototype.parser = function () {
-//        var string = "";
-//        string = example[currentStep];
-
-//        //alert(string.indexOf("<answer>"));
-//        //alert(string.indexOf("</answer>"));
-//        if (string.indexOf("<answer>") !== -1) {
-//            answer = string.substring(string.indexOf("<answer>") + 8, string.indexOf("</answer>"));
-//            //string = string.replace("<answer>" + answer + "</answer>", " <input class=\"answerBox\" id=\"AnswerBox\" type=\"text\" value=\"\" autoComplete=\"off\"/> ");
-//            string = string.replace("<answer>" + answer + "</answer>", "???");
-
-//            $("#StepForward").slideUp(500);
-
-//            $("#AnswerBox").width(25);
-//            showAnswerBox();
-//        }
-
-//        else {
-//            //$("#StepForward").slideDown(500);
-
-//            hideAnswerBox();
-//        }
-
-//        return string;
-//    }
-
-//}
-
-//function unguidedParser() {
-//    resetProblem();
-
-//    var string = "";
-//    string = example[5 - 1];
-//    string = string.replace(/<(?:.|\n)*?>/gm, '');
-//    string = string.replace(/\$/g, '');
-//    string = string.replace(/\\/g, '');
-//    string = string.replace(/\{/g, '');
-//    string = string.replace(/\}/g, '');
-//    string = string.replace(/color/g, '');
-//    string = string.replace(/blue/g, '');
-//    string = string.replace(/red/g, '');
-//    string = string.replace(/green/g, '');
-//    string = string.replace(/ /g, '');
-
-//    //alert(string);
-//    answer = string;
-//    $("#unguidedAnswerLabel").text(string);
-//    $("#unguidedAnswerBox").width(230);
-
-//    $("#StepForward").slideUp(500);
-
-//    showUnguidedAnswerBox();
-
-//    problemType.prototype.parser = function () {
-//        return example[currentStep];
-//    }
-//}
-
-//function showAnswerBox() {
-//    $("#answerArea").slideDown(500);
-//    //$("#AnswerBox").width(answer. * 10);
-//}
-
-//function hideAnswerBox() {
-//    $("#answerArea").slideUp(500);
-//}
-
-//function showUnguidedAnswerBox() {
-//    $("#unguidedAnswerArea").slideDown(500);
-//    //$("#AnswerBox").width(answer. * 10);
-//}
-
-//function hideUnguidedAnswerBox() {
-//    $("#unguidedAnswerArea").slideUp(500);
-//}
-
-
-//function checkAnswer() {
-//    var input = $("#AnswerBox").val();
-
-//    input.replace(/ /g, '');
-
-//    if (input === answer) {
-//        //$("#answerLabel").text("CORRECT!");
-//        hideAnswerBox();
-//        $("#AnswerBox").val("");
-//        //$("#examplebox" + (currentStep - 1)).html(example[currentStep - 1]);
-
-//        //$("#unguidedAnswerArea").slideUp(500);
-
-//        stepForward();
-//    }
-//    else
-//        $("#answerLabel").text("INCORRECT");
-
-//    //alert($("#AnswerBox").val());
-//    //alert(answer);
-//}
-
-//function checkUnguidedAnswer() {
-//    var input = $("#unguidedAnswerBox").val();
-
-//    input.replace(/ /g, '');
-
-//    if (input === answer) {
-//        //$("#answerLabel").text("CORRECT!");
-//        hideAnswerBox();
-//        $("#unguidedAnswerBox").val("");
-//        //$("#examplebox" + (5 - 1)).html(example[5 - 1]);
-
-//        currentStep = 5 - 1;
-
-//        hideUnguidedAnswerBox();
-
-//        stepForward();
-//    }
-//    else
-//        $("#unguidedAnswerLabel").text("INCORRECT");
-
-//    //alert($("#AnswerBox").val());
-//    //alert(answer);
-//}
 
 function resetProblem() {
     //alert(step.length);

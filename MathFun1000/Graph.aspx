@@ -19,6 +19,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+    <asp:Button ID="Books_Button" OnClick="Book_Click" Text="Books" runat="server" />
+    <asp:Button ID="Chapters_Click" OnClick="Chapter_Click" Text="Chapters" runat="server" />
+    <asp:Button ID="Problems_Click" OnClick="Problem_Click" Text="Problems" runat="server" />
     <div class="Instructions" id="instructions" runat="server">
         <p style="font-size:x-large; text-indent:300px; color:white">
         
@@ -96,10 +99,9 @@
     
     <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
 
-        <input id="StepForward" type="button" value="Next Problem >>" class="StepForwardButton" Onclick="stepForward_Click"/>
-        <input id="StepBackward" type="button" value="<< Prev Problem" class="StepBackwardButton" Onclick="stepBack_Click"/>
-      <!-- <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="GoToNextProblem_Click" />
-       --> 
+        <asp:Button ID="GoToPrevProblem" runat="server" Text="Prev Problem" OnClick="stepBack_Click" />
+        <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="stepForward_Click" />
+      
     </div>
 
     <script type="text/javascript" src="Scripts/Graphs.js"></script>

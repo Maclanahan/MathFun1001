@@ -32,7 +32,7 @@ namespace MathFun1000
 
             SetUpButtons();
 
-            SetUpMenu();
+            //SetUpMenu();
 
             convertToJavaScript();
 
@@ -112,21 +112,21 @@ namespace MathFun1000
             arrayData.InnerHtml = script;
         }
 
-        private void SetUpMenu()
-        {
-            var books = new Button { CssClass = "menuButton", Text = "Books" };
-            books.Click += Book_Click;
-            menuContainer.Controls.Add(books);
+        //private void SetUpMenu()
+        //{
+        //    var books = new Button { CssClass = "menuButton", Text = "Books" };
+        //    books.Click += Book_Click;
+        //    menuContainer.Controls.Add(books);
 
-            var chapters = new Button { CssClass = "menuButton", Text = "Chapters" };
-            chapters.Click += Chapter_Click;
-            menuContainer.Controls.Add(chapters);
+        //    var chapters = new Button { CssClass = "menuButton", Text = "Chapters" };
+        //    chapters.Click += Chapter_Click;
+        //    menuContainer.Controls.Add(chapters);
 
 
-            var problems = new Button { CssClass = "menuButton", Text = "Problems" };
-            problems.Click += Problem_Click;
-            menuContainer.Controls.Add(problems);
-        }
+        //    var problems = new Button { CssClass = "menuButton", Text = "Problems" };
+        //    problems.Click += Problem_Click;
+        //    menuContainer.Controls.Add(problems);
+        //}
 
         protected void Book_Click(object sender, EventArgs e)
         {
