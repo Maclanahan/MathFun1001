@@ -13,6 +13,33 @@ namespace MathFun1000 {
     public partial class Graph {
         
         /// <summary>
+        /// Books_Button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Books_Button;
+        
+        /// <summary>
+        /// Chapters_Click control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Chapters_Click;
+        
+        /// <summary>
+        /// Problems_Click control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Problems_Click;
+        
+        /// <summary>
         /// instructions control.
         /// </summary>
         /// <remarks>
