@@ -101,7 +101,7 @@
 
         <asp:Button ID="GoToPrevProblem" runat="server" Text="Prev Problem" OnClick="stepBack_Click" />
         <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="stepForward_Click" />
-        
+      
     </div>
 
     <script type="text/javascript" src="Scripts/Graphs.js"></script>

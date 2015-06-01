@@ -93,6 +93,7 @@ namespace MathFun1000
                 conn.Close();
                 //need to log the exception
                 Console.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine("Error:" + e);
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -104,7 +105,7 @@ namespace MathFun1000
             int i = 0, a = 0;
             int anspos = newGraph.getAnsPos();
             
-            for (i = 0; i < 6; i++) {
+            for (i = 0; i < options.Length; i++) {
                 if (i == anspos) 
                     RadioButtonList1.Items[i].Value = "$$\\color{white}{" + answer + "}$$";
                 else
@@ -195,10 +196,10 @@ namespace MathFun1000
             }
 
             else {
-                //Response.Redirect("ERROR.aspx", false);
+                Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
-        }
+        } //*/
 
         protected void Book_Click(object sender, EventArgs e)
         {
