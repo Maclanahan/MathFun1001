@@ -199,5 +199,20 @@ namespace MathFun1000
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
+
+        protected void Book_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Books.aspx", false);
+        }
+
+        protected void Chapter_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Chapters.aspx?book=" + Request.QueryString["book"], false);
+        }
+
+        protected void Problem_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"], false);
+        }
     }
 }
