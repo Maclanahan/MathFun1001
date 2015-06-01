@@ -12,20 +12,20 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
-using MySql.Data.Common;
+//using MySql.Data.Common;
 using System.Data;
 
 namespace MathFun1000 
 {
     public partial class Graph : System.Web.UI.Page
     {
-        Graphs newGraph;
+        Graphs newGraph = new Graphs();
 
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e) 
         {
             querryDatabase();
-            SetUpButtons();
+            //SetUpButtons();
             int[] xAxis = newGraph.GetX();
             double[] yAxis = newGraph.GetY();
             DrawGraph(xAxis, yAxis);            
@@ -50,17 +50,13 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySqlConnection(connString);
             
-            System.Diagnostics.Debug.WriteLine("ProblemNumber: " + Request.QueryString["problem"]);
-            System.Diagnostics.Debug.WriteLine("ChapterNumber: " + Request.QueryString["chapter"]);
-            System.Diagnostics.Debug.WriteLine("BookId: " + Request.QueryString["book"]);
-            
             if (Request.QueryString.HasKeys())
             {
-                queryStr = "SELECT Option1, Option2, Option3, Option4, Answer"
-                           + "FROM 'graphproblem'"
-                           + "WHERE Book_ID =" + Request.QueryString["book"]
-                           + "AND Chapter_ID =" + Request.QueryString["chapter"]
-                           + "AND Problem_ID =" + Request.QueryString["problem"] + ";";
+                queryStr = "SELECT Option1, Option2, Option3, Option4, Option5, Answer"
+                           + " FROM graphproblem"
+                           + " WHERE Book_ID =" + Request.QueryString["book"]
+                           + " AND Chapter_ID =" + Request.QueryString["chapter"]
+                           + " AND Problem_ID =" + Request.QueryString["problem"] + ";";
             }
             else
                 Response.Redirect("Books.aspx");
@@ -71,16 +67,20 @@ namespace MathFun1000
                     cmd.Prepare();
                     using (MySqlDataReader reader = cmd.ExecuteReader()) 
                     {
-
                         reader.Read();
-                        string[] options = new string[4];
-                        string answer;
+                        String[] options = new String[5];
+                        String answer;
 
-                        options[0] = reader.GetString(1);
-                        options[1] = reader.GetString(2);
-                        options[2] = reader.GetString(3);
-                        options[3] = reader.GetString(4);
-                        answer = reader.GetString(5);
+                        options[0] = reader.GetString(0).ToString();
+                        options[1] = reader.GetString(1).ToString();
+                        options[2] = reader.GetString(2).ToString();
+                        options[3] = reader.GetString(3).ToString();
+                        options[4] = reader.GetString(4).ToString();
+                        answer = reader.GetString(5).ToString();
+
+                        System.Diagnostics.Debug.WriteLine("Options[0]: " + options[0]);
+                        System.Diagnostics.Debug.WriteLine("Answer: " + answer);
+                        
                         newGraph = new Graphs(answer);
                         UpdateLabels(options, answer);
                     }
@@ -93,7 +93,7 @@ namespace MathFun1000
                 conn.Close();
                 //need to log the exception
                 Console.WriteLine(e.Message);
-                Response.Redirect("ERROR.aspx", false);
+                //Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
 
@@ -101,15 +101,15 @@ namespace MathFun1000
 
         protected void UpdateLabels(String[] options, String answer) 
         {
-            int i = 0;
+            int i = 0, a = 0;
             int anspos = newGraph.getAnsPos();
-
-            RadioButtonList1.Items[anspos].Value = "$$\\color{white}{" + answer + "}$$";
-            for (i = 0; i < 5; i++) {
-                if (i == anspos)
-                    i++;
-                RadioButtonList1.Items[i].Value = "$$\\color{white}{" + options[i] + "}$$";
-
+            
+            for (i = 0; i < 6; i++) {
+                if (i == anspos) 
+                    RadioButtonList1.Items[i].Value = "$$\\color{white}{" + answer + "}$$";
+                else
+                    RadioButtonList1.Items[i].Value = "$$\\color{white}{" + options[i] + "}$$";
+                    
             }
         }
 
