@@ -59,10 +59,14 @@ namespace MathFun1000.Account
                         salthashList = new List<String>();
                         nameList = new List<String>();
                     }
+
+                    String userType = reader.GetString(reader.GetOrdinal("UserType"));
+                    typeList.Add(userType);
+
                     String saltHashes = reader.GetString(reader.GetOrdinal("SlowHashSalt"));
                     salthashList.Add(saltHashes);
 
-                    String userName = reader.GetString(reader.GetOrdinal("EmailAddress"));
+                    String userName = reader.GetString(reader.GetOrdinal("UserName"));
                     nameList.Add(userName);
                 }
                 reader.Close();
