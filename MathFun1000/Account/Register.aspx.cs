@@ -42,6 +42,7 @@ namespace MathFun1000.Account
             {
                 methodStatus = false;
             }
+            
             if (methodStatus == true)
             {
                 String uType = "";
@@ -78,7 +79,11 @@ namespace MathFun1000.Account
                 cmd.ExecuteReader();
                 conn.Close();
 
-                lbl_Confirmation.Text = "Congratulations, you are registered!";
+                lbl_Confirmation.Text = "*Congratulations, you are registered!*";
+            }
+            else
+            {
+                lbl_Confirmation.Text = "*Your Account Name and/or E-mail are either taken or not valid.*";
             }
         }
 

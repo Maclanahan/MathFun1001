@@ -153,5 +153,36 @@ namespace MathFun1000
         {
             innerMain.InnerHtml = parase;
         }
+
+        //private void SetUpMenu()
+        //{
+        //    var books = new Button { CssClass = "menuButton", Text = "Books" };
+        //    books.Click += Book_Click;
+        //    menuContainer.Controls.Add(books);
+
+        //    var chapters = new Button { CssClass = "menuButton", Text = "Chapters" };
+        //    chapters.Click += Chapter_Click;
+        //    menuContainer.Controls.Add(chapters);
+
+
+        //    var problems = new Button { CssClass = "menuButton", Text = "Problems" };
+        //    problems.Click += Problem_Click;
+        //    menuContainer.Controls.Add(problems);
+        //}
+
+        protected void Book_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Books.aspx", false);
+        }
+
+        protected void Chapter_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Chapters.aspx?book=" + Request.QueryString["book"], false);
+        }
+
+        protected void Problem_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"], false);
+        }
     }
 }
