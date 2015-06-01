@@ -93,7 +93,7 @@ namespace MathFun1000
                 conn.Close();
                 //need to log the exception
                 Console.WriteLine(e.Message);
-                //Response.Redirect("ERROR.aspx", false);
+                Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
 
@@ -146,7 +146,7 @@ namespace MathFun1000
 
                 if (data.Length > 0)
                         {
-                    Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Response.Redirect("Graph.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
                             Context.ApplicationInstance.CompleteRequest();
                         }
 
@@ -183,7 +183,7 @@ namespace MathFun1000
                 DataRow[] data = handler.Data;
 
                 if (data.Length > 0) {
-                    Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Response.Redirect("Graph.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
 

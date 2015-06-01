@@ -96,6 +96,7 @@
     
     <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
 
+        <asp:Button ID="GoToPrevProblem" runat="server" Text="Prev Problem" OnClick="stepBack_Click" />
         <asp:Button ID="GoToNextProblem" runat="server" Text="Next Problem" OnClick="stepForward_Click" />
         
     </div>
