@@ -9,6 +9,8 @@ function hideAll(num)
 
     $("#addChapter").slideUp(num);
     $("#editChapter").slideUp(num);
+
+    $("#editProblem").slideUp(num);
 }
 
 function getBooks()
@@ -26,7 +28,7 @@ function getBooks()
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            //console.log(data);
 
             $.each(data.d, function (key, value) {
                 $("#bookSelection").append('<option value="' + value[0] + '">' + value[1] + '</option>');
@@ -60,7 +62,7 @@ function getChapters()
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            //console.log(data);
 
             $.each(data.d, function (key, value) {
                 $("#chapterSelection").append('<option value="' + value[0] + '">' + value[1] + '</option>');
@@ -81,7 +83,7 @@ function getProblems()
     hideAll(500);
 
     $("#problem").slideUp(0);
-    //console.log(JSON.stringify({ id: $("#bookSelection").val() }));
+    
     $("#problemSelection").empty();
     $("#problemSelection").append('<option value="-1">Select Problem</option>');
 
@@ -130,7 +132,7 @@ function getSteps()
             $.each(data.d, function (key, value) {
                 var innerRowDiv = document.createElement('div');
                 innerRowDiv.setAttribute('class', 'insideRow');
-
+                innerRowDiv.setAttribute('value', value[0]);
                 innerRowDiv.appendChild(makeControls());
                 innerRowDiv.appendChild(makeStep(value[1]));
                 innerRowDiv.appendChild(makeExample(value[2]));
@@ -160,6 +162,7 @@ function makeControls() {
     
     $(newDiv).append('<input type="button" value="B" onclick="iBold()"/>');
     $(newDiv).append('<input type="button" value="&#920;" onclick="iSymbol()"/>');
+    $(newDiv).append('<input type="button" value="Answer" onclick="iAnswer()"/>');
 
     return (newDiv);
 }
@@ -167,10 +170,10 @@ function makeControls() {
 function makeStep(step) {
     var newDiv = document.createElement('div');
 
-    newDiv.setAttribute('contenteditable', 'true');
+    //newDiv.setAttribute('contenteditable', 'true');
     newDiv.setAttribute('class', 'stepbox');
     var par = document.createElement('p');
-    par.textContent = step;
+    par.innerHTML = step;
 
     newDiv.appendChild(par);
     return (newDiv);
@@ -179,24 +182,60 @@ function makeStep(step) {
 function makeExample(step) {
     var newDiv = document.createElement('div');
 
-    newDiv.setAttribute('contenteditable', 'true');
+    //newDiv.setAttribute('contenteditable', 'true');
     newDiv.setAttribute('class', 'examplebox');
+    //var par = document.createElement('p');
     newDiv.innerHTML = step;
+
+    //newDiv.appendChild(par);
+
     return (newDiv);
 }
 
 function makeRule(step) {
+
     var newDiv = document.createElement('div');
- 
     newDiv.setAttribute('class', 'rulebox');
-    newDiv.setAttribute('contenteditable', 'true');
-    var par = document.createElement('p');
 
-    par.innerText = step;
+    $.ajax({
+        type: "POST",
+        url: "ContentManager.asmx/GetRules",
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            //console.log(data);
 
-    newDiv.appendChild(par);
+            //var newDiv = document.createElement('div');
+            //newDiv.setAttribute('class', 'rulebox');
 
-    return (newDiv);
+            var ruleSelect = document.createElement('select');
+            ruleSelect.setAttribute('class', 'ruleSelector');
+            //$(ruleSelect).append()
+
+            $.each(data.d, function (key, value) {
+                $(ruleSelect).append('<option disabled="true" value="' + value[0] + '">' + value[1] + '</option>');
+            });
+
+            $(ruleSelect).val(step);
+
+            $(newDiv).append(ruleSelect);
+
+            return (newDiv);
+        },
+        error: function (data) {
+            //var newDiv = document.createElement('div');
+           // newDiv.setAttribute('class', 'rulebox');
+
+            //return newDiv;
+        }
+
+    });
+
+    var newDiv = document.createElement('div');
+    newDiv.setAttribute('class', 'rulebox');
+
+    return newDiv;
 }
 
 function addNewBook()
@@ -294,11 +333,50 @@ function updateChapter() {
     }
 }
 
+function updateProblem() {
+    
+    $(".insideRow").each(function () {
+        //console.log($(this).children(".stepbox").children('p').text());
+        //console.log($(this).children(".examplebox").html());
+        //console.log($(this).children(".rulebox").children('select').val());
+        console.log($(this).attr('value'));
+            $.ajax({
+                type: "POST",
+                url: "ContentManager.asmx/UpdateProblem",
+                data: JSON.stringify({
+                    step: $(this).children(".stepbox").children('p').html(),
+                    example: $(this).children(".examplebox").html(),
+                    rule: $(this).children(".rulebox").children('select').val(),
+                    id: $(this).attr('value')
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    
+                },
+                error: function (data) {
+
+                    alert(JSON.parse(data.responseText).Message);
+                    return;
+                }
+            });
+        
+
+    });
+
+    //getProblems();
+    getSteps();
+    
+}
+
+
 function openEdit(select, div, text)
 {
     //console.log($(select).val());
+    $("#addBook").slideUp(500);
 
-    if($(select).val() != -1)
+    if ($(select).val() != -1)
     {
         $(text).val($(select + " option:selected").text());
         $(div).slideDown(500);
@@ -307,6 +385,7 @@ function openEdit(select, div, text)
 
 function openChapterEdit(select, div) {
     //console.log($(select).val());
+    $("#addChapter").slideUp(500);
 
     $.ajax({
         type: "POST",

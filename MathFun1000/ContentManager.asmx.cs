@@ -285,6 +285,56 @@ namespace MathFun1000
             return "Could Not Update " + title.ToString();
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string UpdateProblem(string step, string example, string rule, string id)
+        {
+            System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "UPDATE step SET Info=?step, Example=?example, Rules=?rule WHERE Step_ID=?id";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?step", step));
+            param.Add(new SQLParameters("?example", example));
+            param.Add(new SQLParameters("?rule", rule));
+            param.Add(new SQLParameters("?id", id));
+
+            SQLHandler handler = new SQLHandler(query, param, 4);
+
+            if (handler.executeStatment())
+            {
+
+                return "Success";
+
+            }
+
+            return "Could Not Update " + id.ToString();
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public List<string[]> GetRules()
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "SELECT rule_ID, rule_name from rule ORDER BY rule_ID ASC";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+
+            SQLHandler handler = new SQLHandler(query, param, 0);
+
+            if (handler.executeStatment())
+            {
+
+                DataRow[] data = handler.Data;
+                string[] columns = new string[2] { "rule_ID", "rule_name"};
+                return createStringArray(data, columns);
+
+            }
+
+            return new List<string[]>() ;
+        }
+
         private List<string[]> createStringArray(DataRow[] data, string[] columns)
         {
             List<string[]> list = new List<string[]>();

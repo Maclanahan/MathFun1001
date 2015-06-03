@@ -17,7 +17,7 @@
             <option value="-1">Select Book</option>
         </select>
         <input type="button" value="Edit" onclick="openEdit('#bookSelection','#editBook', '#editBookName')"/>
-        <input type="button" value="+" onclick="$('#addBook').slideDown(500)"/>
+        <input type="button" value="+" onclick="$('#addBook').slideDown(500); $('#editBook').slideUp(500)"/>
         <div id="addBook">
             Title: <input type="text" id="bookName"/><br/>
             <input type="button" value="Cancel" onclick="closeDiv('#addBook')">
@@ -36,7 +36,7 @@
             <option value="-1">Select Chapter</option>
         </select>
         <input type="button" value="Edit" onclick="openChapterEdit('#chapterSelection', '#editChapter')"/>
-        <input type="button" value="+" onclick="$('#addChapter').slideDown(500)"/>
+        <input type="button" value="+" onclick="$('#addChapter').slideDown(500); $('#editChapter').slideUp(500)"/>
         <div id="addChapter">
             Chapter Title: <input type="text" id="chapterName"/><br/>
             Chapter Description: <textarea id="chapterDesc" cols="5" rows="5"></textarea><br/>
@@ -56,15 +56,19 @@
         Problem: <select id="problemSelection" onchange="getSteps()">
             <option value="-1">Select Problem</option>
         </select>
-        <input type="button" value="Edit"/>
+        <input type="button" value="Edit" onclick="makeEditable();"/>
         <input type="button" value="+"/>
+
+        <div id="editProblem">
+            <input type="button" value="Cancel" onclick="$('#editProblem').slideUp(500); makeUnEditable()">
+            <input type="button" value="Save" onclick="updateProblem()">
+        </div>
     </div>
 
     <div id="step" style="visibility:hidden" class="editBox">
-        Step: <select id="stepSelection" style="visibility:hidden">
-            <option value="-1">Select Step</option>
+       
 
-        </select>
+        
     </div>
 
 
