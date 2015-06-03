@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MathFun1000.Account.Login" %>
-<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
+<%--<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>--%>
 
 <asp:Content runat="server" ID="Login1" ContentPlaceHolderID="FeaturedContent" onAuthenticate="Login1_Authenticate">
     <section class="featured">
@@ -13,16 +13,16 @@
                 </p><br />
                 <p>
                     <asp:Label ID="label1" runat="server" Text="UserName:"></asp:Label>
+                    &nbsp;&nbsp;
+                    <asp:TextBox ID="textboxUserName" runat="server"></asp:TextBox>
                 </p>
-                 <p>
-                <asp:TextBox ID="textboxUserName" runat="server"></asp:TextBox>
-                </p>
+                <br />
                 <p>
                     <asp:Label ID="label2" runat="server" Text="Password:"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="textboxPassword" TextMode="Password"  runat="server"></asp:TextBox>
                 </p>
-                <p>
-                <asp:TextBox ID="textboxPassword" TextMode="Password"  runat="server"></asp:TextBox>
-                </p>
+                <br />
                 <p>
                     <asp:Button ID="btnLogIn" runat="server" OnClick="btnLogIn_Click" Text="Log In" />
                 </p>
