@@ -1,19 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoggedInStudent.aspx.cs" Inherits="MathFun1000.LoggedInStudent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="LoggedInStudent.aspx.cs" Inherits="MathFun1000.LoggedInStudent" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-        <asp:Label ID="labelUserNameStudent" runat="server" Text="Label"></asp:Label>
-    
-    </div>
-        <asp:Button ID="btnStudentLogOut" runat="server" OnClick="btnStudentLogOut_Click" Text="Log Out" />
-    </form>
-</body>
-</html>
+<asp:Content runat="server" ID="LoggedInStudent" ContentPlaceHolderID="FeaturedContent">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1><%: Title %></h1>
+            </hgroup>
+                <br>
+                    <asp:Label ID="labelUserNameStudent" runat="server" Text="Label"></asp:Label>
+                    <asp:Button ID="btnStudentLogOut" runat="server" OnClick="btnStudentLogOut_Click" Text="Log Out" />
+                <br />
+        </div>
+    </section>
+</asp:Content>
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+</asp:Content>
