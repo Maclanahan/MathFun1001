@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="LoggedInStudent.aspx.cs" Inherits="MathFun1000.LoggedInStudent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteLoggedIn.Master" CodeBehind="LoggedInStudent.aspx.cs" Inherits="MathFun1000.LoggedInStudent" %>
 
 <asp:Content runat="server" ID="LoggedInStudent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">
