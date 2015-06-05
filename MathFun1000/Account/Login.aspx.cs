@@ -85,12 +85,14 @@ namespace MathFun1000.Account
                                 {
                                     Session["uname"] = nameList[i];
                                     Response.BufferOutput = true;
+                                    FormsAuthentication.RedirectFromLoginPage(nameList[i], true);
                                     Response.Redirect("LoggedInStudent.aspx", false);
                                 }
                                 if (typeList[i] == "Teacher")
                                 {
                                     Session["uname"] = nameList[i];
                                     Response.BufferOutput = true;
+                                    FormsAuthentication.RedirectFromLoginPage(nameList[i], true);
                                     Response.Redirect("LoggedInTeacher.aspx", false);
                                 }
                             }
