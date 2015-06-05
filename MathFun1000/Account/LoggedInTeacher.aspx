@@ -8,10 +8,7 @@
             </hgroup>
                 <br>
                     <asp:Label ID="labelUserNameTeacher" runat="server" Text="Label"></asp:Label>
-                    <a href="AddProblem.aspx">Add Problems</a>
-                    <a href="AddStep.aspx">Add Steps</a>
-                    <a href="DisplayProblems.aspx">Display Problems</a>
-                    <asp:Button ID="Button1" runat="server" OnClick="btnTeacherLogOut_Click" Text="Log Out" />
+                    <a runat="server" class="username" href="~/DisplayProblems" title="Add a Step">View Problems</a>
                 <br />
         </div>
     </section>

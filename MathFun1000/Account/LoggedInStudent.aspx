@@ -7,8 +7,7 @@
                 <h1><%: Title %></h1>
             </hgroup>
                 <br>
-                    <asp:Label ID="labelUserNameStudent" runat="server" Text="Label"></asp:Label>
-                    <asp:Button ID="btnStudentLogOut" runat="server" OnClick="btnStudentLogOut_Click" Text="Log Out" />
+                    <asp:Label ID="labelTest" runat="server" Text="Label"></asp:Label>
                 <br />
         </div>
     </section>

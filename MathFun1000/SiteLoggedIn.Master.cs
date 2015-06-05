@@ -22,11 +22,20 @@ namespace MathFun1000
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
-
+        private String StudentName;
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
-            //None
+            StudentName = (String)Session["uname"];
+            if (StudentName == null)
+            {
+                Response.BufferOutput = true;
+                Response.Redirect("LogIn.aspx", false);
+            }
+            //else
+            //{
+            //    label_UserName.Text = "Welcome, " + StudentName;
+            //}
         }
 
         //On page initiation this event handler is called
@@ -84,7 +93,10 @@ namespace MathFun1000
 
         protected void btn_Logout_Click(object sender, EventArgs e)
         {
-
+            Session["uname"] = null;
+            Session.Abandon();
+            Response.BufferOutput = true;
+            Response.Redirect("LogIn.aspx", false);
         }
 
 

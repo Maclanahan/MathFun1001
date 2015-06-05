@@ -48,8 +48,7 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
-                                <asp:Button ID="btn_Manage" runat="server" Height="30px" OnClick="btn_Manage_Click" Text="Manage" Width="62px" Font-Size="11pt" />
-                                <asp:Button ID="btn_Logout" runat="server" Height="16px" OnClick="btn_Logout_Click" Text="Button" Width="62px" />
+                                <asp:Button ID="btn_Logout" runat="server" Height="30px" OnClick="btn_Logout_Click" Text="Log Out" Width="90px" Font-Size="11pt" />
                                 <%--<li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>--%>
                                 <%--<li><a id="loginLink" runat="server" href="~/Account/Login">Log Out</a></li>--%>
                             </ul>
@@ -60,7 +59,6 @@
                                     <asp:LoginName runat="server" CssClass="username" /></a>!
                                 <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
                                 <br/><br/>
-                                <a runat="server" class="username" href="~/DisplayProblems" title="Add a Step">View Problems</a>
                             </p>
                         </LoggedInTemplate>
                     </asp:LoginView>
@@ -84,7 +82,7 @@
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy; <%--Framework Scripts--%>- MathFun1000</p>
+                <p>&copy; <%--Site Scripts--%>- MathFun1000</p>
             </div>
         </div>
     </footer>

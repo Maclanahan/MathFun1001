@@ -20,7 +20,7 @@ namespace MathFun1000
             }
             else
             {
-                labelUserNameStudent.Text = "Welcome, " + StudentName;
+                labelTest.Text = "Welcome, " + StudentName;
             }
         }
 
