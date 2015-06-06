@@ -13,15 +13,6 @@ namespace MathFun1000.Account {
     public partial class LoggedInTeacher {
         
         /// <summary>
-        /// formTeacher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formTeacher;
-        
-        /// <summary>
         /// labelUserNameTeacher control.
         /// </summary>
         /// <remarks>
@@ -29,14 +20,5 @@ namespace MathFun1000.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelUserNameTeacher;
-        
-        /// <summary>
-        /// btnTeacherLogOut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTeacherLogOut;
     }
 }
