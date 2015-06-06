@@ -20,19 +20,35 @@ function iItalic()
     document.execCommand('italic', false, null);
 }
 
-function iSymbol() {
-    document.execCommand('insertHTML', false, "&#920;");
+function iSymbol(symbol) {
+    document.execCommand('insertHTML', false, symbol);
 }
 
-function iSymbol() {
-    document.execCommand('insertHTML', false, "&#920;");
-}
 
 function iAnswer() {
 
-    var answer = "<u><answer>" + getSelectedText() + "</answer></u>";
+    var answer = "<answer>" + getSelectedText() + "</answer>";
 
     document.execCommand('insertHTML', false, answer);
+}
+
+function removeAnswer() {
+
+    var answer = getSelectedText();
+
+    document.execCommand('insertHTML', false, answer);
+}
+
+function addColor(color)
+{
+    var select = "\\\\color{" + color + "}{" + getSelectedText() + "}";
+
+    document.execCommand('insertText', false, select);
+}
+
+function removeColor()
+{
+
 }
 
 function getSelectedText()
@@ -49,6 +65,7 @@ function makeEditable()
 {
     if ($("#problemSelection").val() != -1) {
         $("#editProblem").slideDown(500);
+        $(".controlBox").slideDown(500);
 
         $(".stepbox").attr('contenteditable', 'true');
         $(".examplebox").attr('contenteditable', 'true');
@@ -62,6 +79,7 @@ function makeEditable()
 
 function makeUnEditable()
 {
+    $(".controlBox").slideUp(500);
     $(".stepbox").attr('contenteditable', 'false');
     $(".examplebox").attr('contenteditable', 'false');
     //$(".rulebox").attr('contenteditable', 'false');

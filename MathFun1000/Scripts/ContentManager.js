@@ -143,7 +143,7 @@ function getSteps()
                 
                 i++;
             });
-
+            $(".controlBox").slideUp(0);
             $("#step").slideDown(500);
             $("#step").css('visibility', '');
         },
@@ -161,8 +161,18 @@ function makeControls() {
     newDiv.setAttribute('class', 'controlBox');
     
     $(newDiv).append('<input type="button" value="B" onclick="iBold()"/>');
-    $(newDiv).append('<input type="button" value="&#920;" onclick="iSymbol()"/>');
+    $(newDiv).append('<input type="button" value="I" onclick="iItalic()"/>');
+    $(newDiv).append('<input type="button" value="&#920;" onclick="iSymbol(' + "'&#920;'" + ')"/>');
+    $(newDiv).append('<input type="button" value="&pi;" onclick="iSymbol(' + "'&pi;'" + ')"/>');
+    $(newDiv).append('<input type="button" value="&radic;" onclick="iSymbol(' + "'&radic;'" + ')"/>');
+    $(newDiv).append('<input type="button" value="&le;" onclick="iSymbol(' + "'&le;'" + ')"/>');
+    $(newDiv).append('<input type="button" value="&ge;" onclick="iSymbol(' + "'&ge;'" + ')"/>');
+    $(newDiv).append('<input type="button" value="Red" onclick="addColor(' + "'red'" + ')"/>');
+    $(newDiv).append('<input type="button" value="Blue" onclick="addColor(' + "'blue'" + ')"/>');
+    $(newDiv).append('<input type="button" value="Green" onclick="addColor(' + "'green'" + ')"/>');
+    $(newDiv).append('<br/>');
     $(newDiv).append('<input type="button" value="Answer" onclick="iAnswer()"/>');
+    $(newDiv).append('<input type="button" value="Remove Answer" onclick="removeAnswer()"/>');
 
     return (newDiv);
 }
