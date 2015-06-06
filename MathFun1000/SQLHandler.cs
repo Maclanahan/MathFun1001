@@ -18,6 +18,12 @@ namespace MathFun1000
         List<List<string>> results;
         int totalVars;
 
+        string idOfLastInsert = "";
+        public string IDofLastInsert
+        {
+            get { return idOfLastInsert; }
+        }
+
         DataRow[] data;
         public DataRow[] Data
         {
@@ -74,24 +80,7 @@ namespace MathFun1000
                     dt.Load(cmd.ExecuteReader());
 
                     data = dt.AsEnumerable().ToArray();
-
-                    //using (var reader = cmd.ExecuteReader())
-                    //{
-                        
-                    //    while (reader.Read())
-                    //    {
-                    //        List<string> list = new List<string>();
-
-                    //        for(int i = 0; i < totalVars; i++)
-                    //        {
-                    //            list.Add(reader.GetString(i));
-                    //        }
-
-                    //        results.Add(list);
-                    //    }
-                            
-                    //}
-
+                    idOfLastInsert = cmd.LastInsertedId.ToString();
                     con.Close();
                     return true;
                 }

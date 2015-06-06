@@ -313,6 +313,56 @@ namespace MathFun1000
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string AddProblem(string chapter, string type)
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "INSERT INTO problem SET Chapter_ID=?chapter, Type_ID=?type";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", chapter));
+            param.Add(new SQLParameters("?type", type));
+
+            SQLHandler handler = new SQLHandler(query, param, 2);
+
+            if (handler.executeStatment())
+            {
+
+                return handler.IDofLastInsert;
+
+            }
+
+            return "Could Not Add Problem ";
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string AddStep(string step, string example, string rule, string problem)
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "INSERT INTO step SET Problem_ID=?problem, Info=?step, Example=?example, Rules=?rule";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?problem", problem));
+            param.Add(new SQLParameters("?step", step));
+            param.Add(new SQLParameters("?example", example));
+            param.Add(new SQLParameters("?rule", rule));
+
+            SQLHandler handler = new SQLHandler(query, param, 4);
+
+            if (handler.executeStatment())
+            {
+
+                return handler.IDofLastInsert;
+
+            }
+
+            return "Could Not Add Problem ";
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public List<string[]> GetRules()
         {
             //System.Diagnostics.Debug.WriteLine(id);
@@ -334,6 +384,8 @@ namespace MathFun1000
 
             return new List<string[]>() ;
         }
+
+
 
         private List<string[]> createStringArray(DataRow[] data, string[] columns)
         {

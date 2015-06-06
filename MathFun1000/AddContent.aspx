@@ -56,12 +56,17 @@
         Problem: <select id="problemSelection" onchange="getSteps()">
             <option value="-1">Select Problem</option>
         </select>
-        <input type="button" value="Edit" onclick="makeEditable();"/>
-        <input type="button" value="+"/>
+        <input type="button" value="Edit" onclick="makeEditable('#editProblem');"/>
+        <input type="button" value="+" onclick="addProblem()"/>
 
         <div id="editProblem">
             <input type="button" value="Cancel" onclick="$('#editProblem').slideUp(500); makeUnEditable()">
             <input type="button" value="Save" onclick="updateProblem()">
+        </div>
+
+        <div id="addProblem">
+            <input type="button" value="Cancel" onclick="$('#addProblem').slideUp(500); makeUnEditable(); $('#step').slideUp(500)">
+            <input type="button" value="Add" onclick="addProblemToDatabase()">
         </div>
     </div>
 

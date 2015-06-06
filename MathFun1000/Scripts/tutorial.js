@@ -106,7 +106,7 @@ function makeStep()
     newDiv.setAttribute('id', 'stepbox'+ currentStep);
     newDiv.setAttribute('class', 'stepbox');
     var par = document.createElement('p');
-    par.textContent = step[currentStep];
+    par.innerHTML = step[currentStep];
 
     newDiv.appendChild(par);
     return (newDiv);
@@ -217,8 +217,15 @@ function tutorialParser()
 
         if (string.indexOf("<answer>") !== -1)
         {
-            string = string.replace("<answer>", "");
-            string = string.replace("</answer>", "");
+            string = string.replace(/<answer>/g, '');
+            string = string.replace(/<\/answer>/g, '');
+            string = string.replace(/<u>/g, '');
+            string = string.replace(/<\/u>/g, '');
+            string = string.replace(/<i>/g, '');
+            string = string.replace(/<\/i>/g, '');
+            string = string.replace(/<b>/g, '');
+            string = string.replace(/<\/b>/g, '');
+            string = string.replace(/&nbsp;/g, '');
 
             return string;
         }
@@ -238,8 +245,20 @@ function fillInParser()
 
         if (string.indexOf("<answer>") !== -1)
         {
+            //string = string.replace("<u>", "");
+            //string = string.replace("</u>", "");
             answer = string.substring(string.indexOf("<answer>") + 8, string.indexOf("</answer>"));
             string = string.replace("<answer>" + answer + "</answer>", "???");
+            
+            string = string.replace(/<answer>/g, '');
+            string = string.replace(/<\/answer>/g, '');
+            string = string.replace(/<u>/g, '');
+            string = string.replace(/<\/u>/g, '');
+            string = string.replace(/<i>/g, '');
+            string = string.replace(/<\/i>/g, '');
+            string = string.replace(/<b>/g, '');
+            string = string.replace(/<\/b>/g, '');
+            string = string.replace(/&nbsp;/g, '');
 
             $("#StepForward").slideUp(500);
 
@@ -273,6 +292,20 @@ function unguidedParser()
     string = string.replace(/red/g, '');
     string = string.replace(/green/g, '');
     string = string.replace(/ /g, '');
+    string = string.replace(/<answer>/g, '');
+    string = string.replace(/<\/answer>/g, '');
+    string = string.replace(/<u>/g, '');
+    string = string.replace(/<\/u>/g, '');
+    string = string.replace(/<i>/g, '');
+    string = string.replace(/<\/i>/g, '');
+    string = string.replace(/<b>/g, '');
+    string = string.replace(/<\/b>/g, '');
+    string = string.replace(/&nbsp;/g, '');
+
+    string = string.replace("<answer>", "");
+    string = string.replace("</answer>", "");
+    string = string.replace("<u>", "");
+    string = string.replace("</u>", "");
 
     answer = string;
     $("#unguidedAnswerLabel").text(string);

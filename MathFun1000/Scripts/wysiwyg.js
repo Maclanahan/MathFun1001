@@ -27,7 +27,7 @@ function iSymbol(symbol) {
 
 function iAnswer() {
 
-    var answer = "<answer>" + getSelectedText() + "</answer>";
+    var answer = "<u><answer>" + getSelectedText() + "</answer></u>";
 
     document.execCommand('insertHTML', false, answer);
 }
@@ -61,20 +61,22 @@ function getSelectedText()
     return "";
 }
 
-function makeEditable()
+function makeEditable(type)
 {
-    if ($("#problemSelection").val() != -1) {
-        $("#editProblem").slideDown(500);
+    //if ($("#problemSelection").val() != -1) {
+        $(type).slideDown(500);
         $(".controlBox").slideDown(500);
 
         $(".stepbox").attr('contenteditable', 'true');
         $(".examplebox").attr('contenteditable', 'true');
         //$(".rulebox").attr('contenteditable', 'true');
 
-        $(".ruleSelector").children('option').each(function () {
-            $(this).removeAttr('disabled');
-        });
-    }
+        $(".ruleSelector").removeAttr("disabled");
+
+        //$(".ruleSelector").children('option').each(function () {
+        //    $(this).removeAttr('disabled');
+        //});
+    //}
 }
 
 function makeUnEditable()
@@ -84,7 +86,9 @@ function makeUnEditable()
     $(".examplebox").attr('contenteditable', 'false');
     //$(".rulebox").attr('contenteditable', 'false');
 
-    $(".ruleSelector").children('option').each(function () {
-        $(this).attr('disabled');
-    });
+    $(".ruleSelector").attr("disabled", "true");
+
+    //$(".ruleSelector").children('option').each(function () {
+    //    $(this).attr('disabled');
+    //});
 }

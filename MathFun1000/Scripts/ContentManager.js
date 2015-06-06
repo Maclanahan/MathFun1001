@@ -10,6 +10,7 @@ function hideAll(num)
     $("#addChapter").slideUp(num);
     $("#editChapter").slideUp(num);
 
+    $("#addProblem").slideUp(num);
     $("#editProblem").slideUp(num);
 }
 
@@ -143,6 +144,7 @@ function getSteps()
                 
                 i++;
             });
+            makeUnEditable();
             $(".controlBox").slideUp(0);
             $("#step").slideDown(500);
             $("#step").css('visibility', '');
@@ -171,7 +173,7 @@ function makeControls() {
     $(newDiv).append('<input type="button" value="Blue" onclick="addColor(' + "'blue'" + ')"/>');
     $(newDiv).append('<input type="button" value="Green" onclick="addColor(' + "'green'" + ')"/>');
     $(newDiv).append('<br/>');
-    $(newDiv).append('<input type="button" value="Answer" onclick="iAnswer()"/>');
+    $(newDiv).append('<input type="button" value="Insert Answer" onclick="iAnswer()"/>');
     $(newDiv).append('<input type="button" value="Remove Answer" onclick="removeAnswer()"/>');
 
     return (newDiv);
@@ -207,6 +209,10 @@ function makeRule(step) {
     var newDiv = document.createElement('div');
     newDiv.setAttribute('class', 'rulebox');
 
+    var ruleSelect = document.createElement('select');
+    ruleSelect.setAttribute('class', 'ruleSelector');
+    ruleSelect.setAttribute('disabled', 'true');
+
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetRules",
@@ -219,12 +225,12 @@ function makeRule(step) {
             //var newDiv = document.createElement('div');
             //newDiv.setAttribute('class', 'rulebox');
 
-            var ruleSelect = document.createElement('select');
-            ruleSelect.setAttribute('class', 'ruleSelector');
+            
             //$(ruleSelect).append()
 
             $.each(data.d, function (key, value) {
-                $(ruleSelect).append('<option disabled="true" value="' + value[0] + '">' + value[1] + '</option>');
+                //$(ruleSelect).append('<option disabled="true" value="' + value[0] + '">' + value[1] + '</option>');
+                $(ruleSelect).append('<option value="' + value[0] + '">' + value[1] + '</option>');
             });
 
             $(ruleSelect).val(step);
@@ -242,8 +248,8 @@ function makeRule(step) {
 
     });
 
-    var newDiv = document.createElement('div');
-    newDiv.setAttribute('class', 'rulebox');
+
+    $(newDiv).append(ruleSelect);
 
     return newDiv;
 }
@@ -415,6 +421,113 @@ function openChapterEdit(select, div) {
             //console.log(data);
         }
     });
+}
+
+function addProblem()
+{
+    hideAll(500);
+    $("#problemSelection").val(-1);
+    $("#addProblem").slideDown(500);
+
+
+    $("#step").slideUp(0);
+    $("#step").empty();
+    $("#step").append("<div id='rowArea'> </div>");
+    $("#step").append("<input type='button' value='+' onclick='addRow()'/>");
+
+    addRow();
+    makeEditable("#addProblem");
+    $("#step").css('visibility', '');
+    $("#step").slideDown(500);
+}
+
+function addRow()
+{
+    var innerRowDiv = document.createElement('div');
+    innerRowDiv.setAttribute('class', 'insideRow');
+    //innerRowDiv.setAttribute('value', value[0]);
+    innerRowDiv.appendChild(makeControls());
+    innerRowDiv.appendChild(makeStep("Step Goes Here"));
+    innerRowDiv.appendChild(makeExample("$$ Example Goes Here $$"));
+    innerRowDiv.appendChild(makeRule("1"));
+
+    $("#rowArea").append(innerRowDiv);
+    $(innerRowDiv).slideUp(0);
+    $(innerRowDiv).slideDown(500);
+
+    makeEditable();
+    
+}
+
+function addProblemToDatabase()
+{
+    //$(".insideRow").each(function () {
+        //console.log($(this).children(".stepbox").children('p').text());
+        //console.log($(this).children(".examplebox").html());
+        //console.log($("#chapterSelection").val());
+        //console.log($(this).attr('value'));
+        $.ajax({
+            type: "POST",
+            url: "ContentManager.asmx/AddProblem",
+            data: JSON.stringify({
+                //step: $(this).children(".stepbox").children('p').html(),
+                //example: $(this).children(".examplebox").html(),
+                //rule: $(this).children(".rulebox").children('select').val(),
+                chapter: $("#chapterSelection").val(),
+                type: 1
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                addStepsToDatabase(data.d);
+            },
+            error: function (data) {
+
+                alert(JSON.parse(data.responseText).Message);
+                return;
+            }
+        });
+
+
+    //});
+
+    //getSteps();
+}
+
+function addStepsToDatabase(id)
+{
+    $(".insideRow").each(function () {
+        console.log($(this).children(".stepbox").children('p').text());
+        console.log($(this).children(".examplebox").html());
+        console.log(id);
+        //console.log($(this).attr('value'));
+        $.ajax({
+            type: "POST",
+            url: "ContentManager.asmx/AddStep",
+            data: JSON.stringify({
+                step: $(this).children(".stepbox").children('p').html(),
+                example: $(this).children(".examplebox").html(),
+                rule: $(this).children(".rulebox").children('select').val(),
+                problem: id
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                //addStepsToDatabase(data.d);
+            },
+            error: function (data) {
+
+                alert(JSON.parse(data.responseText).Message);
+                return;
+            }
+        });
+    });
+
+    getSteps();
 }
 
 function closeDiv(object)
