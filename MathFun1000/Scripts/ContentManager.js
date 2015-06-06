@@ -95,10 +95,10 @@ function getProblems()
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            //console.log(data);
+            console.log(data);
             var i = 1;
             $.each(data.d, function (key, value) {
-                $("#problemSelection").append('<option value="' + value[0] + '">Problem ' + i + '</option>');
+                $("#problemSelection").append('<option value="' + value[0] + '" data-type="' + value[1] + '">Problem ' + i + '</option>');
                 i++;
             });
 
@@ -120,7 +120,22 @@ function getSteps()
     $("#step").slideUp(0);
     $("#step").empty();
     
+    //console.log($("#problemSelection" + " option:selected").attr('data-type'));
+    if ($("#problemSelection" + " option:selected").attr('data-type') == 1)
+        getDefaultProblem();
 
+    else if ($("#problemSelection" + " option:selected").attr('data-type') == 3)
+        getMultipleChoice();
+
+    else if ($("#problemSelection" + " option:selected").attr('data-type') == 2)
+        getGraph();
+
+    else
+        alert("There has been an error.");
+}
+
+function getDefaultProblem()
+{
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetSteps",
@@ -140,8 +155,8 @@ function getSteps()
                 innerRowDiv.appendChild(makeRule(value[3]));
 
                 $("#step").append(innerRowDiv);
-                
-                
+
+
                 i++;
             });
             makeUnEditable();
@@ -153,8 +168,40 @@ function getSteps()
             //console.log(data);
         }
     });
+}
 
-    
+function getMultipleChoice()
+{
+    console.log($("#problemSelection").val());
+
+    $.ajax({
+        type: "POST",
+        url: "ContentManager.asmx/GetMultipleChoice",
+        data: JSON.stringify({ id: $("#problemSelection").val() }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $("#step").append("Question: <br/><textarea disabled width='200px'>" + data.d[0][6] + "</textarea><br/>");
+            $("#step").append("Option 1: <br/><textarea disabled width='200px'>" + data.d[0][1] + "</textarea><br/>");
+            $("#step").append("Option 2: <br/><textarea disabled width='200px'>" + data.d[0][2] + "</textarea><br/>");
+            $("#step").append("Option 3: <br/><textarea disabled width='200px'>" + data.d[0][3] + "</textarea><br/>");
+            $("#step").append("Option 4: <br/><textarea disabled width='200px'>" + data.d[0][4] + "</textarea><br/>");
+            $("#step").append("Answer: <br/><textarea disabled width='200px'>" + data.d[0][5] + "</textarea><br/>");
+
+
+            $("#step").slideDown(500);
+            $("#step").css('visibility', '');
+        },
+        error: function (data) {
+            //console.log(data);
+        }
+    });
+}
+
+function getGraph()
+{
+
 }
 
 function makeControls() {
@@ -461,25 +508,17 @@ function addRow()
 
 function addProblemToDatabase()
 {
-    //$(".insideRow").each(function () {
-        //console.log($(this).children(".stepbox").children('p').text());
-        //console.log($(this).children(".examplebox").html());
-        //console.log($("#chapterSelection").val());
-        //console.log($(this).attr('value'));
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/AddProblem",
             data: JSON.stringify({
-                //step: $(this).children(".stepbox").children('p').html(),
-                //example: $(this).children(".examplebox").html(),
-                //rule: $(this).children(".rulebox").children('select').val(),
                 chapter: $("#chapterSelection").val(),
                 type: 1
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                //console.log(data);
 
                 addStepsToDatabase(data.d);
             },
@@ -489,11 +528,6 @@ function addProblemToDatabase()
                 return;
             }
         });
-
-
-    //});
-
-    //getSteps();
 }
 
 function addStepsToDatabase(id)
@@ -515,7 +549,7 @@ function addStepsToDatabase(id)
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                //console.log(data);
 
                 //addStepsToDatabase(data.d);
             },
@@ -527,7 +561,36 @@ function addStepsToDatabase(id)
         });
     });
 
+    getProblems();
     getSteps();
+}
+
+function deleteProblem()
+{
+    if($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?")){
+        $.ajax({
+            type: "POST",
+            url: "ContentManager.asmx/DeleteProblem",
+            data: JSON.stringify({
+                problem: $("#problemSelection").val()
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                //console.log(data);
+
+                //addStepsToDatabase(data.d);
+            },
+            error: function (data) {
+
+                alert(JSON.parse(data.responseText).Message);
+                return;
+            }
+        });
+        
+    }
+
+    getProblems();
 }
 
 function closeDiv(object)

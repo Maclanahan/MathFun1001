@@ -58,6 +58,7 @@
         </select>
         <input type="button" value="Edit" onclick="makeEditable('#editProblem');"/>
         <input type="button" value="+" onclick="addProblem()"/>
+        <input type="button" value="Delete" onclick="deleteProblem()"/>
 
         <div id="editProblem">
             <input type="button" value="Cancel" onclick="$('#editProblem').slideUp(500); makeUnEditable()">

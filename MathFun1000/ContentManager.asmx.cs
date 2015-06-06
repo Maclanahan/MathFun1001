@@ -190,6 +190,37 @@ namespace MathFun1000
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public List<string[]> GetMultipleChoice(string id)
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "SELECT mcpID, answer1, answer2, answer3, answer4, correct_answer, question FROM mcproblems"
+                            + " WHERE Problem_ID = ?problem";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?problem", id));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+                string[] columns = new string[7] { "mcpID", "answer1", "answer2", "answer3", "answer4", "correct_answer", "question" };
+                return createStringArray(data, columns);
+
+            }
+
+            else
+            {
+                //Response.Redirect("ERROR.aspx", false);
+                //Context.ApplicationInstance.CompleteRequest();
+            }
+
+            return null;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string AddBook(string title)
         {
             //System.Diagnostics.Debug.WriteLine(id);
@@ -359,6 +390,38 @@ namespace MathFun1000
             }
 
             return "Could Not Add Problem ";
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string DeleteProblem(string problem)
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "DELETE FROM problem WHERE Problem_ID=?problem";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?problem", problem));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                //return "success";
+
+                string queryInner = "DELETE FROM step WHERE Problem_ID=?problem";
+
+                List<SQLParameters> paramInner = new List<SQLParameters>();
+                paramInner.Add(new SQLParameters("?problem", problem));
+
+                SQLHandler handlerInner = new SQLHandler(queryInner, paramInner, 1);
+                if (handlerInner.executeStatment())
+                {
+                    return "success";
+                }
+            }
+
+            return "Could Not Delete Problem ";
         }
 
         [WebMethod]
