@@ -11,6 +11,8 @@ namespace MathFun1000
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["uname"] = null;
+            Session["userType"] = null;
             Session.Abandon();
             Response.Redirect("Default.aspx", false);
         }
