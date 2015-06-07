@@ -20,7 +20,8 @@ namespace MathFun1000.Account
             }
             else
             {
-                labelUserNameTeacher.Text = TeacherName;
+                //labelUserNameTeacher.Text = TeacherName;
+                Response.Redirect("~/", false);
             }
         }
 

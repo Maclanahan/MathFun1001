@@ -3,52 +3,40 @@
 
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1><%--<asp:RequiredFieldValidator ID ="confirmPasswordReq" runat="server" ErrorMessage="Confirm Password is required!" SetFocusOnError="true" />--%></h1>
-            </hgroup>
-            <div>
-                
-                <p>
-                    <asp:Label ID="Label1" runat="server" Text="User Name: "></asp:Label>
+        <fieldset class="content-wrapper">
+            <ol> 
+                <li>
+                    <asp:Label ID="Label1" runat="server" Text="User Name: " ForeColor="Black"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="textboxUserName" runat="server" Height="24px" Width="302px"></asp:TextBox>
-                </p>
-                <p>
-                    &nbsp;</p>
-                <br />
-                <p>
-                    <asp:Label ID="Label2" runat="server" Text="Email Address: "></asp:Label>
+                </li>
+                <li>
+                    <asp:Label ID="Label2" runat="server" Text="Email Address: " ForeColor="Black"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="textboxEmailAddress" runat="server" Height="24px" Width="300px"></asp:TextBox>
-                </p>
-                <br />
-                <p>
-                    <asp:Label ID="Label3" runat="server" Text="Password: "></asp:Label>
+                </li>
+                <li>
+                    <asp:Label ID="Label3" runat="server" Text="Password: " ForeColor="Black"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="textboxPassword" TextMode="Password" runat="server" Height="24px" Width="300px"></asp:TextBox>
-                </p>
-                <br />
-                <p>
-                    <asp:Label ID="Label4" runat="server" Text="Confirm Password: "></asp:Label>
+                </li>
+                <li>
+                    <asp:Label ID="Label4" runat="server" Text="Confirm Password: " ForeColor="Black"></asp:Label>
                     &nbsp;
                     <asp:TextBox ID="textboxConfirmPassword" TextMode="Password" runat="server" Height="24px" Width="300px"></asp:TextBox>
-                </p>
-                    <asp:RadioButtonList ID="rbList_uType" runat="server" ForeColor="Black" Height="16px" Width="117px">
+                    <asp:RadioButtonList ID="rbList_uType" runat="server" ForeColor="Black" Height="16px" Width="117px" RepeatDirection="Horizontal">
                         <asp:ListItem Text="Student" Value="Student"></asp:ListItem>
                         <asp:ListItem Text="Teacher" Value="Teacher"></asp:ListItem>
                     </asp:RadioButtonList>
-                <br />
-                <br />
-                <p>
+                </li>
+                <li>
                     <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Register" />
-                </p>
-                <%--http://www.java2s.com/Tutorial/ASP.NET/0160__Validation/UseCompareValidatortocheckpasswordfieldandconfirmpasswordfield.htm--%>
-                <p>
+                </li>
+                <li>
                     <asp:Label ID="lbl_Confirmation" runat="server"></asp:Label>
-                </p>
-                </div>
-        </div>
+                </li>
+            </ol>
+        </fieldset>
     </section>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">

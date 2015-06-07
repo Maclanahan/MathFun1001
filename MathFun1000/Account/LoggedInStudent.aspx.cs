@@ -20,8 +20,10 @@ namespace MathFun1000
             }
             else
             {
-                labelTest.Text = "Welcome, " + StudentName;
+                //labelTest.Text = "Welcome, " + StudentName;
+                Response.Redirect("~/", false);
             }
+            
         }
 
         protected void btnStudentLogOut_Click(object sender, EventArgs e)
