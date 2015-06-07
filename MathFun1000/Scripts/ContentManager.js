@@ -136,6 +136,7 @@ function getSteps()
 
 function getDefaultProblem()
 {
+    
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetSteps",
@@ -158,8 +159,9 @@ function getDefaultProblem()
 
 
                 i++;
+                $("#cancelProblemButton").attr("onclick", "$('#editProblem').slideUp(500); uneditDefault()");
             });
-            makeUnEditable();
+            makeUnEditable("default");
             $(".controlBox").slideUp(0);
             $("#step").slideDown(500);
             $("#step").css('visibility', '');
@@ -172,8 +174,8 @@ function getDefaultProblem()
 
 function getMultipleChoice()
 {
-    console.log($("#problemSelection").val());
-
+    //console.log($("#problemSelection").val());
+    
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetMultipleChoice",
@@ -192,6 +194,7 @@ function getMultipleChoice()
 
             $("#step").slideDown(500);
             $("#step").css('visibility', '');
+            $("#cancelProblemButton").attr("onclick", "$('#editProblem').slideUp(500); uneditMultipleChoice()");
         },
         error: function (data) {
             //console.log(data);
@@ -201,7 +204,33 @@ function getMultipleChoice()
 
 function getGraph()
 {
+    
 
+    $.ajax({
+        type: "POST",
+        url: "ContentManager.asmx/GetGraph",
+        data: JSON.stringify({ id: $("#problemSelection").val() }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            //console.log(data);
+            $("#step").append("Option 1: <br/><textarea id='option1' class='g' disabled width='200px'>" + data.d[0][1] + "</textarea><br/>");
+            $("#step").append("Option 2: <br/><textarea id='option2' class='g' disabled width='200px'>" + data.d[0][2] + "</textarea><br/>");
+            $("#step").append("Option 3: <br/><textarea id='option3' class='g' disabled width='200px'>" + data.d[0][3] + "</textarea><br/>");
+            $("#step").append("Option 4: <br/><textarea id='option4' class='g' disabled width='200px'>" + data.d[0][4] + "</textarea><br/>");
+            $("#step").append("Option 5: <br/><textarea id='option5' class='g' disabled width='200px'>" + data.d[0][5] + "</textarea><br/>");
+            $("#step").append("Answer: (Please keep in y=mx+b form. ie: y=2x^3+4) <br/><textarea id='answer' class='g' disabled width='200px'>" + data.d[0][6] + "</textarea><br/>");
+
+
+            $("#step").slideDown(500);
+            $("#step").css('visibility', '');
+            $("#cancelProblemButton").attr("onclick", "$('#editProblem').slideUp(500); uneditGraph()");
+        },
+        error: function (data) {
+            //console.log(data);
+            alert("There has been a server error. We aplogize for the inconvenience");
+        }
+    });
 }
 
 function makeControls() {
@@ -449,13 +478,6 @@ function updateDefault()
 
 function updateMultipleChoice()
 {
-    //console.log($("#question").val());
-    //console.log($("#option1").val());
-    //console.log($("#option2").val());
-    //console.log($("#option3").val());
-    //console.log($("#option4").val());
-    //console.log($("#answer").val());
-
     if (!checkMultipleChoice())
     {
         return;
@@ -477,7 +499,8 @@ function updateMultipleChoice()
         dataType: "json",
         success: function (data) {
             console.log(data);
-
+            //hideAll(500);
+            $("#step").slideUp(500, getSteps);
         },
         error: function (data) {
 
@@ -503,7 +526,31 @@ function checkMultipleChoice()
 
 function updateGraph()
 {
+    $.ajax({
+        type: "POST",
+        url: "ContentManager.asmx/UpdateGraph",
+        data: JSON.stringify({
+            option1: $("#option1").val(),
+            option2: $("#option2").val(),
+            option3: $("#option3").val(),
+            option4: $("#option4").val(),
+            option5: $("#option5").val(),
+            answer: $("#answer").val(),
+            id: $("#problemSelection").val()
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            //hideAll(500);
+            $("#step").slideUp(500, getSteps);
+        },
+        error: function (data) {
 
+            alert(JSON.parse(data.responseText).Message);
+            return;
+        }
+    });
 }
 
 function openEdit(select, div, text)
@@ -545,6 +592,7 @@ function openChapterEdit(select, div) {
 function addProblem()
 {
     hideAll(500);
+    $("#step").slideUp(500);
     $("#problemSelection").val(-1);
     $("#addProblem").slideDown(500);
 
@@ -578,6 +626,7 @@ function addDefault()
     $("#step").slideDown(500);
 
     $("#addProblemButton").attr("onclick", "addDefaultToDatabase()");
+    
 }
 
 function addMultipleChoice()
@@ -589,7 +638,7 @@ function addMultipleChoice()
     $("#step").slideUp(0);
     $("#step").empty();
 
-    $("#step").append("Question: <br/><textarea id='question' class='mc' disabled width='200px'>" + "</textarea><br/>");
+    $("#step").append("Question: <br/><textarea id='question' class='mc' disabled width='200px'>" +"</textarea><br/>");
     $("#step").append("Option 1: <br/><textarea id='option1' class='mc' disabled width='200px'>" + "</textarea><br/>");
     $("#step").append("Option 2: <br/><textarea id='option2' class='mc' disabled width='200px'>" + "</textarea><br/>");
     $("#step").append("Option 3: <br/><textarea id='option3' class='mc' disabled width='200px'>" + "</textarea><br/>");
@@ -601,11 +650,31 @@ function addMultipleChoice()
     $("#step").slideDown(500);
 
     $("#addProblemButton").attr("onclick", "addMultipleChoiceToDatabase()");
+    $("#cancelProblemButton").attr("onclick", "uneditMultipleChoice()");
 }
 
 function addGraph()
 {
 
+    $("#problemSelection").val(-1);
+    $("#addProblem").slideDown(500);
+
+    $("#step").slideUp(0);
+    $("#step").empty();
+
+    $("#step").append("Option 1: <br/><textarea id='option1' class='g' disabled width='200px'>" + "</textarea><br/>");
+    $("#step").append("Option 2: <br/><textarea id='option2' class='g' disabled width='200px'>" + "</textarea><br/>");
+    $("#step").append("Option 3: <br/><textarea id='option3' class='g' disabled width='200px'>" + "</textarea><br/>");
+    $("#step").append("Option 4: <br/><textarea id='option4' class='g' disabled width='200px'>" + "</textarea><br/>");
+    $("#step").append("Option 5: <br/><textarea id='option5' class='g' disabled width='200px'>" + "</textarea><br/>");
+    $("#step").append("Answer: <br/><textarea id='answer' class='g' disabled width='200px'>" + "</textarea><br/>");
+
+    makeEditable("graph");
+    $("#step").css('visibility', '');
+    $("#step").slideDown(500);
+
+    $("#addProblemButton").attr("onclick", "addGraphToDatabase()");
+    $("#cancelProblemButton").attr("onclick", "uneditGraph()");
 }
 
 function addRow()
@@ -682,13 +751,15 @@ function addMultipleChoiceToDatabase()
             option4: $("#option4").val(),
             answer: $("#answer").val(),
             id: $("#chapterSelection").val(),
+            book: $("#bookSelection").val(),
             type: "3"
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
             console.log(data);
-
+            getProblems();
+            $("#step").slideUp(500);
         },
         error: function (data) {
 
@@ -700,7 +771,33 @@ function addMultipleChoiceToDatabase()
 
 function addGraphToDatabase()
 {
+    
+    $.ajax({
+        type: "POST",
+        url: "ContentManager.asmx/AddGraph",
+        data: JSON.stringify({
+            option1: $("#option1").val(),
+            option2: $("#option2").val(),
+            option3: $("#option3").val(),
+            option4: $("#option4").val(),
+            option5: $("#option5").val(),
+            answer: $("#answer").val(),
+            id: $("#chapterSelection").val(),
+            type: "2"
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            getProblems();
+            $("#step").slideUp(500);
+        },
+        error: function (data) {
 
+            alert(JSON.parse(data.responseText).Message);
+            return;
+        }
+    });
 }
 
 function addStepsToDatabase(id)
@@ -797,7 +894,8 @@ function deleteMultipleChoice()
             dataType: "json",
             success: function (data) {
                 //console.log(data);
-
+                getProblems();
+                $("#step").slideUp(500);
                 //addStepsToDatabase(data.d);
             },
             error: function (data) {
@@ -809,13 +907,36 @@ function deleteMultipleChoice()
 
     }
 
-    getProblems();
-    $("#step").slideUp(500);
+    
 }
 
 function deleteGraph()
 {
+    if ($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?")) {
+        $.ajax({
+            type: "POST",
+            url: "ContentManager.asmx/DeleteGraph",
+            data: JSON.stringify({
+                problem: $("#problemSelection").val()
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                //console.log(data);
+                getProblems();
+                $("#step").slideUp(500);
+                //addStepsToDatabase(data.d);
+            },
+            error: function (data) {
 
+                alert(JSON.parse(data.responseText).Message);
+                return;
+            }
+        });
+
+    }
+
+    
 }
 
 function closeDiv(object)

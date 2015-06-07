@@ -99,12 +99,23 @@ function editMultipleChoice()
 
 function editGraph()
 {
-
+    $(".g").removeAttr("disabled");
+    $("#option1").focus();
+    $("#option1").select();
 }
 
-function makeUnEditable()
+function makeUnEditable(type)
 {
-    
+    $(type).slideDown(500);
+
+    if ($("#problemSelection" + " option:selected").attr('data-type') == 1 || type == "default")
+        uneditDefault();
+
+    else if ($("#problemSelection" + " option:selected").attr('data-type') == 3 || type == "multiplechoice")
+        uneditMultipleChoice();
+
+    else if ($("#problemSelection" + " option:selected").attr('data-type') == 2 || type == "graph")
+        uneditGraph();
 }
 
 function uneditDefault()
@@ -112,17 +123,16 @@ function uneditDefault()
     $(".controlBox").slideUp(500);
     $(".stepbox").attr('contenteditable', 'false');
     $(".examplebox").attr('contenteditable', 'false');
-    //$(".rulebox").attr('contenteditable', 'false');
 
     $(".ruleSelector").attr("disabled", "true");
 }
 
 function uneditMultipleChoice()
 {
-
+    $(".mc").attr("disabled", "true");
 }
 
 function uneditGraph()
 {
-
+    $(".g").attr("disabled", "true");
 }
