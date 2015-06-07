@@ -13,6 +13,8 @@ namespace MathFun1000
         {
             Session["uname"] = null;
             Session["userType"] = null;
+            Session.Clear();
+            Session.RemoveAll();
             Session.Abandon();
             Response.Redirect("Default.aspx", false);
         }

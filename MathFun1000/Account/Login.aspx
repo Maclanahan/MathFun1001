@@ -26,9 +26,9 @@
                 <p>
                     <asp:Button ID="btnLogIn" runat="server" OnClick="btnLogIn_Click" Text="Log In" />
                 </p>
-                <br><p>
+                <p>
                     <asp:Label ID="lbl_Confirmation" runat="server"></asp:Label>
-                </p><br />
+                </p>
 
         </div>
     </section>

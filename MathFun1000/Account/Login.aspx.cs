@@ -112,7 +112,7 @@ namespace MathFun1000.Account
                         }
                         else
                         {
-                            lbl_Confirmation.Text = "User not authenticated";
+                            lbl_Confirmation.Text = "*User and/or Password is not valid*";
                         }
                     }
                 }
