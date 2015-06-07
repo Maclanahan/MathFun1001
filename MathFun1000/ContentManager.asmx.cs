@@ -344,6 +344,81 @@ namespace MathFun1000
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string UpdateMultipleChoice(string question, string option1, string option2, string option3, string option4, string answer, string id)
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            //string query = "UPDATE mcproblems SET answer1=?a1, answer2=?a2, answer3=?a3, answer4=?a4, correct_answer=?ca question=?q WHERE Problem_ID=?id";
+            string query = "UPDATE mcproblems SET answer1=?a1, answer2=?a2, answer3=?a3, answer4=?a4, correct_answer=?ca, question=?q WHERE Problem_ID=?id";
+            //string query = "SELECT * FROM mcproblems";
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?a1", option1));
+            param.Add(new SQLParameters("?a2", option2));
+            param.Add(new SQLParameters("?a3", option3));
+            param.Add(new SQLParameters("?a4", option4));
+            param.Add(new SQLParameters("?ca", answer));
+            param.Add(new SQLParameters("?q", question));
+            param.Add(new SQLParameters("?id", id));
+
+            SQLHandler handler = new SQLHandler(query, param, 7);
+
+            if (handler.executeStatment())
+            {
+
+                return "Success";
+
+            }
+
+            return "Could Not Update " + id.ToString();
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string AddMultipleChoice(string question, string option1, string option2, string option3, string option4, string answer, string id, string type)
+        {
+            string query = "INSERT INTO problem SET Chapter_ID=?chapter, Type_ID=?type";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", id));
+            param.Add(new SQLParameters("?type", type));
+
+            SQLHandler handler = new SQLHandler(query, param, 2);
+
+            if (handler.executeStatment())
+            {
+
+                //handler.IDofLastInsert;
+                string queryInner = "INSERT INTO mcproblems SET answer1=?a1, answer2=?a2, answer3=?a3, answer4=?a4, correct_answer=?ca, question=?q, Problem_ID=?id";
+                //string query = "SELECT * FROM mcproblems";
+                List<SQLParameters> paramInner = new List<SQLParameters>();
+                paramInner.Add(new SQLParameters("?a1", option1));
+                paramInner.Add(new SQLParameters("?a2", option2));
+                paramInner.Add(new SQLParameters("?a3", option3));
+                paramInner.Add(new SQLParameters("?a4", option4));
+                paramInner.Add(new SQLParameters("?ca", answer));
+                paramInner.Add(new SQLParameters("?q", question));
+                paramInner.Add(new SQLParameters("?id", handler.IDofLastInsert));
+
+                SQLHandler handlerInner = new SQLHandler(queryInner, paramInner, 7);
+
+                if (handlerInner.executeStatment())
+                {
+
+                    return "Success";
+
+                }
+
+                return "Could Not Update " + id.ToString();
+
+
+            }
+
+            return "Could Not Add Problem ";
+
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string AddProblem(string chapter, string type)
         {
             //System.Diagnostics.Debug.WriteLine(id);
@@ -365,6 +440,7 @@ namespace MathFun1000
 
             return "Could Not Add Problem ";
         }
+
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -410,6 +486,38 @@ namespace MathFun1000
                 //return "success";
 
                 string queryInner = "DELETE FROM step WHERE Problem_ID=?problem";
+
+                List<SQLParameters> paramInner = new List<SQLParameters>();
+                paramInner.Add(new SQLParameters("?problem", problem));
+
+                SQLHandler handlerInner = new SQLHandler(queryInner, paramInner, 1);
+                if (handlerInner.executeStatment())
+                {
+                    return "success";
+                }
+            }
+
+            return "Could Not Delete Problem ";
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string DeleteMultipleChoice(string problem)
+        {
+            //System.Diagnostics.Debug.WriteLine(id);
+
+            string query = "DELETE FROM problem WHERE Problem_ID=?problem";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?problem", problem));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                //return "success";
+
+                string queryInner = "DELETE FROM mcproblems WHERE Problem_ID=?problem";
 
                 List<SQLParameters> paramInner = new List<SQLParameters>();
                 paramInner.Add(new SQLParameters("?problem", problem));

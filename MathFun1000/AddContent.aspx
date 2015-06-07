@@ -66,8 +66,11 @@
         </div>
 
         <div id="addProblem">
+            Default: <input type="radio" id="default" name="probType" value="default" onchange="addDefault()"/><br/>
+            Multiple Choice: <input type="radio" id="multiplechoice" name="probType" value="Multiple Choice" onclick="addMultipleChoice()"/><br/>
+            Graph: <input type="radio" id="graph" name="probType" value="Graph" onclick="addGraph()"/><br/>
             <input type="button" value="Cancel" onclick="$('#addProblem').slideUp(500); makeUnEditable(); $('#step').slideUp(500)">
-            <input type="button" value="Add" onclick="addProblemToDatabase()">
+            <input type="button" id="addProblemButton" value="Add" onclick="addProblemToDatabase()">
         </div>
     </div>
 

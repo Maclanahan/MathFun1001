@@ -63,23 +63,51 @@ function getSelectedText()
 
 function makeEditable(type)
 {
-    //if ($("#problemSelection").val() != -1) {
-        $(type).slideDown(500);
-        $(".controlBox").slideDown(500);
+    $(type).slideDown(500);
 
-        $(".stepbox").attr('contenteditable', 'true');
-        $(".examplebox").attr('contenteditable', 'true');
-        //$(".rulebox").attr('contenteditable', 'true');
+    if ($("#problemSelection" + " option:selected").attr('data-type') == 1 || type == "default")
+        editDefault();
 
-        $(".ruleSelector").removeAttr("disabled");
+    else if ($("#problemSelection" + " option:selected").attr('data-type') == 3 || type == "multiplechoice")
+        editMultipleChoice();
 
-        //$(".ruleSelector").children('option').each(function () {
-        //    $(this).removeAttr('disabled');
-        //});
-    //}
+    else if ($("#problemSelection" + " option:selected").attr('data-type') == 2 || type == "graph")
+        editGraph();
+
+    //else
+        //alert("There has been an error.");
+}
+
+function editDefault()
+{
+    
+    $(".controlBox").slideDown(500);
+
+    $(".stepbox").attr('contenteditable', 'true');
+    $(".examplebox").attr('contenteditable', 'true');
+    //$(".rulebox").attr('contenteditable', 'true');
+
+    $(".ruleSelector").removeAttr("disabled");
+}
+
+function editMultipleChoice()
+{
+    $(".mc").removeAttr("disabled");
+    $("#question").focus();
+    $("#question").select();
+}
+
+function editGraph()
+{
+
 }
 
 function makeUnEditable()
+{
+    
+}
+
+function uneditDefault()
 {
     $(".controlBox").slideUp(500);
     $(".stepbox").attr('contenteditable', 'false');
@@ -87,8 +115,14 @@ function makeUnEditable()
     //$(".rulebox").attr('contenteditable', 'false');
 
     $(".ruleSelector").attr("disabled", "true");
+}
 
-    //$(".ruleSelector").children('option').each(function () {
-    //    $(this).attr('disabled');
-    //});
+function uneditMultipleChoice()
+{
+
+}
+
+function uneditGraph()
+{
+
 }
