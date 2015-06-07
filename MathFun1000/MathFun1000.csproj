@@ -219,6 +219,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Account\LoggedInStudent.aspx" />
+    <Content Include="logout.aspx" />
     <Content Include="MathProgram.aspx" />
     <Content Include="Multi.aspx" />
     <Content Include="MultipleChoice.aspx" />
@@ -399,6 +400,13 @@
     </Compile>
     <Compile Include="Account\LoggedInStudent.aspx.designer.cs">
       <DependentUpon>LoggedInStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="MathProgram.aspx.cs">
       <DependentUpon>MathProgram.aspx</DependentUpon>
