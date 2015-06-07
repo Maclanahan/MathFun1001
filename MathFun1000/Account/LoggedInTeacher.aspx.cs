@@ -20,14 +20,15 @@ namespace MathFun1000.Account
             }
             else
             {
-                //labelUserNameTeacher.Text = TeacherName;
+               
                 Response.Redirect("~/", false);
             }
         }
 
-        protected void btnTeacherLogOut_Click(object sender, EventArgs e)
+        public void btnTeacherLogOut_Click(object sender, EventArgs e)
         {
             Session["uname"] = null;
+            Session["userType"] = null;
             Session.Abandon();
             Response.BufferOutput = true;
             Response.Redirect("LogIn.aspx", false);

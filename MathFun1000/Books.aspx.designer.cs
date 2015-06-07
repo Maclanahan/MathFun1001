@@ -13,6 +13,15 @@ namespace MathFun1000 {
     public partial class Books {
         
         /// <summary>
+        /// BookTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BookTitle;
+        
+        /// <summary>
         /// ButtonHolder control.
         /// </summary>
         /// <remarks>
@@ -20,14 +29,5 @@ namespace MathFun1000 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder ButtonHolder;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

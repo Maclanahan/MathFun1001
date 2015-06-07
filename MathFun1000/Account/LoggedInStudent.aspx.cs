@@ -26,9 +26,10 @@ namespace MathFun1000
             
         }
 
-        protected void btnStudentLogOut_Click(object sender, EventArgs e)
+        public void btnStudentLogOut_Click(object sender, EventArgs e)
         {
             Session["uname"] = null;
+            Session["userType"] = null;
             Session.Abandon();
             Response.BufferOutput = true;
             Response.Redirect("LogIn.aspx", false);

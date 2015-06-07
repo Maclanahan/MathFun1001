@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MathFun1000
-{
-
-
-    public partial class SiteMaster
-    {
-
+namespace MathFun1000 {
+    
+    
+    public partial class SiteMaster {
+        
         /// <summary>
         /// HeadContent control.
         /// </summary>
@@ -22,7 +20,25 @@ namespace MathFun1000
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
-
+        
+        /// <summary>
+        /// menu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
+        
+        /// <summary>
+        /// xx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor xx;
+        
         /// <summary>
         /// FeaturedContent control.
         /// </summary>
@@ -31,7 +47,7 @@ namespace MathFun1000
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder FeaturedContent;
-
+        
         /// <summary>
         /// MainContent control.
         /// </summary>

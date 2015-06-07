@@ -29,8 +29,25 @@ namespace MathFun1000
             StudentName = (String)Session["uname"];
             if (StudentName == null)
             {
+                FindControl("xx").Visible = false;
                 Response.BufferOutput = true;
                 Response.Redirect("LogIn.aspx", false);
+            }
+
+            if (Session["userType"] != null)
+            {
+                if (Session["userType"].Equals("Teacher"))
+                {
+                    FindControl("xx").Visible = true;
+                }
+                else
+                {
+                    FindControl("xx").Visible = false;
+                }
+            }
+            else
+            {
+                FindControl("xx").Visible = false;
             }
             //else
             //{
@@ -68,6 +85,23 @@ namespace MathFun1000
                 Response.Cookies.Set(responseCookie);
             }
 
+            if (Session["userType"] != null)
+            {
+                if (Session["userType"].Equals("Teacher"))
+                {
+                    FindControl("xx").Visible = true;
+                }
+                else
+                {
+                    FindControl("xx").Visible = false;
+                }
+            }
+            else
+            {
+                FindControl("xx").Visible = false;
+            }
+            
+            
             Page.PreLoad += MasterPagePreLoad;
         }
 
@@ -91,9 +125,10 @@ namespace MathFun1000
             }
         }
 
-        protected void btn_Logout_Click(object sender, EventArgs e)
+        public void btn_Logout_Click(object sender, EventArgs e)
         {
             Session["uname"] = null;
+            Session["userType"] = null;
             Session.Abandon();
             Response.BufferOutput = true;
             Response.Redirect("LogIn.aspx", false);

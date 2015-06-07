@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Web.UI.HtmlControls;
 
 namespace MathFun1000.Account
 {
@@ -93,6 +94,7 @@ namespace MathFun1000.Account
                                 if (typeList[i] == "Student")
                                 {
                                     Session["uname"] = nameList[i];
+                                    Session["userType"] = "Student";
                                     Response.BufferOutput = true;
                                     FormsAuthentication.RedirectFromLoginPage(nameList[i], true);
                                     Response.Redirect("LoggedInStudent.aspx", false);
@@ -100,6 +102,8 @@ namespace MathFun1000.Account
                                 if (typeList[i] == "Teacher")
                                 {
                                     Session["uname"] = nameList[i];
+                                    Session["userType"] = "Teacher";
+
                                     Response.BufferOutput = true;
                                     FormsAuthentication.RedirectFromLoginPage(nameList[i], true);
                                     Response.Redirect("LoggedInTeacher.aspx", false);
@@ -115,7 +119,7 @@ namespace MathFun1000.Account
             }
             catch (Exception ex)
             {
-                lbl_Confirmation.Text = "E: User not authenticated";
+                lbl_Confirmation.Text = "E: ERROR";
             }
         }
 

@@ -6,14 +6,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
- 
+<h1 runat="server" id="BookTitle" class="pageTitle">Books</h1>
 
 </asp:Content>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:PlaceHolder ID="ButtonHolder" runat="server">
-        <asp:Label ID="Label1" runat="server" Text="Books"></asp:Label><br/>
 
     </asp:PlaceHolder>
     

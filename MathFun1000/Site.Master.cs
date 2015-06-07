@@ -13,6 +13,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace MathFun1000
@@ -26,7 +27,21 @@ namespace MathFun1000
         //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
-            //None
+            if (Session["uname"] != null)
+            {
+                if (Session["userType"].Equals("Teacher"))
+                {
+                    FindControl("xx").Visible = true;
+                }
+                else
+                {
+                    FindControl("xx").Visible = false;
+                }
+            }
+            else
+            {
+                FindControl("xx").Visible = false;
+            }
         }
 
         //On page initiation this event handler is called
@@ -59,6 +74,22 @@ namespace MathFun1000
                 Response.Cookies.Set(responseCookie);
             }
 
+            if (Session["userType"] != null)
+            {
+                if (Session["userType"].Equals("Teacher"))
+                {
+                    FindControl("xx").Visible = true;
+                }
+                else
+                {
+                    FindControl("xx").Visible = false;
+                }
+            }
+            else
+            {
+                FindControl("xx").Visible = false;
+            }
+
             Page.PreLoad += MasterPagePreLoad;
         }
 
@@ -82,6 +113,5 @@ namespace MathFun1000
             }
         }
 
-        
     }
 }
