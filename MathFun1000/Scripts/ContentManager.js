@@ -115,11 +115,16 @@ function getProblems()
 
 function getSteps()
 {
+
+
     hideAll(500);
 
     $("#step").slideUp(0);
     $("#step").empty();
     
+    if ($("#problemSelection").val() == -1)
+        return;
+
     //console.log($("#problemSelection" + " option:selected").attr('data-type'));
     if ($("#problemSelection" + " option:selected").attr('data-type') == 1)
         getDefaultProblem();
@@ -783,6 +788,7 @@ function addGraphToDatabase()
             option5: $("#option5").val(),
             answer: $("#answer").val(),
             id: $("#chapterSelection").val(),
+            book: $("#bookSelection").val(),
             type: "2"
         }),
         contentType: "application/json; charset=utf-8",

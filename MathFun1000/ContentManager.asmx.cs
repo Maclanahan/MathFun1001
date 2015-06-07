@@ -486,7 +486,8 @@ namespace MathFun1000
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string AddGraph(string option1, string option2, string option3, string option4, string option5, string answer, string id, string type)
+        public string AddGraph(string option1, string option2, string option3, string option4, string option5, string answer,
+            string id, string book, string type)
         {
             string query = "INSERT INTO problem SET Chapter_ID=?chapter, Type_ID=?type";
 
@@ -500,7 +501,8 @@ namespace MathFun1000
             {
 
                 //handler.IDofLastInsert;
-                string queryInner = "INSERT INTO graphproblem SET Option1=?a1, Option2=?a2, Option3=?a3, Option4=?a4, Option5=?a5, Answer=?ca, Problem_ID=?id";
+                string queryInner = "INSERT INTO graphproblem SET Option1=?a1, Option2=?a2, Option3=?a3, Option4=?a4, Option5=?a5,"
+                                    + " Answer=?ca, Problem_ID=?id, Book_ID=?book, Chapter_ID=?chapter";
                 //string query = "SELECT * FROM mcproblems";
                 List<SQLParameters> paramInner = new List<SQLParameters>();
                 paramInner.Add(new SQLParameters("?a1", option1));
@@ -510,6 +512,8 @@ namespace MathFun1000
                 paramInner.Add(new SQLParameters("?a5", option5));
                 paramInner.Add(new SQLParameters("?ca", answer));
                 paramInner.Add(new SQLParameters("?id", handler.IDofLastInsert));
+                paramInner.Add(new SQLParameters("?chapter", id));
+                paramInner.Add(new SQLParameters("?book", book));
 
                 SQLHandler handlerInner = new SQLHandler(queryInner, paramInner, 7);
 
