@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,7 +17,7 @@ namespace MathFun1000
         protected void Page_Load(object sender, EventArgs e)
         {
             querryDatabase();
-
+            SetUpButtons();
             GenerateCode();
         }
 
@@ -152,6 +153,129 @@ namespace MathFun1000
         private void ParseForInput(string parase)
         {
             innerMain.InnerHtml = parase;
+        }
+
+        //Set up basic buttons for the problem
+        private void SetUpButtons()
+        {
+            var buttonForward = new Button { CssClass = "StepForwardButton", Text = "Next Problem >>" };
+            buttonForward.Click += StepForwardButton_Click;
+            buttons.Controls.Add(buttonForward);
+
+            var buttonBack = new Button { CssClass = "button", Text = "<< Prev Problem" };
+            buttonBack.Click += StepBackwardButton_Click;
+            buttons.Controls.Add(buttonBack);
+
+        }
+
+        //Event handler for next button
+        protected void StepForwardButton_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT Problem_ID, Type_ID FROM `problem`"
+                    + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
+                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " ORDER BY Problem_ID ASC;";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+            
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+                
+
+                if (data.Length > 0)
+                {
+                    string page = "About.aspx";
+
+                    if (data[0]["Type_ID"].ToString() == "1")
+                        page = "MathProgram.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "2")
+                        page = "Graph.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "3")
+                        page = "Multi.aspx";
+
+                   
+
+                    Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+
+        }
+
+        protected void StepBackwardButton_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT Problem_ID, Type_ID FROM `problem`"
+                    + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
+                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " ORDER BY Problem_ID DESC;";
+
+            List<SQLParameters> param = new List<SQLParameters>();
+            param.Add(new SQLParameters("?chapter", Request.QueryString["chapter"]));
+            param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
+
+            SQLHandler handler = new SQLHandler(query, param, 1);
+
+            if (handler.executeStatment())
+            {
+                DataRow[] data = handler.Data;
+
+
+
+                if (data.Length > 0)
+                {
+
+                    string page = "About.aspx";
+
+                    if (data[0]["Type_ID"].ToString() == "1")
+                        page = "MathProgram.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "2")
+                        page = "Graph.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "3")
+                        page = "Multi.aspx";
+
+                    //System.Diagnostics.Debug.WriteLine("Options[0]: " + page);
+
+                    Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("HereUp");
+                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
+
+            else
+            {
+                Response.Redirect("ERROR.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+
         }
 
         protected void Book_Click(object sender, EventArgs e)

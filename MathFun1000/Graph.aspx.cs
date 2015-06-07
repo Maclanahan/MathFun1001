@@ -130,7 +130,7 @@ namespace MathFun1000
         //Event handler for next button
         protected void stepForward_Click(object sender, EventArgs e)
         {
-            string query = "SELECT Problem_ID FROM `problem`"
+            string query = "SELECT Problem_ID, Type_ID FROM `problem`"
                     + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
                     + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID ASC;";
@@ -140,24 +140,36 @@ namespace MathFun1000
             param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
 
             SQLHandler handler = new SQLHandler(query, param, 1);
-
+           
             if (handler.executeStatment())
-                        {
+            {
                 DataRow[] data = handler.Data;
+                
 
                 if (data.Length > 0)
-                        {
-                    Response.Redirect("Graph.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                {
+                    string page = "About.aspx";
 
-                        else
-                        {
-                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                    if (data[0]["Type_ID"].ToString() == "1")
+                        page = "MathProgram.aspx";
 
+                    else if (data[0]["Type_ID"].ToString() == "2")
+                        page = "Graph.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "3")
+                        page = "Multi.aspx";
+
+                    Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
+
+                else
+                {
+                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
 
             else
             {
@@ -169,7 +181,7 @@ namespace MathFun1000
 
         protected void stepBack_Click(object sender, EventArgs e) 
         {
-            string query = "SELECT Problem_ID FROM `problem`"
+            string query = "SELECT Problem_ID, Type_ID FROM `problem`"
                     + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
                     + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID DESC;";
@@ -180,22 +192,41 @@ namespace MathFun1000
 
             SQLHandler handler = new SQLHandler(query, param, 1);
 
-            if (handler.executeStatment()) {
+            if (handler.executeStatment())
+            {
                 DataRow[] data = handler.Data;
 
-                if (data.Length > 0) {
-                    Response.Redirect("Graph.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                if (data.Length > 0)
+                {
+
+                    string page = "About.aspx";
+
+                    if (data[0]["Type_ID"].ToString() == "1")
+                        page = "MathProgram.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "2")
+                        page = "Graph.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "3")
+                        page = "Multi.aspx";
+
+                    //System.Diagnostics.Debug.WriteLine("Options[0]: " + page);
+
+                    Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
 
-                else {
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("HereUp");
                     Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
 
             }
 
-            else {
+            else
+            {
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }

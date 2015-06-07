@@ -56,9 +56,9 @@
 
         <div class="innerMain" id="innerMain" runat="server">
             
-            <div class="buttons" id="buttons" runat="server" >
+            <%--<div class="buttons" id="buttons" runat="server" >
                 
-            </div>
+            </div>--%>
                
         </div>
 
@@ -103,12 +103,13 @@
 
         <div class="innerMain" id="innerMain0" runat="server">
             
-            <div class="buttons" id="buttons0" runat="server" >
-                
-            </div>
                
         </div>
 
         
+    </div>
+
+    <div class="buttons" id="buttons" runat="server" >
+                
     </div>
     </asp:Content>

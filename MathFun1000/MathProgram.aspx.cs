@@ -159,7 +159,7 @@ namespace MathFun1000
         //Event handler for next button
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
-            string query = "SELECT Problem_ID FROM `problem`"
+            string query = "SELECT Problem_ID, Type_ID FROM `problem`"
                     + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
                     + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID ASC;";
@@ -169,24 +169,38 @@ namespace MathFun1000
             param.Add(new SQLParameters("?problem", Request.QueryString["problem"]));
 
             SQLHandler handler = new SQLHandler(query, param, 1);
-
+            
             if (handler.executeStatment())
-                        {
+            {       
                 DataRow[] data = handler.Data;
+                
 
                 if (data.Length > 0)
-                        {
-                    Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                {
+                    string page = "About.aspx";
 
-                        else
-                        {
-                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                    if (data[0]["Type_ID"].ToString() == "1")
+                        page = "MathProgram.aspx";
 
+                    else if (data[0]["Type_ID"].ToString() == "2")
+                        page = "Graph.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "3")
+                        page = "Multi.aspx";
+
+                    
+
+                    Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
+
+                else
+                {
+                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+
+            }
 
             else
             {
@@ -198,7 +212,7 @@ namespace MathFun1000
 
         protected void StepBackwardButton_Click(object sender, EventArgs e)
         {
-            string query = "SELECT Problem_ID FROM `problem`"
+            string query = "SELECT Problem_ID, Type_ID FROM `problem`"
                     + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
                     + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
                     + " ORDER BY Problem_ID DESC;";
@@ -213,17 +227,34 @@ namespace MathFun1000
                         {
                 DataRow[] data = handler.Data;
 
-                if (data.Length > 0)
-                        {
-                    Response.Redirect("MathProgram.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                
 
-                        else
-                        {
-                            Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                if (data.Length > 0)
+                {
+                    
+                    string page = "About.aspx";
+
+                    if (data[0]["Type_ID"].ToString() == "1")
+                        page = "MathProgram.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "2")
+                        page = "Graph.aspx";
+
+                    else if (data[0]["Type_ID"].ToString() == "3")
+                        page = "Multi.aspx";
+
+                    //System.Diagnostics.Debug.WriteLine("Options[0]: " + page);
+
+                    Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
+                    Context.ApplicationInstance.CompleteRequest();
+                 }
+
+                 else
+                    {
+                        System.Diagnostics.Debug.WriteLine("HereUp");
+                        Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                        Context.ApplicationInstance.CompleteRequest();
+                    }
 
                 }
 
@@ -233,6 +264,11 @@ namespace MathFun1000
                 Context.ApplicationInstance.CompleteRequest();
             }
 
+        }
+
+        private void MessageBox(string message, string title = "title")
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), title, "alert('" + message + "');", true);
         }
     }
 }
