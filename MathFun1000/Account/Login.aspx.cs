@@ -14,9 +14,18 @@ namespace MathFun1000.Account
         MySql.Data.MySqlClient.MySqlCommand cmd;
         MySql.Data.MySqlClient.MySqlDataReader reader;
         String queryStr;
+        String CurrentName;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           //if (Session["uname"] != null)
+           // {
+           //     Session["uname"] = null;
+           //     Session.Abandon();
+           //     Response.BufferOutput = true;
+           //     Response.Redirect("LogIn.aspx", false);
+           // }
+
             RegisterHyperLink.NavigateUrl = "Register";
             //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 

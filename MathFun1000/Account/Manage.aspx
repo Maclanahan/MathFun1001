@@ -1,19 +1,21 @@
-﻿<%@ Page Title="Manage Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="MathFun1000.Account.Manage" %>
-<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
+﻿<%@ Page Title="Manage Account" Language="C#" MasterPageFile="~/SiteLoggedIn.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="MathFun1000.Account.Manage" %>
+<%--<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>--%>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <hgroup class="title">
         <h1><%: Title %>.</h1>
     </hgroup>
 
-    <section id="passwordForm">
-        <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">
+
+
+ <%--   <section id="passwordForm">
+        <asp:PlaceHolder runat="server" ID="successMessage">
             <p class="message-success"><%: SuccessMessage %></p>
-        </asp:PlaceHolder>
+        </asp:PlaceHolder>--%>
 
-        <p>You're logged in as <strong><%: User.Identity.Name %></strong>.</p>
+        <%--<p>You're logged in as <strong><%: User.Identity.Name %></strong>.</p>--%>
 
-        <asp:PlaceHolder runat="server" ID="setPassword" Visible="false">
+<%--        <asp:PlaceHolder runat="server" ID="setPassword" Visible="false">
             <p>
                 You do not have a local password for this site. Add a local
                 password so you can log in without an external login.
@@ -45,11 +47,11 @@
                 </ol>
                 <asp:Button runat="server" Text="Set Password" ValidationGroup="SetPassword" OnClick="setPassword_Click" />
             </fieldset>
-        </asp:PlaceHolder>
+        </asp:PlaceHolder>--%>
 
-        <asp:PlaceHolder runat="server" ID="changePassword" Visible="false">
-            <h3>Change password</h3>
-            <asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" ViewStateMode="Disabled" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
+<%--        <asp:PlaceHolder runat="server" ID="changePassword">
+                <h3>Change password</h3>
+            <asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
                 <ChangePasswordTemplate>
                     <p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="FailureText" />
@@ -87,9 +89,9 @@
                 </ChangePasswordTemplate>
             </asp:ChangePassword>
         </asp:PlaceHolder>
-    </section>
+    </section>--%>
 
-    <section id="externalLoginsForm">
+<%--    <section id="externalLoginsForm">
         
         <asp:ListView runat="server"
             ItemType="Microsoft.AspNet.Membership.OpenAuth.OpenAuthAccountData"
@@ -122,5 +124,5 @@
 
         <h3>Add an external login</h3>
         <uc:OpenAuthProviders runat="server" ReturnUrl="~/Account/Manage" />
-    </section>
+    </section>--%>
 </asp:Content>
