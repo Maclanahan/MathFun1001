@@ -33,6 +33,7 @@ namespace MathFun1000.Account
          **/
         private void registerUserWithSlowHash()
         {
+            //Checks to see if Infomration is valid
             bool methodStatus = true;
             if (InputValidation.ValidateUserName(textboxUserName.Text) == false)
             {
@@ -42,7 +43,13 @@ namespace MathFun1000.Account
             {
                 methodStatus = false;
             }
-            
+            if(rbList_uType.SelectedIndex == -1)
+            {
+                methodStatus = false;
+            }
+
+
+            //Create Account
             if (methodStatus == true)
             {
                 String uType = "";
