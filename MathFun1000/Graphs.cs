@@ -138,7 +138,9 @@ namespace MathFun1000
                             temp = "";
                         }
                     }
-                    else if (powered == false && index + 1 == equation.Length) {
+                    else if (powered == false && equation.Length == 3) { }
+                    else if (powered == false && index + 1 == equation.Length)
+                    {
                         b = Convert.ToInt32(temp.Substring(2));
                     }
                 }
