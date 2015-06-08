@@ -34,7 +34,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server"> 
     
-    <link href="Content/MathProblemStyle.css" rel="stylesheet" />     
+    <link href="Content/Site.css" rel="stylesheet" />     
         <div class ="graph" id="graph" runat="server" style="border-style: groove; border-color: inherit; border-width: medium; float:left; width: 399px; height: 399px; margin-left: 17px; margin-right: 26px; margin-top: 22px; margin-bottom: 14px;">
             
             <asp:Chart ID="LineGraph" runat="server" Width="400px" Height="400px" style="float:left; margin-right: 20px; margin-bottom: 23px;" >
@@ -99,8 +99,8 @@
     
     <div class="buttons" id="buttons" runat="server" style="margin-top:66px;">
 
-        <asp:Button ID="GoToPrevProblem" class="button" runat="server" Text="<< Prev Problem" OnClick="stepBack_Click" />
-        <asp:Button ID="GoToNextProblem" class="StepForwardButton" runat="server" Text="Next Problem >>" OnClick="stepForward_Click" />
+        <asp:Button ID="GoToPrevProblem" CssClass="button" runat="server" Text="<< Prev Problem" OnClick="stepBack_Click" />
+        <asp:Button ID="GoToNextProblem" CssClass="StepForwardButton" runat="server" Text="Next Problem >>" OnClick="stepForward_Click" />
       
     </div>
 

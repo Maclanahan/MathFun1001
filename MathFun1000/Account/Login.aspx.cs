@@ -19,13 +19,11 @@ namespace MathFun1000.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           //if (Session["uname"] != null)
-           // {
-           //     Session["uname"] = null;
-           //     Session.Abandon();
-           //     Response.BufferOutput = true;
-           //     Response.Redirect("LogIn.aspx", false);
-           // }
+           if (Session["uname"] != null)
+           {
+                Response.BufferOutput = true;
+                Response.Redirect("~/Default.aspx", false);
+           }
 
             RegisterHyperLink.NavigateUrl = "Register";
             //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
