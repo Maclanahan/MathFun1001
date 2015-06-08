@@ -24,7 +24,7 @@
         </div>
     </section>
 
-    <asp:Button ID="PrevChapter" runat="server" class="progressButton" OnClick="PrevChapter_Click" Text="<< Prev Chapter" />
+    <asp:Button ID="PrevChapter" runat="server" class="progressButton" OnClick="PrevChapter_Click" Text="<-Prev Chapter" />
     
     <asp:PlaceHolder ID="ButtonHolder" runat="server"></asp:PlaceHolder>
     <%--<asp:Button ID="Button1" runat="server" Text="Problem 1" OnClick="Button1_Click" Width="210px" />
@@ -35,6 +35,6 @@
     <br/>
     <asp:Button ID="Button4" runat="server" Text="Multiple Choice" OnClick="Button4_Click" Width="210px" />--%>
 
-    <asp:Button ID="NextChapter" runat="server" class="progressButton" OnClick="NextChapter_Click" Text="Next Chapter >>" />
+    <asp:Button ID="NextChapter" runat="server" class="progressButton" OnClick="NextChapter_Click" Text="Next Chapter->" />
 
 </asp:Content>
