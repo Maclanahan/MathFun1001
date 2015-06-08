@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Books.aspx.cs
+*
+* Brief Description: Books page views the books to the website.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +24,6 @@ namespace MathFun1000
         {
             querryDatabase();
         }
-
 
         private void querryDatabase()
         {
@@ -53,7 +59,6 @@ namespace MathFun1000
                 }
             } catch (Exception e)
             {
-                //need to log the exception
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -64,7 +69,6 @@ namespace MathFun1000
             for(int i = 0; i < id.Count; i++)
             {
                 var button = new Button { ID = id[i], Text = name[i], Width = 210 };
-                //button.Click += ButtonClick;
                 button.Command += new CommandEventHandler(DynamicCommand);
                 button.CommandArgument = id[i];
                 ButtonHolder.Controls.Add(button);

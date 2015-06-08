@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Rules.aspx.cs
+*
+* Brief Description: Display of rules on the math problem page
+ * this is a helper class.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -59,7 +67,6 @@ namespace MathFun1000
             catch (Exception e)
             {
                 conn.Close();
-                //need to log the exception
                 Console.WriteLine(e.Message);
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();

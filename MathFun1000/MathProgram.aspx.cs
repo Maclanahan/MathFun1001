@@ -32,11 +32,7 @@ namespace MathFun1000
 
             SetUpButtons();
 
-            //SetUpMenu();
-
             convertToJavaScript();
-
-            //executeJavaScript();
         }
 
         private void querryDatabase()
@@ -44,8 +40,8 @@ namespace MathFun1000
             string query = "SELECT step.Info, step.Example, rule.rule_name, rule.rule_Link FROM `step`"
                     + " INNER JOIN problem ON step.Problem_ID = problem.Problem_ID"
                     + " LEFT JOIN rule ON step.rules = rule.rule_ID"
-                    + " WHERE step.Problem_ID = ?problem" //+ Request.QueryString["problem"] 
-                    + " AND problem.Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " WHERE step.Problem_ID = ?problem" 
+                    + " AND problem.Chapter_ID = ?chapter" 
                     + " ORDER BY step.Step_ID ASC;";
                 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -112,22 +108,6 @@ namespace MathFun1000
             arrayData.InnerHtml = script;
         }
 
-        //private void SetUpMenu()
-        //{
-        //    var books = new Button { CssClass = "menuButton", Text = "Books" };
-        //    books.Click += Book_Click;
-        //    menuContainer.Controls.Add(books);
-
-        //    var chapters = new Button { CssClass = "menuButton", Text = "Chapters" };
-        //    chapters.Click += Chapter_Click;
-        //    menuContainer.Controls.Add(chapters);
-
-
-        //    var problems = new Button { CssClass = "menuButton", Text = "Problems" };
-        //    problems.Click += Problem_Click;
-        //    menuContainer.Controls.Add(problems);
-        //}
-
         protected void Book_Click(object sender, EventArgs e)
         {
             Response.Redirect("Books.aspx", false);
@@ -160,8 +140,8 @@ namespace MathFun1000
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
             string query = "SELECT Problem_ID, Type_ID FROM `problem`"
-                    + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
-                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " WHERE Problem_ID > ?problem" 
+                    + " AND Chapter_ID = ?chapter" 
                     + " ORDER BY Problem_ID ASC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -213,8 +193,8 @@ namespace MathFun1000
         protected void StepBackwardButton_Click(object sender, EventArgs e)
         {
             string query = "SELECT Problem_ID, Type_ID FROM `problem`"
-                    + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
-                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " WHERE Problem_ID < ?problem" 
+                    + " AND Chapter_ID = ?chapter"
                     + " ORDER BY Problem_ID DESC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -226,8 +206,6 @@ namespace MathFun1000
             if (handler.executeStatment())
                         {
                 DataRow[] data = handler.Data;
-
-                
 
                 if (data.Length > 0)
                 {
@@ -243,7 +221,6 @@ namespace MathFun1000
                     else if (data[0]["Type_ID"].ToString() == "3")
                         page = "Multi.aspx";
 
-                    //System.Diagnostics.Debug.WriteLine("Options[0]: " + page);
 
                     Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
                     Context.ApplicationInstance.CompleteRequest();

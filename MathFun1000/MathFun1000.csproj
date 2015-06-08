@@ -224,7 +224,6 @@
     <Content Include="logout.aspx" />
     <Content Include="MathProgram.aspx" />
     <Content Include="Multi.aspx" />
-    <Content Include="MultipleChoice.aspx" />
     <Content Include="packages.config" />
     <Content Include="Books.aspx" />
     <Content Include="Account\UserManagement.aspx" />
@@ -437,13 +436,6 @@
     </Compile>
     <Compile Include="Multi.aspx.designer.cs">
       <DependentUpon>Multi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MultipleChoice.aspx.cs">
-      <DependentUpon>MultipleChoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MultipleChoice.aspx.designer.cs">
-      <DependentUpon>MultipleChoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Multis.cs" />
     <Compile Include="ParameterizedQuery.aspx.cs">

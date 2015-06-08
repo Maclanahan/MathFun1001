@@ -1,4 +1,11 @@
-﻿using MySql.Data.MySqlClient;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Multi.aspx.cs
+*
+* Brief Description: The code the controls the Multiple problem cases.
+*/
+
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,12 +37,6 @@ namespace MathFun1000
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
             conn = new MySqlConnection(connString);
 
-            //Text to Output box for debugging.
-            System.Diagnostics.Debug.WriteLine("ProblemID: " + Request.QueryString["problem"]);
-            System.Diagnostics.Debug.WriteLine("ChapterID: " + Request.QueryString["chapter"]);
-            System.Diagnostics.Debug.WriteLine("BookID: " + Request.QueryString["book"]);
-            //End
-
             if (Request.QueryString.HasKeys())
             {
                 queryStr = "SELECT question , answer1 , answer2 , answer3 , answer4, correct_answer"
@@ -55,8 +56,6 @@ namespace MathFun1000
                 {
                     conn.Open();
                     cmd.Prepare();
-                   // cmd.Parameters.AddWithValue("?problem", Request.QueryString["problem"]);
-                    //cmd.Parameters.AddWithValue("?chapter", Request.QueryString["chapter"]);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -88,9 +87,6 @@ namespace MathFun1000
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
-
-
-
         }
 
         public void CorrectAnswer()
@@ -142,12 +138,6 @@ namespace MathFun1000
 
             script += "</script>\n";
             arrayData.InnerHtml = script;
-
-            
-
-
-            //string parse = multi_int.GenerateCode();
-            //ParseForInput(parse);
         }
 
         private void ParseForInput(string parase)
@@ -172,8 +162,8 @@ namespace MathFun1000
         protected void StepForwardButton_Click(object sender, EventArgs e)
         {
             string query = "SELECT Problem_ID, Type_ID FROM `problem`"
-                    + " WHERE Problem_ID > ?problem" //+ Request.QueryString["problem"]
-                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " WHERE Problem_ID > ?problem"
+                    + " AND Chapter_ID = ?chapter" 
                     + " ORDER BY Problem_ID ASC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -225,8 +215,8 @@ namespace MathFun1000
         protected void StepBackwardButton_Click(object sender, EventArgs e)
         {
             string query = "SELECT Problem_ID, Type_ID FROM `problem`"
-                    + " WHERE Problem_ID < ?problem" //+ Request.QueryString["problem"]
-                    + " AND Chapter_ID = ?chapter" //+ Request.QueryString["chapter"]
+                    + " WHERE Problem_ID < ?problem" 
+                    + " AND Chapter_ID = ?chapter" 
                     + " ORDER BY Problem_ID DESC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -255,7 +245,6 @@ namespace MathFun1000
                     else if (data[0]["Type_ID"].ToString() == "3")
                         page = "Multi.aspx";
 
-                    //System.Diagnostics.Debug.WriteLine("Options[0]: " + page);
 
                     Response.Redirect(page + "?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"] + "&problem=" + data[0]["Problem_ID"], false);
                     Context.ApplicationInstance.CompleteRequest();

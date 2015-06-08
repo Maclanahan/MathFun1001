@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: SQLHandler.aspx.cs
+*
+* Brief Description: Helper class that handles sql queries.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,8 +36,6 @@ namespace MathFun1000
         {
             get { return data; }
         }
-
-
 
         MySql.Data.MySqlClient.MySqlConnection con;
         MySql.Data.MySqlClient.MySqlCommand cmd;

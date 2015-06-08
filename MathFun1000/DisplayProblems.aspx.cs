@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: DisplayProblems.aspx.cs
+*
+* Brief Description: Display problems is how the default problems get shown to the screen.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,7 +30,6 @@ namespace MathFun1000
             {
                 BindData();
             }
-
         }
 
         protected void btnDeleteRecord_Click(object sender, EventArgs e)
@@ -102,7 +108,6 @@ namespace MathFun1000
             using (conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
             {
                 queryStr = "UPDATE STEP SET info=?info, Example=?example, Rules=?rules, Difficulty=?difficulty WHERE Step_ID=?id";
-                //queryStr = "UPDATE STEP SET Info='" + info + "',Example='" + Example + "',Rules='" + Rules + "',Difficulty='" + diff + "' WHERE Step_ID='" + id + "';";
                 MySqlCommand cmd = new MySqlCommand(queryStr, conn);
                 conn.Open();
 

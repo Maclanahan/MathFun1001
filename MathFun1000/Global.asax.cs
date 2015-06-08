@@ -31,6 +31,11 @@ namespace MathFun1000
         void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
+            Session["uname"] = null;
+            Session["userType"] = null;
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
 
         }
 

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: InputValidation.cs
+*
+* Brief Description: Validates input from the user
+ * this validation comes into play when the user is regestering.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +29,7 @@ namespace MathFun1000.Account
             {
                 pass = false;
             }
+
             return pass;
         }
 
@@ -35,14 +44,17 @@ namespace MathFun1000.Account
             {
                 pass = false;
             }
+
             if (index1 != index2)
             {
                 pass = false;
             }
+
             if (email.Trim() == "")
             {
                 pass = false;
             }
+
             return pass;
         }
 

@@ -6,11 +6,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-    <%--<asp:PlaceHolder ID="MenuHolder" runat="server" >
-        <div id="menuContainer" class="menuContainer" runat="server">
-
-        </div>
-    </asp:PlaceHolder>--%>
     <asp:Button ID="Books_Button" OnClick="Book_Click" Text="Books" runat="server" />
     <asp:Button ID="Chapters_Click" OnClick="Chapter_Click" Text="Chapters" runat="server" />
     <asp:Button ID="Problems_Click" OnClick="Problem_Click" Text="Problems" runat="server" />
@@ -21,17 +16,10 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
-    <%--<script src="Scripts/greensock/TweenLite.min.js"></script>
-    <script src="Scripts/greensock/jquery.gsap.min.js"></script>
-    <script src="Scripts/greensock/TimelineLite.min.js"></script>--%>
-    
-    
-
     <div id="arrayData" runat="server">
 
     </div>
 
-    
     <br/>
     <br/>
     <div class="ControllButtons">
@@ -50,16 +38,13 @@
         </div>
 
         <script>
-            // $(document).ready(function () { $(".MainContainer").slideDown(500); });
             $(".MainContainer").css("visibility", "hidden");
-            //$(".MainContainer").slideUp(333);
 
         </script>
 
         
 
         <div id="answerArea" >
-            <%--<input id="answerField" type="text" />--%>
             <p style="float: left; margin-right: 5px;">Answer:   </p>
             <input class="answerBox" id="AnswerBox" type="text" value="" autoComplete="off"/>
             <input type="button" value="&#10003" onclick="checkAnswer()"/>
@@ -67,7 +52,6 @@
         </div>
 
         <div id="unguidedAnswerArea" >
-            <%--<input id="answerField" type="text" />--%>
             <p style="float: left; margin-right: 5px;">Answer:   </p>
             <input class="answerBox" id="unguidedAnswerBox" type="text" value="" autoComplete="off"/>
             <input type="button" value="&#10003" onclick="checkUnguidedAnswer()"/>
@@ -82,11 +66,6 @@
                 
     </div>
     
-
-    
-
-    
-
     <script type="text/javascript"
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
      </script>

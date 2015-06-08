@@ -20,11 +20,9 @@
     </div>
 
     <div class="MainContainer" id="MainController" runat="server">
-<%--        <input id="StepBackward" type="button" value="ERROR" class="StepBackwardButton" onclick="stepBack()"/>--%>
         <input id="StepForward" type="button" value="Show Answers" class="StepForwardButton" onclick="stepForward()"/>
         
          <script>
-             // $(document).ready(function () { $(".MainContainer").slideDown(500); });
              $(".MainContainer").css("visibility", "hidden");
              $(".MainContainer").slideUp(0);
 
@@ -55,10 +53,6 @@
         <asp:HiddenField ID="stepCount" runat="server" value="0"/>
 
         <div class="innerMain" id="innerMain" runat="server">
-            
-            <%--<div class="buttons" id="buttons" runat="server" >
-                
-            </div>--%>
                
         </div>
 
@@ -67,11 +61,9 @@
     <script type="text/javascript" src="Scripts/Multi.js"></script>
 
     <div class="MainContainer" id="MainController0" runat="server">
-<%--        <input id="StepBackward" type="button" value="ERROR" class="StepBackwardButton" onclick="stepBack()"/>--%>
         <input id="Confirmbtn" type="button" value="Confirm" class="Confirmcl" onclick="Confirm()"/>
         
          <script>
-             // $(document).ready(function () { $(".MainContainer").slideDown(500); });
              $(".MainContainer").css("visibility", "hidden");
              $(".MainContainer").slideUp(0);
 

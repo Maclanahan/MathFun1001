@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: login.aspx.cs
+*
+* Brief Description: Code behind login page.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,7 +33,6 @@ namespace MathFun1000.Account
            }
 
             RegisterHyperLink.NavigateUrl = "Register";
-            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 
             LoginWithPasswordHashFunction();
 
@@ -37,10 +43,6 @@ namespace MathFun1000.Account
             }
         }
 
-        /**
-         * This method checks the password in the textbox against the hashed version stored in the database.
-         * Security: SlowHashSalt Implemented.
-         **/
         private void LoginWithPasswordHashFunction()
         {
             List<String> salthashList = null;
@@ -101,7 +103,6 @@ namespace MathFun1000.Account
                                 {
                                     Session["uname"] = nameList[i];
                                     Session["userType"] = "Teacher";
-
                                     Response.BufferOutput = true;
                                     FormsAuthentication.RedirectFromLoginPage(nameList[i], true);
                                     Response.Redirect("LoggedInTeacher.aspx", false);
@@ -115,7 +116,7 @@ namespace MathFun1000.Account
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 lbl_Confirmation.Text = "E: ERROR";
             }
@@ -149,14 +150,5 @@ namespace MathFun1000.Account
                 lbl_Confirmation.Text = "Invalid characters.";
             }
         }
-
-        //protected void form_login_authenticate(object sender, AuthenticateEventArgs e)
-        //{
-        //    LoginWithPasswordHashFunction();
-        //}
-        //protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
-        //{
-        //    Response.Redirect("default.aspx", false);
-        //}
     }
 }

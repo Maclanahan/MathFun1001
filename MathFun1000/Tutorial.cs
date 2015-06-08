@@ -35,11 +35,6 @@ namespace MathFun1000
                 "Recombine the terms after removing the parenthese to make an equation in its seimplets form. Since the variables are different, this is the simplest form.", 
                 "Solution"};
 
-            /*this.example = new String[] {"<p style=\"color:blue\">(2x<sup>2</sup>y</p> <p style=\"color:red\">-3xy)</p> <p>+</p> <p style=\"color:blue\">(6x<sup>2</sup>y</p><p>-</p><p style=\"color:red\">9xy)</p>", 
-                                        "<p style=\"color:blue\">(2x<sup>2</sup>y+6x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(-3xy-9xy)</p>",
-                                        "<p style=\"color:blue\">(8x<sup>2</sup>y)</p> <p>+</p> <p style=\"color:red\">(-12xy)</p>", 
-                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>", 
-                                        "<p style=\"color:blue\">8x<sup>2</sup>y</p> <p>-</p> <p style=\"color:red\">12xy</p>"};*/
             this.example = new String[] {"$$\\\\color{blue}{(2x^2y}-\\\\color{red}{3xy)}+\\\\color{blue}{(6x^2y}-\\\\color{red}{9xy)}$$",
                                           "$$\\\\color{blue}{(2x^2y+6x^2y)} + \\\\color{red}{(-3xy-9xy)}$$",
                                           "$$\\\\color{blue}{(8x^2y)} + \\\\color{red}{(-12xy)}$$",
@@ -96,7 +91,6 @@ namespace MathFun1000
             
         }
 
-        //Start - Get and Sets
         public void incrementStep()
         {
             this.currentStep++;
@@ -131,6 +125,5 @@ namespace MathFun1000
         {
             return link[index];
         }
-        //End
     }
 }

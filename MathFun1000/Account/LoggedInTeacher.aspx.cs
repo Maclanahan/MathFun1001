@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: InputValidation.cs
+*
+* Brief Description: CS code for the Logged in teacher page.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,15 +30,6 @@ namespace MathFun1000.Account
                
                 Response.Redirect("~/", false);
             }
-        }
-
-        public void btnTeacherLogOut_Click(object sender, EventArgs e)
-        {
-            Session["uname"] = null;
-            Session["userType"] = null;
-            Session.Abandon();
-            Response.BufferOutput = true;
-            Response.Redirect("LogIn.aspx", false);
         }
     }
 }

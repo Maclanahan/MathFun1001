@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: ERROR.aspx.cs
+*
+* Brief Description: Error page, default error page
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

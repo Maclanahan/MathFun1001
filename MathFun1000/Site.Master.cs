@@ -74,22 +74,6 @@ namespace MathFun1000
                 Response.Cookies.Set(responseCookie);
             }
 
-            if (Session["userType"] != null)
-            {
-                if (Session["userType"].Equals("Teacher"))
-                {
-                    FindControl("xx").Visible = true;
-                }
-                else
-                {
-                    FindControl("xx").Visible = false;
-                }
-            }
-            else
-            {
-                FindControl("xx").Visible = false;
-            }
-
             Page.PreLoad += MasterPagePreLoad;
         }
 

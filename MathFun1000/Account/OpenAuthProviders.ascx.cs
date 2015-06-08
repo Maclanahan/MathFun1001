@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: login.aspx.cs
+*
+* Brief Description: This is for authenticating users.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Web;
 using Microsoft.AspNet.Membership.OpenAuth;
@@ -29,10 +36,7 @@ namespace MathFun1000.Account
             }
         }
 
-
-
         public string ReturnUrl { get; set; }
-
 
         public IEnumerable<ProviderDetails> GetProviderNames()
         {

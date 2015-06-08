@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: ParameterizedQuery.aspx.cs
+*
+* Brief Description: This is to help the on the interaction with the database and the loggin in the user.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

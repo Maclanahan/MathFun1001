@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Multis.cs
+*
+* Brief Description: The code the controls the Multiple problem cases.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,12 +34,6 @@ namespace MathFun1000
             this.Answer4 = "Wrong";
             this.Correct = "Correct";
             this.NumSteps = 5;
-
-            //this.example[0] = this.Question;
-            //this.example[1] = this.Answer1;
-            //this.example[2] = this.Answer2;
-            //this.example[3] = this.Answer3;
-            //this.example[4] = this.Answer4;
 
             this.example = new String[] {"$$\\\\color{blue}{(2x^2y}-\\\\color{red}{3xy)}+\\\\color{blue}{(6x^2y}-\\\\color{red}{9xy)}$$",
                                           "$$\\\\color{blue}{(2x^2y+6x^2y)} + \\\\color{red}{(-3xy-9xy)}$$",

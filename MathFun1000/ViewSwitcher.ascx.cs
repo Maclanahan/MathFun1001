@@ -2,7 +2,7 @@
 * Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
 * Class: ViewSwitcher.ascx.cs
 *
-* Brief Description: Description.
+* Brief Description: This class is important to switching of the views.
 */
 
 using System;

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: login.aspx.cs
+*
+* Brief Description: Code behind the Register page.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,18 +26,11 @@ namespace MathFun1000.Account
             lbl_Confirmation.Text = "";
         }
 
-        /**
-         * This class handles the Register button.
-         **/
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             registerUserWithSlowHash();
         }
 
-        /**
-         * Current Register User Method. 
-         * Security: SlowHashSalt
-         **/
         private void registerUserWithSlowHash()
         {
             //Checks to see if Infomration is valid
@@ -47,7 +47,6 @@ namespace MathFun1000.Account
             {
                 methodStatus = false;
             }
-
 
             //Create Account
             if (methodStatus == true)
@@ -93,30 +92,5 @@ namespace MathFun1000.Account
                 lbl_Confirmation.Text = "*Your Account Name and/or E-mail are either taken or not valid.*";
             }
         }
-
-        protected void checkbox_teacher_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        /**
-         * Original working Register User Method, not used anymore. 
-         * Security: Password in Text
-         **/
-        //private void registerUser()
-        //{
-        //    String connString = System.Configuration.ConfigurationManager.ConnectionStrings["webAppconnString"].ToString();
-        //    conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-        //    conn.Open();
-        //    queryStr = "";
-
-        //    queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, Password)" + 
-        //        "VALUES('" + textboxUserName.Text + "','" + textboxEmailAddress.Text + "','" + textboxPassword.Text + "')";      
-
-        //    cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
-        //    cmd.ExecuteReader();
-
-        //    conn.Close();
-        //}
     }
 }

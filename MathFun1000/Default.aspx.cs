@@ -17,7 +17,6 @@ namespace MathFun1000
 {
     public partial class Default : Page
     {
-        //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
 

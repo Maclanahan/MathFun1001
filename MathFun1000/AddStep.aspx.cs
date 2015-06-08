@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: AddStep.aspx.cs
+*
+* Brief Description: Add step is a helper class to push up one step at a time for t he default math problems.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,7 +40,6 @@ namespace MathFun1000
             queryStr = "";
 
             queryStr = "INSERT INTO db_9bad3d_test.Step (Info, Example, Rules, Difficulty)" +
-                //"VALUES('" + Info_TextBox.Text + "','" + Example_TextBox.Text + "','" + Rules_TextBox.Text + "','" + Diff_TextBox.Text + "')";
                     "VALUES(?Info, ?Example, ?Rules, ?Diff)";
             cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
 

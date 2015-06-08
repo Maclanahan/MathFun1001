@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: LoggedInStudent.aspx.cs
+*
+* Brief Description: CS code for logged in student page
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,19 +27,9 @@ namespace MathFun1000
             }
             else
             {
-                //labelTest.Text = "Welcome, " + StudentName;
                 Response.Redirect("~/", false);
             }
             
-        }
-
-        public void btnStudentLogOut_Click(object sender, EventArgs e)
-        {
-            Session["uname"] = null;
-            Session["userType"] = null;
-            Session.Abandon();
-            Response.BufferOutput = true;
-            Response.Redirect("LogIn.aspx", false);
         }
     }
 }

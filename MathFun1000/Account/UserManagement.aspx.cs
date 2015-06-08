@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: Usermanagemnet.aspx.cs
+*
+* Brief Description: Code behind Use management page
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,68 +32,8 @@ namespace MathFun1000
             private set;
         }
 
-        protected void Page_Load()
-        {
-            //if (!IsPostBack)
-            //{
-            //    // Determine the sections to render
-            //    //var hasLocalPassword = OpenAuth.HasLocalPassword(User.Identity.Name);
-            //    //setPassword.Visible = !hasLocalPassword;
-            //    //changePassword.Visible = true;
+        protected void Page_Load(){ }
 
-            //    //CanRemoveExternalLogins = hasLocalPassword;
-
-            //    // Render success message
-            //    var message = Request.QueryString["m"];
-            //    if (message != null)
-            //    {
-            //        // Strip the query string from action
-            //        Form.Action = ResolveUrl("~/Account/Manage");
-
-            //        SuccessMessage =
-            //            message == "ChangePwdSuccess" ? "Your password has been changed."
-            //            : message == "SetPwdSuccess" ? "Your password has been set."
-            //            : message == "RemoveLoginSuccess" ? "The external login was removed."
-            //            : String.Empty;
-            //        successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
-            //    }
-            //}
-
-        }
-
-        //protected void setPassword_Click(object sender, EventArgs e)
-        //{
-        //    if (IsValid)
-        //    {
-        //        var result = OpenAuth.AddLocalPassword(User.Identity.Name, password.Text);
-        //        if (result.IsSuccessful)
-        //        {
-        //            Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
-        //        }
-        //        else
-        //        {
-
-        //            ModelState.AddModelError("NewPassword", result.ErrorMessage);
-
-        //        }
-        //    }
-        //}
-
-
-        //public IEnumerable<OpenAuthAccountData> GetExternalLogins()
-        //{
-        //    var accounts = OpenAuth.GetAccountsForUser(User.Identity.Name);
-        //    CanRemoveExternalLogins = CanRemoveExternalLogins || accounts.Count() > 1;
-        //    return accounts;
-        //}
-
-        //public void RemoveExternalLogin(string providerName, string providerUserId)
-        //{
-        //    var m = OpenAuth.DeleteAccount(User.Identity.Name, providerName, providerUserId)
-        //        ? "?m=RemoveLoginSuccess"
-        //        : String.Empty;
-        //    Response.Redirect("~/Account/Manage" + m);
-        //}
         protected void btnChangePassword_Click(object sender, EventArgs e)
         {
             updatePassword();
@@ -109,15 +56,11 @@ namespace MathFun1000
                 conn.Open();
                 queryStr = "";
 
-                //queryStr = "INSERT INTO db_9bad3d_test.userinfo (UserName, EmailAddress, SlowHashSalt)" +
-                //"VALUES(?UserName, ?EmailAddress, ?SlowHashSalt)";
-
                 queryStr = "UPDATE db_9bad3d_test.userinfo SET SlowHashSalt=?shs WHERE UserName=?uname";
 
                 cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
                 cmd.Parameters.AddWithValue("?uname", User.Identity.Name);
 
-                //TextBox passwordBox = (TextBox)changePassword.FindControl("NewPassword");
                 String NP = NewPassword.Text;
 
                 String saltHashReturned = Account.PasswordHash.CreateHash(NP);
@@ -141,8 +84,6 @@ namespace MathFun1000
             {
                 FailureText.Text = "There was an error, your password was not changed.";
             }
-
-
         }
     }
 }

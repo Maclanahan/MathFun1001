@@ -20,8 +20,6 @@ namespace MathFun1000
 {
     public partial class Chapters : System.Web.UI.Page
     {
-
-        //On page load this event handler is called.
         protected void Page_Load(object sender, EventArgs e)
         {
             querryDatabase();
@@ -64,7 +62,7 @@ namespace MathFun1000
 
         private void querryDatabase()
         {
-            string query = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = ?book" //+ Request.QueryString["book"] 
+            string query = "SELECT Chapter_ID, Chapter_Title FROM chapter WHERE Book_ID = ?book"
                     + " ORDER BY Chapter_ID ASC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -88,16 +86,10 @@ namespace MathFun1000
                     }
 
                     setUpButtons(id, name);
-                }
-
-                else
+                }else
                 {
-                    //COMMENTED OUT SO THAT I CAN TEST PROPERLY
-
-                    //Response.Redirect("ERROR.aspx", false);
-                    //Context.ApplicationInstance.CompleteRequest();
+                    //Nothing.
                 }
-
             }
 
             else
@@ -113,7 +105,6 @@ namespace MathFun1000
             for(int i = 0; i < id.Count; i++)
             {
                 var button = new Button { ID = id[i], Text = name[i], Width = 210 };
-                //button.Click += ButtonClick;
                 button.Command += new CommandEventHandler(DynamicCommand);
                 button.CommandArgument = id[i];
                 ChapterHolder.Controls.Add(button);
@@ -129,7 +120,7 @@ namespace MathFun1000
                 Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + e.CommandArgument, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
-            catch(Exception except)
+            catch(Exception ex)
             {
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
@@ -206,8 +197,6 @@ namespace MathFun1000
                 Response.Redirect("ERROR.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
-
-            
         }
     }
 

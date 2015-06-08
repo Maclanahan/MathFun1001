@@ -44,23 +44,19 @@ namespace MathFun1000
                 DataRow[] data = handler.Data;
 
                 if (data.Length > 0)
-                    {
+                {
                     for (int i = 0; i < data.Length; i++)
-                        {
+                    {
                         SetTitle(data[i]["Chapter_Title"].ToString());
                         SetDescription(data[i]["Chapter_Intro"].ToString());
                         SetButton(data[i]["Problem_ID"].ToString(), data[i]["Type_ID"].ToString());
                     }
-                        }
-
+                }
                 else
                 {
-                    //Response.Redirect("ERROR.aspx", false);
-                    //Context.ApplicationInstance.CompleteRequest();
-                    }
 
                 }
-
+            }
             else
             {
                 Response.Redirect("ERROR.aspx", false);
@@ -155,8 +151,8 @@ namespace MathFun1000
         protected void NextChapter_Click(object sender, EventArgs e)
         {
             string query = "SELECT Chapter_ID FROM `chapter`"
-                    + " WHERE Chapter_ID > ?chapter" //+ Request.QueryString["problem"]
-                    + " AND Book_ID = ?book" //+ Request.QueryString["chapter"]
+                    + " WHERE Chapter_ID > ?chapter"
+                    + " AND Book_ID = ?book"
                     + " ORDER BY Chapter_ID DESC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -194,8 +190,8 @@ namespace MathFun1000
         protected void PrevChapter_Click(object sender, EventArgs e)
         {
             string query = "SELECT Chapter_ID FROM `chapter`"
-                    + " WHERE Chapter_ID < ?chapter" //+ Request.QueryString["problem"]
-                    + " AND Book_ID = ?book" //+ Request.QueryString["chapter"]
+                    + " WHERE Chapter_ID < ?chapter"
+                    + " AND Book_ID = ?book"
                     + " ORDER BY Chapter_ID ASC;";
 
             List<SQLParameters> param = new List<SQLParameters>();
@@ -228,6 +224,5 @@ namespace MathFun1000
                 Context.ApplicationInstance.CompleteRequest();
         }
         }
-        //End
     }
 }

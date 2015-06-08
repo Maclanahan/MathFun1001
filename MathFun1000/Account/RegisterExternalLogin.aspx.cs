@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Team Name: Math Fun 1000
+* Team: Daniel Heffley, Daniel Moore, Bin Mei and Eric Laib
+* Class: RegisterExternalLogin.aspx.cs
+*
+* Brief Description: Code behind the register external login website.
+ * NOTE: This is not used!
+*/
+
+using System;
 using System.Web;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
