@@ -32,13 +32,3 @@ function scrollToBottomOfPage()
     console.log("here");
     $("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, 500);
 }
-
-function stepForward()
-{
-
-}
-
-function stepBack()
-{
-
-}

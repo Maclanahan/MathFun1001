@@ -54,7 +54,10 @@ namespace MathFun1000.Account
             {
                 pass = false;
             }
-
+            if (email.Contains("@") == false)
+            {
+                pass = false;
+            }
             return pass;
         }
 

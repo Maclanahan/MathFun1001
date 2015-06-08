@@ -1,11 +1,4 @@
-﻿$(document).ready(iFrameOn);
-
-function iFrameOn()
-{
-    
-}
-
-function iBold()
+﻿function iBold()
 {
     document.execCommand('bold', false, null);
 }
@@ -20,20 +13,21 @@ function iItalic()
     document.execCommand('italic', false, null);
 }
 
-function iSymbol(symbol) {
+function iSymbol(symbol)
+{
     document.execCommand('insertHTML', false, symbol);
 }
 
 
-function iAnswer() {
-
+function iAnswer()
+{
     var answer = "<u><answer>" + getSelectedText() + "</answer></u>";
 
     document.execCommand('insertHTML', false, answer);
 }
 
-function removeAnswer() {
-
+function removeAnswer()
+{
     var answer = getSelectedText();
 
     document.execCommand('insertHTML', false, answer);
@@ -46,15 +40,10 @@ function addColor(color)
     document.execCommand('insertText', false, select);
 }
 
-function removeColor()
-{
-
-}
-
 function getSelectedText()
 {
-    
-    if (window.getSelection) {
+    if (window.getSelection)
+    {
         return window.getSelection().toString();
     }
 
@@ -73,9 +62,6 @@ function makeEditable(type)
 
     else if ($("#problemSelection" + " option:selected").attr('data-type') == 2 || type == "graph")
         editGraph();
-
-    //else
-        //alert("There has been an error.");
 }
 
 function editDefault()
@@ -85,7 +71,6 @@ function editDefault()
 
     $(".stepbox").attr('contenteditable', 'true');
     $(".examplebox").attr('contenteditable', 'true');
-    //$(".rulebox").attr('contenteditable', 'true');
 
     $(".ruleSelector").removeAttr("disabled");
 }

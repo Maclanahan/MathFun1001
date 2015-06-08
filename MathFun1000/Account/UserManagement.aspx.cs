@@ -11,6 +11,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MySql.Data.MySqlClient;
+using MySql.Data.Common;
 
 namespace MathFun1000
 {
@@ -83,6 +85,59 @@ namespace MathFun1000
             catch (Exception e)
             {
                 FailureText.Text = "There was an error, your password was not changed.";
+            }
+        }
+
+        protected void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            DeleteAccount();
+            Session["uname"] = null;
+            Session["userType"] = null;
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.BufferOutput = true;
+            Response.Redirect("~/Default.aspx", false);
+        }
+
+        private void DeleteAccount()
+        {
+            try
+            {
+                //UserID = retrieveUserID();
+
+                String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebAppConnString"].ToString();
+                conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+                conn.Open();
+                queryStr = "";
+
+                queryStr = "DELETE FROM db_9bad3d_test.userinfo WHERE SlowHashSalt=?shs AND UserID=(SELECT UserID from db_9bad3d_test.userinfo WHERE UserName=?uname)";
+
+                cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+                cmd.Parameters.AddWithValue("?uname", User.Identity.Name);
+
+                String NP = tb_delCurrentPassword.Text;
+
+                String saltHashReturned = Account.PasswordHash.CreateHash(NP);
+                int commaIndex = saltHashReturned.IndexOf(":");
+                String extractedString = saltHashReturned.Substring(0, commaIndex);
+                commaIndex = saltHashReturned.IndexOf(":");
+                extractedString = saltHashReturned.Substring(commaIndex + 1);
+                commaIndex = extractedString.IndexOf(":");
+                String salt = extractedString.Substring(0, commaIndex);
+                commaIndex = extractedString.IndexOf(":");
+                extractedString = extractedString.Substring(commaIndex + 1);
+
+                String hash = extractedString;
+                cmd.Parameters.AddWithValue("?shs", saltHashReturned);
+
+                cmd.ExecuteReader();
+                conn.Close();
+                DeleteText.Text = "Congratulations, your account has been deleted!";
+            }
+            catch (Exception e)
+            {
+                DeleteText.Text = "There was an error in deleting your account.";
             }
         }
     }

@@ -28,18 +28,19 @@ function getBooks()
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
-            $.each(data.d, function (key, value) {
+        success: function (data)
+        {
+            $.each(data.d, function (key, value)
+            {
                 $("#bookSelection").append('<option value="' + value[0] + '">' + value[1] + '</option>');
             });
 
             $("#book").slideDown(500);
             $("#book").css('visibility', '');
         },
-        error: function (data) {
-            //console.log(data);
+        error: function (data)
+        {
+            alert("There has been a issue retrieving Books.");
         }
     });
 }
@@ -50,7 +51,6 @@ function getChapters()
 
     $("#chapter").slideUp(0);
 
-    //console.log(JSON.stringify({ id: $("#bookSelection").val() }));
     $("#chapterSelection").empty();
     $("#chapterSelection").append('<option value="-1">Select Chapter</option>');
     $("#problemSelection").empty();
@@ -62,18 +62,19 @@ function getChapters()
         data: JSON.stringify({ id: $("#bookSelection").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
-            $.each(data.d, function (key, value) {
+        success: function (data)
+        {
+            $.each(data.d, function (key, value)
+            {
                 $("#chapterSelection").append('<option value="' + value[0] + '">' + value[1] + '</option>');
             });
 
             $("#chapter").slideDown(500);
             $("#chapter").css('visibility', '');
         },
-        error: function (data) {
-            //console.log(data);
+        error: function (data)
+        {
+            alert("There has been an issue retrieving chapters");
         }
     });
     
@@ -94,10 +95,11 @@ function getProblems()
         data: JSON.stringify({ id: $("#chapterSelection").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            console.log(data);
+        success: function (data)
+        {
             var i = 1;
-            $.each(data.d, function (key, value) {
+            $.each(data.d, function (key, value)
+            {
                 $("#problemSelection").append('<option value="' + value[0] + '" data-type="' + value[1] + '">Problem ' + i + '</option>');
                 i++;
             });
@@ -106,7 +108,7 @@ function getProblems()
             $("#problem").css('visibility', '');
         },
         error: function (data) {
-            //console.log(data);
+            alert("There has been an issue retrieving Problems");
         }
     });
 
@@ -115,8 +117,6 @@ function getProblems()
 
 function getSteps()
 {
-
-
     hideAll(500);
 
     $("#step").slideUp(0);
@@ -125,7 +125,6 @@ function getSteps()
     if ($("#problemSelection").val() == -1)
         return;
 
-    //console.log($("#problemSelection" + " option:selected").attr('data-type'));
     if ($("#problemSelection" + " option:selected").attr('data-type') == 1)
         getDefaultProblem();
 
@@ -141,17 +140,17 @@ function getSteps()
 
 function getDefaultProblem()
 {
-    
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetSteps",
         data: JSON.stringify({ id: $("#problemSelection").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
+        success: function (data)
+        {
             var i = 1;
-            $.each(data.d, function (key, value) {
+            $.each(data.d, function (key, value)
+            {
                 var innerRowDiv = document.createElement('div');
                 innerRowDiv.setAttribute('class', 'insideRow');
                 innerRowDiv.setAttribute('value', value[0]);
@@ -171,23 +170,23 @@ function getDefaultProblem()
             $("#step").slideDown(500);
             $("#step").css('visibility', '');
         },
-        error: function (data) {
-            //console.log(data);
+        error: function (data)
+        {
+            alert("There has been an issue retrieving Problem Info.");
         }
     });
 }
 
 function getMultipleChoice()
 {
-    //console.log($("#problemSelection").val());
-    
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetMultipleChoice",
         data: JSON.stringify({ id: $("#problemSelection").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
+        success: function (data)
+        {
             console.log(data);
             $("#step").append("Question: <br/><textarea id='question' class='mc' disabled width='200px'>" + data.d[0][6] + "</textarea><br/>");
             $("#step").append("Option 1: <br/><textarea id='option1' class='mc' disabled width='200px'>" + data.d[0][1] + "</textarea><br/>");
@@ -196,28 +195,27 @@ function getMultipleChoice()
             $("#step").append("Option 4: <br/><textarea id='option4' class='mc' disabled width='200px'>" + data.d[0][4] + "</textarea><br/>");
             $("#step").append("Answer: <br/><textarea id='answer' class='mc' disabled width='200px'>" + data.d[0][5] + "</textarea><br/>");
 
-
             $("#step").slideDown(500);
             $("#step").css('visibility', '');
             $("#cancelProblemButton").attr("onclick", "$('#editProblem').slideUp(500); uneditMultipleChoice()");
         },
-        error: function (data) {
-            //console.log(data);
+        error: function (data)
+        {
+            alert("There has been an issue retrieving MultipleChoice Problem.");
         }
     });
 }
 
 function getGraph()
 {
-    
-
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/GetGraph",
         data: JSON.stringify({ id: $("#problemSelection").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
+        success: function (data)
+        {
             //console.log(data);
             $("#step").append("Option 1: <br/><textarea id='option1' class='g' disabled width='200px'>" + data.d[0][1] + "</textarea><br/>");
             $("#step").append("Option 2: <br/><textarea id='option2' class='g' disabled width='200px'>" + data.d[0][2] + "</textarea><br/>");
@@ -231,8 +229,8 @@ function getGraph()
             $("#step").css('visibility', '');
             $("#cancelProblemButton").attr("onclick", "$('#editProblem').slideUp(500); uneditGraph()");
         },
-        error: function (data) {
-            //console.log(data);
+        error: function (data)
+        {
             alert("There has been a server error. We aplogize for the inconvenience");
         }
     });
@@ -263,7 +261,6 @@ function makeControls() {
 function makeStep(step) {
     var newDiv = document.createElement('div');
 
-    //newDiv.setAttribute('contenteditable', 'true');
     newDiv.setAttribute('class', 'stepbox');
     var par = document.createElement('p');
     par.innerHTML = step;
@@ -275,12 +272,9 @@ function makeStep(step) {
 function makeExample(step) {
     var newDiv = document.createElement('div');
 
-    //newDiv.setAttribute('contenteditable', 'true');
     newDiv.setAttribute('class', 'examplebox');
-    //var par = document.createElement('p');
-    newDiv.innerHTML = step;
 
-    //newDiv.appendChild(par);
+    newDiv.innerHTML = step;
 
     return (newDiv);
 }
@@ -300,17 +294,10 @@ function makeRule(step) {
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
-            //var newDiv = document.createElement('div');
-            //newDiv.setAttribute('class', 'rulebox');
-
-            
-            //$(ruleSelect).append()
-
-            $.each(data.d, function (key, value) {
-                //$(ruleSelect).append('<option disabled="true" value="' + value[0] + '">' + value[1] + '</option>');
+        success: function (data)
+        {
+            $.each(data.d, function (key, value)
+            {
                 $(ruleSelect).append('<option value="' + value[0] + '">' + value[1] + '</option>');
             });
 
@@ -320,11 +307,9 @@ function makeRule(step) {
 
             return (newDiv);
         },
-        error: function (data) {
-            //var newDiv = document.createElement('div');
-           // newDiv.setAttribute('class', 'rulebox');
-
-            //return newDiv;
+        error: function (data)
+        {
+            alert("There has been an issue retrieving Rules.");
         }
 
     });
@@ -343,87 +328,89 @@ function addNewBook()
         data: JSON.stringify({ title: $("#bookName").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
+        success: function (data)
+        {
             $("#bookName").val("");
             $("#addBook").slideUp(500);
             $("#book").slideUp(500);
             $("#addBook").css('visibility', '');
             getBooks();
         },
-        error: function (data) {
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
         }
     });
 }
 
-function updateBook() {
-    if ($("#bookSelection").val() != -1) {
+function updateBook()
+{
+    if ($("#bookSelection").val() != -1)
+    {
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/UpdateBook",
             data: JSON.stringify({ title: $("#editBookName").val(), id: $("#bookSelection").val() }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                //console.log(data);
+            success: function (data)
+            {
                 $("#editBookName").val("");
                 $("#editBook").slideUp(500);
                 $("#book").slideUp(500);
                 $("#editBook").css('visibility', '');
                 getBooks();
             },
-            error: function (data) {
-                
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
             }
         });
     }
 }
 
-function addNewChapter() {
-    //console.log($("#chapterName").val() + $("#chapterDesc").val() + $("#bookSelection").val());
+function addNewChapter()
+{
     $.ajax({
         type: "POST",
         url: "ContentManager.asmx/AddChapter",
         data: JSON.stringify({ title: $("#chapterName").val(), desc: $("#chapterDesc").val(), book: $("#bookSelection").val() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
+        success: function (data)
+        {
             $("#chapterName").val("");
             $("#chapterBook").slideUp(500);
             $("#chapter").slideUp(500);
             $("#addChapter").css('visibility', '');
             getChapters();
         },
-        error: function (data) {
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
         }
     });
 }
 
 function updateChapter() {
-    //console.log($("#editChapterName").val() + $("#editChapterDesc").val() + $("#chapterSelection").val());
-    if ($("#chapterSelection").val() != -1) {
+    if ($("#chapterSelection").val() != -1)
+    {
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/UpdateChapter",
             data: JSON.stringify({ title: $("#editChapterName").val(), desc: $("#editChapterDesc").val(), id: $("#chapterSelection").val() }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                //console.log(data);
+            success: function (data)
+            {
                 $("#editChapterName").val("");
                 $("#editChapter").slideUp(500);
                 $("#chapter").slideUp(500);
                 $("#editChapter").css('visibility', '');
                 getChapters();
             },
-            error: function (data) {
-
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
             }
         });
@@ -449,8 +436,8 @@ function updateProblem()
 
 function updateDefault()
 {
-    $(".insideRow").each(function () {
-
+    $(".insideRow").each(function ()
+    {
         console.log($(this).attr('value'));
         $.ajax({
             type: "POST",
@@ -463,21 +450,18 @@ function updateDefault()
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
+            success: function (data)
+            {
                 console.log(data);
-
             },
-            error: function (data) {
-
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
                 return;
             }
         });
-
-
     });
 
-    //getProblems();
     getSteps();
 }
 
@@ -502,13 +486,13 @@ function updateMultipleChoice()
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
+        success: function (data)
+        {
             console.log(data);
-            //hideAll(500);
             $("#step").slideUp(500, getSteps);
         },
-        error: function (data) {
-
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
             return;
         }
@@ -525,7 +509,6 @@ function checkMultipleChoice()
         alert("No Option Matched the Answer");
         return false;
     }
-
     return true;
 }
 
@@ -545,13 +528,13 @@ function updateGraph()
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
+        success: function (data)
+        {
             console.log(data);
-            //hideAll(500);
             $("#step").slideUp(500, getSteps);
         },
-        error: function (data) {
-
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
             return;
         }
@@ -560,7 +543,6 @@ function updateGraph()
 
 function openEdit(select, div, text)
 {
-    //console.log($(select).val());
     $("#addBook").slideUp(500);
 
     if ($(select).val() != -1)
@@ -570,8 +552,8 @@ function openEdit(select, div, text)
     }
 }
 
-function openChapterEdit(select, div) {
-    //console.log($(select).val());
+function openChapterEdit(select, div)
+{
     $("#addChapter").slideUp(500);
 
     $.ajax({
@@ -580,16 +562,16 @@ function openChapterEdit(select, div) {
         data: JSON.stringify({ id: $("#chapterSelection").val()}),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
+        success: function (data)
+        {
             $("#editChapterName").val($(select + " option:selected").text());
             $("#editChapterDesc").val(data.d[0][2]);
             $(div).slideDown(500);
             
         },
-        error: function (data) {
-            //console.log(data);
+        error: function (data)
+        {
+            alert("There has been an issue Editing Chapter.");
         }
     });
 }
@@ -600,23 +582,10 @@ function addProblem()
     $("#step").slideUp(500);
     $("#problemSelection").val(-1);
     $("#addProblem").slideDown(500);
-
-    //if ($("#problemSelection" + " option:selected").attr('data-type') == 1)
-    //    addDefault();
-
-    //else if ($("#problemSelection" + " option:selected").attr('data-type') == 3)
-    //    addMultipleChoice();
-
-    //else if ($("#problemSelection" + " option:selected").attr('data-type') == 2)
-    //    addGraph();
-
-    //else
-    //    alert("There has been an error.");
 }
 
 function addDefault()
 {
-    //hideAll(500);
     $("#problemSelection").val(-1);
     $("#addProblem").slideDown(500);
     
@@ -636,7 +605,6 @@ function addDefault()
 
 function addMultipleChoice()
 {
-    //hideAll(500);
     $("#problemSelection").val(-1);
     $("#addProblem").slideDown(500);
 
@@ -686,7 +654,6 @@ function addRow()
 {
     var innerRowDiv = document.createElement('div');
     innerRowDiv.setAttribute('class', 'insideRow');
-    //innerRowDiv.setAttribute('value', value[0]);
     innerRowDiv.appendChild(makeControls());
     innerRowDiv.appendChild(makeStep("Step Goes Here"));
     innerRowDiv.appendChild(makeExample("$$ Example Goes Here $$"));
@@ -702,17 +669,7 @@ function addRow()
 
 function addProblemToDatabase()
 {
-    //if ($("input[name='default']:checked").val() == "default")
-    //    addDefaultToDatabase();
-
-    //else if ($("#problemSelection" + " option:selected").attr('data-type') == 3)
-    //    addMultipleChoiceToDatabase();
-
-    //else if ($("#problemSelection" + " option:selected").attr('data-type') == 2)
-    //    addGraphToDatabase();
-
-    //else
-    //    alert("There has been an error.");    
+   
 }
 
 function addDefaultToDatabase()
@@ -726,13 +683,12 @@ function addDefaultToDatabase()
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //console.log(data);
-
+        success: function (data) 
+        {
             addStepsToDatabase(data.d);
         },
-        error: function (data) {
-
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
             return;
         }
@@ -761,13 +717,14 @@ function addMultipleChoiceToDatabase()
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
+        success: function (data)
+        {
             console.log(data);
             getProblems();
             $("#step").slideUp(500);
         },
-        error: function (data) {
-
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
             return;
         }
@@ -793,13 +750,14 @@ function addGraphToDatabase()
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
+        success: function (data)
+        {
             console.log(data);
             getProblems();
             $("#step").slideUp(500);
         },
-        error: function (data) {
-
+        error: function (data)
+        {
             alert(JSON.parse(data.responseText).Message);
             return;
         }
@@ -808,11 +766,8 @@ function addGraphToDatabase()
 
 function addStepsToDatabase(id)
 {
-    $(".insideRow").each(function () {
-        //console.log($(this).children(".stepbox").children('p').text());
-        //console.log($(this).children(".examplebox").html());
-        //console.log(id);
-        //console.log($(this).attr('value'));
+    $(".insideRow").each(function ()
+    {
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/AddStep",
@@ -824,13 +779,12 @@ function addStepsToDatabase(id)
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                //console.log(data);
+            success: function (data)
+            {
 
-                //addStepsToDatabase(data.d);
             },
-            error: function (data) {
-
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
                 return;
             }
@@ -838,7 +792,6 @@ function addStepsToDatabase(id)
     });
 
     getProblems();
-    //getSteps();
     $("#step").slideUp(500);
 }
 
@@ -855,12 +808,12 @@ function deleteProblem()
 
     else
         alert("There has been an error."); 
-    
 }
 
 function deleteDefault()
 {
-    if($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?")){
+    if ($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?"))
+    {
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/DeleteProblem",
@@ -869,27 +822,26 @@ function deleteDefault()
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                //console.log(data);
+            success: function (data)
+            {
 
-                //addStepsToDatabase(data.d);
             },
-            error: function (data) {
-
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
                 return;
             }
         });
         
     }
-
     getProblems();
     $("#step").slideUp(500);
 }
 
 function deleteMultipleChoice()
 {
-    if ($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?")) {
+    if ($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?"))
+    {
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/DeleteMultipleChoice",
@@ -898,14 +850,13 @@ function deleteMultipleChoice()
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                //console.log(data);
+            success: function (data)
+            {
                 getProblems();
                 $("#step").slideUp(500);
-                //addStepsToDatabase(data.d);
             },
-            error: function (data) {
-
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
                 return;
             }
@@ -918,7 +869,8 @@ function deleteMultipleChoice()
 
 function deleteGraph()
 {
-    if ($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?")) {
+    if ($("#problemSelection").val() != -1 && confirm("Do you really want to delete this problem?"))
+    {
         $.ajax({
             type: "POST",
             url: "ContentManager.asmx/DeleteGraph",
@@ -927,27 +879,23 @@ function deleteGraph()
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                //console.log(data);
+            success: function (data)
+            {
                 getProblems();
                 $("#step").slideUp(500);
-                //addStepsToDatabase(data.d);
             },
-            error: function (data) {
-
+            error: function (data)
+            {
                 alert(JSON.parse(data.responseText).Message);
                 return;
             }
         });
 
     }
-
-    
 }
 
 function closeDiv(object)
 {
-    //console.log($(object + " :first-child").val());
     $(object).slideUp(500);
     $(object +" :first-child").val("");
 }
