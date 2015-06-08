@@ -210,9 +210,9 @@ function accordion(i)
 function tutorialParser()
 {
     //Button Highlight
-    unguided.style.backgroundColor = "#DE8642";
-    tutorial.style.backgroundColor = "#99FF99";
-    fillIn.style.backgroundColor = "#DE8642";
+    $("#unguided").css("background-color", "#DE8642"); //unguided.style.backgroundColor = "#DE8642";
+    $("#tutorial").css("background-color", "#99FF99");
+    $("#fillIn").css("background-color", "#DE8642");//fillIn.style.backgroundColor = "#DE8642";
     //
 
     resetProblem();
@@ -243,9 +243,9 @@ function tutorialParser()
 function fillInParser()
 {
     //Button Highlight
-    unguided.style.backgroundColor = "#DE8642";
-    tutorial.style.backgroundColor = "#DE8642";
-    fillIn.style.backgroundColor = "#99FF99";
+    $("#unguided").css("background-color", "#DE8642"); //unguided.style.backgroundColor = "#DE8642";
+    $("#tutorial").css("background-color", "#DE8642");
+    $("#fillIn").css("background-color", "#99FF99");//fillIn.style.backgroundColor = "#DE8642";
     //
 
     resetProblem();
@@ -297,11 +297,10 @@ function fillInParser()
 function unguidedParser()
 {
     //Button Highlight
-    unguided.style.backgroundColor = "#99FF99";
-    tutorial.style.backgroundColor = "#DE8642";
-    fillIn.style.backgroundColor = "#DE8642";
+    $("#unguided").css("background-color", "#99FF99"); //unguided.style.backgroundColor = "#DE8642";
+    $("#tutorial").css("background-color", "#DE8642");
+    $("#fillIn").css("background-color", "#DE8642");
     //
-
 
     resetProblem();
 
