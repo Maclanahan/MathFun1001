@@ -81,9 +81,9 @@
         </section>
     </div>
     <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; <%: DateTime.Now.Year %> - MathFun1000</p>
+        <div class="content-wrapper" style="color:#f00">
+            <div class="float-left" style="color:#f00">
+                <p style="color:#c8c8c8">&copy; <%: DateTime.Now.Year %> - MathFun1000</p>
             </div>
         </div>
     </footer>
