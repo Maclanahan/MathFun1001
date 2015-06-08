@@ -286,12 +286,7 @@ function fillInParser()
         return string;
     }
     //Button Highlight
-
-
-
-
-
-    
+ 
 }
 
 function unguidedParser()
@@ -332,7 +327,7 @@ function unguidedParser()
     string = string.replace("</u>", "");
 
     answer = string;
-    $("#unguidedAnswerLabel").text(string);
+    //$("#unguidedAnswerLabel").text(string);
     $("#unguidedAnswerBox").width(230);
 
     $("#StepForward").slideUp(500);
@@ -378,6 +373,26 @@ function checkAnswer()
         $("#AnswerBox").val("");
 
         $("#answerLabel").text("");//step is correct in case user answered wrong the first time.
+
+        var string = "";
+        string = example[currentStep -1];
+
+        //if (string.indexOf("<answer>") !== -1) {
+            string = string.replace(/<answer>/g, '');
+            string = string.replace(/<\/answer>/g, '');
+            string = string.replace(/<u>/g, '');
+            string = string.replace(/<\/u>/g, '');
+            string = string.replace(/<i>/g, '');
+            string = string.replace(/<\/i>/g, '');
+            string = string.replace(/<b>/g, '');
+            string = string.replace(/<\/b>/g, '');
+            string = string.replace(/&nbsp;/g, '');
+        //}
+
+            var name = "#examplebox" + (currentStep - 1);
+            console.log(name);
+            $(name).empty();
+            $(name).html(string);
 
         stepForward();
     }
