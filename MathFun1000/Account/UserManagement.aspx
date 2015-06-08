@@ -5,23 +5,9 @@
 </asp:Content>--%>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <hgroup class="title">
-        <h1><%--                </ChangePasswordTemplate>
-            </asp:ChangePassword>--%></h1>
     </hgroup>
-
     <section id="passwordForm">
-<<<<<<< HEAD
-        <%--        </asp:PlaceHolder>--%><%--<asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
-=======
-        <%--<asp:PlaceHolder runat="server" ID="successMessage">
-            <p class="message-success"><%: SuccessMessage %></p>
-        </asp:PlaceHolder>--%>
-<%--            <asp:PlaceHolder runat="server" ID="changePassword">--%>
                 <h1>Change password</h1>
-            <%--<asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
->>>>>>> origin/master
-                <ChangePasswordTemplate>--%>
-                <h3>Change password</h3>
             <%--                </ChangePasswordTemplate>
             </asp:ChangePassword>--%>
                     <p class="validation-summary-errors">
