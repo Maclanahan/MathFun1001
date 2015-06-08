@@ -17,7 +17,7 @@
             <option value="-1">Select Book</option>
         </select>
         <input type="button" value="Edit" onclick="openEdit('#bookSelection','#editBook', '#editBookName')"/>
-        <input type="button" value="+" onclick="$('#addBook').slideDown(500); $('#editBook').slideUp(500)"/>
+        <input type="button" value="+" onclick="$('#bookName').val(''); $('#addBook').slideDown(500); $('#editBook').slideUp(500)"/>
         <div id="addBook">
             Title: <input type="text" id="bookName"/><br/>
             <input type="button" value="Cancel" onclick="closeDiv('#addBook')">
@@ -36,7 +36,7 @@
             <option value="-1">Select Chapter</option>
         </select>
         <input type="button" value="Edit" onclick="openChapterEdit('#chapterSelection', '#editChapter')"/>
-        <input type="button" value="+" onclick="$('#addChapter').slideDown(500); $('#editChapter').slideUp(500)"/>
+        <input type="button" value="+" onclick="$('#chapterDesc').val(''); $('#chapterName').val(''); $('#addChapter').slideDown(500); $('#editChapter').slideUp(500)"/>
         <div id="addChapter">
             Chapter Title: <input type="text" id="chapterName"/><br/>
             Chapter Description: <textarea id="chapterDesc" cols="5" rows="5"></textarea><br/>
