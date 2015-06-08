@@ -209,6 +209,12 @@ function accordion(i)
 
 function tutorialParser()
 {
+    //Button Highlight
+    unguided.style.backgroundColor = "#DE8642";
+    tutorial.style.backgroundColor = "#99FF99";
+    fillIn.style.backgroundColor = "#DE8642";
+    //
+
     resetProblem();
 
     problemType.prototype.parser = function () {
@@ -236,6 +242,12 @@ function tutorialParser()
 
 function fillInParser()
 {
+    //Button Highlight
+    unguided.style.backgroundColor = "#DE8642";
+    tutorial.style.backgroundColor = "#DE8642";
+    fillIn.style.backgroundColor = "#99FF99";
+    //
+
     resetProblem();
 
     problemType.prototype.parser = function()
@@ -273,11 +285,24 @@ function fillInParser()
 
         return string;
     }
+    //Button Highlight
+
+
+
+
+
     
 }
 
 function unguidedParser()
 {
+    //Button Highlight
+    unguided.style.backgroundColor = "#99FF99";
+    tutorial.style.backgroundColor = "#DE8642";
+    fillIn.style.backgroundColor = "#DE8642";
+    //
+
+
     resetProblem();
 
     var string = "";
