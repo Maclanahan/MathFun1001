@@ -13,7 +13,7 @@
             <p class="message-success"><%: SuccessMessage %></p>
         </asp:PlaceHolder>--%>
 <%--            <asp:PlaceHolder runat="server" ID="changePassword">--%>
-                <h3>Change password</h3>
+                <h1>Change password</h1>
             <%--<asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
                 <ChangePasswordTemplate>--%>
                     <p class="validation-summary-errors">
@@ -23,21 +23,21 @@
                         <legend>Change password details</legend>
                         <ol>
                             <li>
-                                <asp:Label runat="server" ID="CurrentPasswordLabel" AssociatedControlID="CurrentPassword">Current password</asp:Label>
+                                <asp:Label runat="server" ID="CurrentPasswordLabel" AssociatedControlID="CurrentPassword" Style="color:#ccc">Current password</asp:Label>
                                 <asp:TextBox runat="server" ID="CurrentPassword" CssClass="passwordEntry" TextMode="Password" />
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="CurrentPassword"
                                     CssClass="field-validation-error" ErrorMessage="The current password field is required."
                                     ValidationGroup="ChangePassword" />
                             </li>
                             <li>
-                                <asp:Label runat="server" ID="NewPasswordLabel" AssociatedControlID="NewPassword">New password</asp:Label>
+                                <asp:Label runat="server" ID="NewPasswordLabel" AssociatedControlID="NewPassword" Style="color:#ccc">New password</asp:Label>
                                 <asp:TextBox runat="server" ID="NewPassword" CssClass="passwordEntry" TextMode="Password" />
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="NewPassword"
                                     CssClass="field-validation-error" ErrorMessage="The new password is required."
                                     ValidationGroup="ChangePassword" />
                             </li>
                             <li>
-                                <asp:Label runat="server" ID="ConfirmNewPasswordLabel" AssociatedControlID="ConfirmNewPassword">Confirm new password</asp:Label>
+                                <asp:Label runat="server" ID="ConfirmNewPasswordLabel" AssociatedControlID="ConfirmNewPassword" Style="color:#ccc">Confirm new password</asp:Label>
                                 <asp:TextBox runat="server" ID="ConfirmNewPassword" CssClass="passwordEntry" TextMode="Password" />
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmNewPassword"
                                     CssClass="field-validation-error" Display="Dynamic" ErrorMessage="Confirm new password is required."
