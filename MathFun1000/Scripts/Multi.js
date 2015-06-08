@@ -119,7 +119,7 @@ function Confirm()
     var rowThree = document.getElementById("row3");
     var rowFour = document.getElementById("row4");
 
-    
+    //console.log(CorrectAnswer + " " + CurrentAnswer);
 
     if(CorrectAnswer == CurrentAnswer) //Correct
     {
