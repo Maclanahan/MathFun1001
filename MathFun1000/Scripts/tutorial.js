@@ -65,7 +65,6 @@ function nextRow()
         currentStep++;
         MathJax.Hub.Typeset();
 
-        
     }
 };
 
@@ -132,10 +131,7 @@ function makeRule() {
 
     par.appendChild(redirect);
     newDiv.appendChild(par);
-    
-
-    
-
+   
     return (newDiv);
 }
 
@@ -170,7 +166,6 @@ function stepBack()
         if (currentStep < totalNumOfSteps)
             $("#StepForward").slideDown(300);
     }
-
 };
 
 function hideColumn(col)
@@ -210,14 +205,15 @@ function accordion(i)
 function tutorialParser()
 {
     //Button Highlight
-    $("#unguided").css("background-color", "#DE8642"); //unguided.style.backgroundColor = "#DE8642";
+    $("#unguided").css("background-color", "#DE8642");
     $("#tutorial").css("background-color", "#99FF99");
-    $("#fillIn").css("background-color", "#DE8642");//fillIn.style.backgroundColor = "#DE8642";
+    $("#fillIn").css("background-color", "#DE8642");
     //
 
     resetProblem();
 
-    problemType.prototype.parser = function () {
+    problemType.prototype.parser = function ()
+    {
         var string = "";
         string = example[currentStep];
 
@@ -243,9 +239,9 @@ function tutorialParser()
 function fillInParser()
 {
     //Button Highlight
-    $("#unguided").css("background-color", "#DE8642"); //unguided.style.backgroundColor = "#DE8642";
+    $("#unguided").css("background-color", "#DE8642");
     $("#tutorial").css("background-color", "#DE8642");
-    $("#fillIn").css("background-color", "#99FF99");//fillIn.style.backgroundColor = "#DE8642";
+    $("#fillIn").css("background-color", "#99FF99");
     //
 
     resetProblem();
@@ -327,7 +323,10 @@ function unguidedParser()
     string = string.replace("</u>", "");
 
     answer = string;
+
+    //Keep for Testing Shows correct answer
     //$("#unguidedAnswerLabel").text(string);
+
     $("#unguidedAnswerBox").width(230);
 
     $("#StepForward").slideUp(500);
@@ -377,22 +376,21 @@ function checkAnswer()
         var string = "";
         string = example[currentStep -1];
 
-        //if (string.indexOf("<answer>") !== -1) {
-            string = string.replace(/<answer>/g, '');
-            string = string.replace(/<\/answer>/g, '');
-            string = string.replace(/<u>/g, '');
-            string = string.replace(/<\/u>/g, '');
-            string = string.replace(/<i>/g, '');
-            string = string.replace(/<\/i>/g, '');
-            string = string.replace(/<b>/g, '');
-            string = string.replace(/<\/b>/g, '');
-            string = string.replace(/&nbsp;/g, '');
-        //}
+        string = string.replace(/<answer>/g, '');
+        string = string.replace(/<\/answer>/g, '');
+        string = string.replace(/<u>/g, '');
+        string = string.replace(/<\/u>/g, '');
+        string = string.replace(/<i>/g, '');
+        string = string.replace(/<\/i>/g, '');
+        string = string.replace(/<b>/g, '');
+        string = string.replace(/<\/b>/g, '');
+        string = string.replace(/&nbsp;/g, '');
+        
 
-            var name = "#examplebox" + (currentStep - 1);
-            console.log(name);
-            $(name).empty();
-            $(name).html(string);
+        var name = "#examplebox" + (currentStep - 1);
+        console.log(name);
+        $(name).empty();
+        $(name).html(string);
 
         stepForward();
     }
@@ -401,7 +399,8 @@ function checkAnswer()
 
 }
 
-function checkUnguidedAnswer() {
+function checkUnguidedAnswer()
+{
     var input = $("#unguidedAnswerBox").val();
 
     input.replace(/ /g, '');
@@ -424,7 +423,6 @@ function checkUnguidedAnswer() {
 
 function resetProblem()
 {
-
     for(var i = 0; i < step.length; i++)
     {
         stepBack();

@@ -9,15 +9,14 @@ var stepesHidden = false;
 var CurrentAnswer = "";
 var CurrentRow = "";
 
-//window.alert(CorrectAnswer);
+function problemType()
+{
 
-function problemType() {
-    //this.parser = tutorialParser();
 }
 
-problemType.prototype.parser = function () {
+problemType.prototype.parser = function ()
+{
     return example[currentStep];
-
 }
 
 var problem = new problemType();
@@ -33,11 +32,8 @@ document.getElementById("StepForward").style.margin = "0 auto";
 //tutorialParser(); //removes answer tags as default, so MathJax parses correctly
 nextRow();
 
-
-
 function nextRow()
 {
-
     if (currentStep < totalNumOfSteps)
     {
         if(currentStep == 1)
@@ -76,7 +72,7 @@ function nextRow()
             var rowDiv = document.createElement('div');
             rowDiv.setAttribute('class', 'row');
             rowDiv.setAttribute('id', 'row' + currentStep);
-            //rowDiv.setAttribute('onclick', "highLightBar(" + currentStep + ")");
+
             rowDiv.innerHTML = "Question";
             rowDiv.style.textAlign = "center";
             rowDiv.style.fontSize = "medium";
@@ -86,19 +82,11 @@ function nextRow()
             innerRowDiv.setAttribute('class', 'insideRow');
             innerRowDiv.setAttribute('id', 'innerRow' + currentStep);
 
-            //innerRowDiv.appendChild(makeStep());
+
             innerRowDiv.appendChild(makeExample());
-            //innerRowDiv.appendChild(makeRule());
-            //alert(document.getElementById("MainContent_innerMain"));
+
             mainArea.appendChild(rowDiv);
             mainArea.appendChild(innerRowDiv);
-
-            //if (rulesHidden)
-            //    $("#rulebox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
-
-            //if (stepesHidden)
-            //    $("#stepbox" + currentStep).animate({ opacity: 0.00, width: "toggle", padding: "toggle" }, 0, function () { });
-
 
             $(rowDiv).slideUp(0);
             $(rowDiv).slideDown(500, scrollToBottomOfPage());
@@ -119,12 +107,9 @@ function Confirm()
     var rowThree = document.getElementById("row3");
     var rowFour = document.getElementById("row4");
 
-    //console.log(CorrectAnswer + " " + CurrentAnswer);
 
     if(CorrectAnswer == CurrentAnswer) //Correct
     {
-        //window.alert("Correct Answer");
-
         //Hide confirm button
         var confirmButton = document.getElementById("Confirmbtn");
         confirmButton.hidden = true;
@@ -194,13 +179,13 @@ function highLightBar(bar,curStep)
 
 }
 
-function scrollToBottomOfPage() {
-    console.log("here");
+function scrollToBottomOfPage()
+{
     $("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, 500);
-    //$("#StepBackward").animate({ scrollTop: $("#StepBackward")[0].scrollHeight }, 1000);
 }
 
-function setBoxHeights(innerRow) {
+function setBoxHeights(innerRow)
+{
     var height = 0;
 
     height = $('#stepbox' + currentStep).height();
@@ -224,7 +209,8 @@ function setBoxHeights(innerRow) {
     $('#rulebox' + currentStep + ' > p').css('line-height', height - 40 + 'px');
 };
 
-function makeExample() {
+function makeExample()
+{
     var newDiv = document.createElement('div');
     newDiv.setAttribute('id', 'examplebox' + currentStep);
     newDiv.setAttribute('class', 'examplebox');
@@ -233,7 +219,8 @@ function makeExample() {
 }
 
 
-function stepForward() {
+function stepForward()
+{
     nextRow();
 
     if (currentStep > 1)
@@ -243,7 +230,8 @@ function stepForward() {
         $("#StepForward").slideUp(300);
 };
 
-function stepBack() {
+function stepBack()
+{
     if (currentStep > 1)
     {
         currentStep--;
@@ -264,20 +252,17 @@ function stepBack() {
 
 };
 
-function accordion(i) {
+function accordion(i)
+{
     $('#row' + i).next().slideToggle(300);
 }
 
-function resetProblem() {
-    //alert(step.length);
-
-    for (var i = 0; i < step.length; i++) {
+function resetProblem()
+{
+    for (var i = 0; i < step.length; i++)
+    {
         stepBack();
     }
 
-    //hideAnswerBox();
-    //hideUnguidedAnswerBox();
     $("#StepForward").slideDown(500);
-    //alert(i);
-    //currentStep = 1;
 }
