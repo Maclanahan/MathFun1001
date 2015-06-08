@@ -209,6 +209,12 @@ function accordion(i)
 
 function tutorialParser()
 {
+    //Button Highlight
+    $("#unguided").css("background-color", "#DE8642"); //unguided.style.backgroundColor = "#DE8642";
+    $("#tutorial").css("background-color", "#99FF99");
+    $("#fillIn").css("background-color", "#DE8642");//fillIn.style.backgroundColor = "#DE8642";
+    //
+
     resetProblem();
 
     problemType.prototype.parser = function () {
@@ -236,6 +242,12 @@ function tutorialParser()
 
 function fillInParser()
 {
+    //Button Highlight
+    $("#unguided").css("background-color", "#DE8642"); //unguided.style.backgroundColor = "#DE8642";
+    $("#tutorial").css("background-color", "#DE8642");
+    $("#fillIn").css("background-color", "#99FF99");//fillIn.style.backgroundColor = "#DE8642";
+    //
+
     resetProblem();
 
     problemType.prototype.parser = function()
@@ -273,11 +285,23 @@ function fillInParser()
 
         return string;
     }
+    //Button Highlight
+
+
+
+
+
     
 }
 
 function unguidedParser()
 {
+    //Button Highlight
+    $("#unguided").css("background-color", "#99FF99"); //unguided.style.backgroundColor = "#DE8642";
+    $("#tutorial").css("background-color", "#DE8642");
+    $("#fillIn").css("background-color", "#DE8642");
+    //
+
     resetProblem();
 
     var string = "";

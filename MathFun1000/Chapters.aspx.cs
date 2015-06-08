@@ -46,7 +46,6 @@ namespace MathFun1000
                 {
                     BookTitle.InnerText = data[0]["Book_Name"].ToString();
                 }
-
                 else
                 {
                     Response.Redirect("ERROR.aspx", false);

@@ -301,10 +301,11 @@ p
 {
     //float: right;
     display: block;
-    margin-left: 50%;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    width: 200px;
+    margin-left: 6%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 134px;
+    background-color: #F8E6D9;
 }
 
 .pageTitle

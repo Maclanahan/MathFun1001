@@ -208,7 +208,7 @@ namespace MathFun1000
 
                 else
                 {
-                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"], false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
 
@@ -264,7 +264,7 @@ namespace MathFun1000
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("HereUp");
-                    Response.Redirect("Problems.aspx?chapter=" + Request.QueryString["chapter"], false);
+                    Response.Redirect("Problems.aspx?book=" + Request.QueryString["book"] + "&chapter=" + Request.QueryString["chapter"], false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
 

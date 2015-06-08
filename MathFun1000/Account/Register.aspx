@@ -32,10 +32,10 @@
                 <li>
                     <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Register" />
                 </li>
-                <li>
-                    <asp:Label ID="lbl_Confirmation" runat="server"></asp:Label>
-                </li>
             </ol>
+            <br />
+            <br />
+            <asp:Label ID="lbl_Confirmation" runat="server"></asp:Label>
         </fieldset>
     </section>
 </asp:Content>
